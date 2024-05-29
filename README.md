@@ -1,87 +1,104 @@
-# .
+## Concept
 
-This project uses Harmonia. Harmonia is a framework meant to serve as a foundation for every project following the React-Express-MySQL stack, as learned in Wild Code School.
-It's pre-configured with a set of tools which'll help students produce industry-quality and easier-to-maintain code, while staying a pedagogical tool.
+GeoCode is developing a web application to provide electric vehicle users with an interactive map linking available charging points to vehicles via geolocation.
+
+## Features
+
+#In the current version
+
+- Site presentation page.
+
+- Contact page (form containing a drop-down list: Information request, Partnership request, Other).
+
+- Map page (geolocation).
+
+- Registration page (CUSTOMER INFORMATION, VEHICLE(S) INFORMATION).
+
+- Login page (login and disconnect).
+
+- Vehicle page for modifying or deleting my vehicle(s).
+
+- Terminal page, only accessible from the card if the user has at least one vehicle.
+
+- My reservations” tab for cancelling a charging station reservation.
+
+- Administration page containing all related information.
+
+- Administration page tab for reading, modifying or deleting (user, vehicle, charging station).
+
+- Administration page tab for uploading a CSV file to update the complete list of charging stations.
+
+#Upcoming
+
+- Page containing useful information for electric vehicle owners (different types of plugs, tips...).
+
+- Page containing various recent articles entered by the administrator.
+
+- Markers added to the map, allowing access from the map to the websites of dealers offering electric vehicles around the user's location.
+
+- Profile page, lets me add, modify or delete a profile picture.
+
+- Vehicle page, allows me to add, modify or delete a vehicle image.
+
+- Administration page tab showing total number of registered users, number of users registered in the last 7 days, total number of vehicles, total number of vehicles by filters (makes, models).
+
+- Administration page tab for viewing, creating, modifying or deleting news items.
 
 ## Setup & Use
 
-**Windows users:** be sure to run these commands in a git terminal to avoid [issues with newline formats](https://en.wikipedia.org/wiki/Newline#Issues_with_different_newline_formats):
+# Project Initialization
 
-```
-git config --global core.eol lf
-git config --global core.autocrlf false
-```
+- In VSCode, install plugins Prettier - Code formatter and ESLint and configure them.
 
-- In VSCode, install plugins **Prettier - Code formatter** and **ESLint** and configure them
-- Clone this repo, enter it
-- Run command `npm install`
-- Create environment files (`.env`) in both `server` and `client`: you can copy `.env.sample` files as starters (**don't** delete them)
+- Clone this repo with the ssh key.
 
-### Available Commands
+- Type this command in your terminal if you're running Windows:
 
-- `db:migrate` : Run the database migration script
-- `db:seed` : Run the database seed script
-- `dev` : Starts both servers (client + server) in one terminal
-- `dev:client` : Starts the React client
-- `dev:back` : Starts the Express server
-- `lint` : Runs validation tools (will be executed on every _commit_, and refuse unclean code)
+  - git config --global core.eol lf,
+  - git config --global core.autocrlf false.
+
+- Run command npm i and npm run dev.
+
+- NB: To launch the backend server, you'll need an environment file with database credentials. You'll find a template one in backend/.env.sample.
+
+## Available Commands
+
+- setup : Initialization of frontend and backend, as well as all toolings.
+- migrate : Run the database migration script.
+- dev : Starts both servers (frontend + backend) in one terminal.
+- dev-front : Starts the React frontend server.
+- dev-back : Starts the Express backend server.
+- lint : Runs validation tools, and refuses unclean code (will be executed on every commit).
+- fix : Fixes linter errors (run it if lint growls on your code !).
 
 ## FAQ
 
-### Tools
+- The Template used for this project is a fullstack foundation template made by the Wild Code School.
 
-- _Concurrently_ : Allows for several commands to run concurrently in the same CLI
-- _Husky_ : Allows to execute specific commands that trigger on _git_ events
-- _Vite_ : Alternative to _Create-React-App_, packaging less tools for a more fluid experience
-- _ESLint_ : "Quality of code" tool, ensures chosen rules will be enforced
-- _Prettier_ : "Quality of code" tool as well, focuses on the styleguide
-- _ Airbnb Standard_ : One of the most known "standards", even though it's not officially linked to ES/JS
+- All pictures and icons from this project are open source. Most of them come from website free copyright picture.
 
-## Deployment with Traefik
+- Don't forget to create your frontend and backend .env files by copying the .env.sample files from each directory.
 
-> ⚠️ Prerequisites : You must have installed and configured Traefik on your VPS beforehand.
-> https://github.com/WildCodeSchool/vps-traefik-starter-kit/
+## Technologies
 
-For deployment, you have to go to `secrets` → app `actions` on the github repo to insert via `New repository secret` :
+- JS.
+- React.
+- Node.
+- Express.
+- MySQL.
 
-- SSH_HOST : IP address of your VPS
-- SSH_USER : SSH login to your VPS
-- SSH_PASSWORD : SSH connection password to your VPS
+## Tools
 
-And a public variable from the tab `/settings/variables/actions` :
+- Concurrently : Allows for several commands to run concurrently in the same CLI.
 
-- PROJECT_NAME : the name of the project used to create the subdomain.
+- Husky : Allows to execute specific commands that trigger on git events.
 
-> ⚠️ Warning : underscores are not allowed. They can cause trouble with the let's encrypt certificate
+- Vite : Alternative to Create-React-App, packaging less tools for a more fluid experience.
 
-Use this same tab to add the other environment variables required for the project if any.
+- ESLint : "Quality of code" tool, ensures chosen rules will be enforced.
 
-Only the server will be accessible. The root path `"/"` will redirect to the dist folder of your client. In order to allow that, please uncomment the line as explained in `server/src/app.js` (Line 102).
-Because the server will also serve the client, the global variable VITE_SERVER_URL will be set with an empty string.
+- Prettier : "Quality of code" tool as well, focuses on the styleguide.
 
-Your url will be ` https://${PROJECT-NAME}.${subdomain}.wilders.dev/`.
+- Airbnb Standard : One of the most known "standards", even though it's not officially linked to ES/JS.
 
-### About the database
-
-The database is automaticaly deployed with the name of your repo. During the build of the projet (`docker-entry.sh`), the `node migrate.js` command is executed in the server. If you want to seed automaticaly your database using the `seed.js` script, replace the `cd ./server && node ./bin/migrate.js && node index.js` by `cd ./server && node ./bin/migrate.js && node ./bin/seed.js && node index.js`
-
-### About public assets (pictures, fonts...)
-
-Don't use any public folder on your client. This folder won't be accessible online. You may move your public assets in the `server/public` folder. Prefer [static assets](https://vitejs.dev/guide/assets) when possible.
-
-### About Specific Environment Variables (e.g., Email)
-
-Students should use the template provided in the `*.env.sample*` file as `<PROJECT_NAME><SPECIFIC_NAME>=<THE_VARIABLE>`.
-
-> ⚠️ **Warning:** The `PROJECT_NAME` should match the one used in the Git public variable.
-
-To add it during deployment, follow these 2 steps:
-
-- Add the following variable to the `docker-compose.prod.yml` file (as shown in the example: `PROJECT_NAME_SPECIFIC_NAME: ${PROJECT_NAME_SPECIFIC_NAME}`).
-- Connect to your server via SSH. Open the global `.env` file in Traefik (`nano ./traefik/data/.env`). Add the variable with the correct value and save the file.
-- Afterward, you can initiate automatic deployment. Docker will not refresh during this process.
-
-### About Logs
-
-If you want to access the logs of your online projet (to follow the deployement or to watch any bug error), connect to your VPS (`ssh user@host`).
-Then, go on your specific project and run  `docker compose logs -t -f`.
+- Nodemon : Allows to restart the server everytime a .js file is udated.
