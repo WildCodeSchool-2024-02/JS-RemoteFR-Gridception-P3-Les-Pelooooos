@@ -1,12 +1,86 @@
-create table user (
-  id int unsigned primary key auto_increment not null,
-  email varchar(255) not null unique,
-  password varchar(255) not null
+-- SQLBook: Code
+CREATE TABLE brands (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    brand_name VARCHAR(80) NOT NULL
 );
 
-create table item (
-  id int unsigned primary key auto_increment not null,
-  title varchar(255) not null,
-  user_id int unsigned not null,
-  foreign key(user_id) references user(id)
+CREATE TABLE plugs_types (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    plug_type BOOLEAN NOT NULL
 );
+
+CREATE TABLE bornes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    longitude FLOAT NOT NULL,
+    latitude FLOAT NOT NULL,
+    name_station VARCHAR(50),
+    adress_station TEXT NOT NULL,
+    number_plugs INT NOT NULL,
+    free BOOLEAN,
+    opening_hours VARCHAR(50),
+    pmr_accessibility VARCHAR(50)
+);
+
+CREATE TABLE plugs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    power INT NOT NULL,
+    bornes_id INT,
+    plugs_types_id INT,
+    FOREIGN KEY(bornes_id)
+    REFERENCES bornes(id),
+    FOREIGN KEY(plugs_types_id)
+    REFERENCES plugs_types(id)
+);
+
+CREATE TABLE reservations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE NOT NULL,
+    hour TIME NOT NULL,
+    bornes_id INT,
+    plugs_id INT,
+    FOREIGN KEY (bornes_id)
+    REFERENCES bornes(id),
+    FOREIGN KEY (plugs_id)
+    REFERENCES plugs(id)
+);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    city VARCHAR(50),
+    cars_owned INT NOT NULL,
+    password VARCHAR(15) NOT NULL,
+    is_admin BOOLEAN NOT NULL,
+    reservations_id INT,
+    FOREIGN KEY (reservations_id)
+    REFERENCES reservations(id)    
+);
+
+CREATE TABLE cars (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    model VARCHAR(80) NOT NULL,
+    brands_id INT,
+    users_id INT,
+    plugs_id INT,
+    FOREIGN KEY (brands_id)
+    REFERENCES brands(id),
+    FOREIGN KEY (users_id)
+    REFERENCES users(id),
+    FOREIGN KEY (plugs_id)
+    REFERENCES plugs(id)
+);
+
+CREATE TABLE images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    url TEXT,
+    users_id INT,
+    cars_id INT,
+    FOREIGN KEY(users_id)
+    REFERENCES users(id),
+    FOREIGN KEY(cars_id)
+    REFERENCES cars(id)
+);
+
+-- SQLBook: Code
