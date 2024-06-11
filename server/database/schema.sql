@@ -9,7 +9,7 @@ CREATE TABLE plugs_types (
     plug_type BOOLEAN NOT NULL
 );
 
-CREATE TABLE bornes (
+CREATE TABLE terminals (
     id INT AUTO_INCREMENT PRIMARY KEY,
     longitude FLOAT NOT NULL,
     latitude FLOAT NOT NULL,
@@ -24,10 +24,10 @@ CREATE TABLE bornes (
 CREATE TABLE plugs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     power INT NOT NULL,
-    bornes_id INT,
+    terminals_id INT,
     plugs_types_id INT,
-    FOREIGN KEY(bornes_id)
-    REFERENCES bornes(id),
+    FOREIGN KEY(terminals_id)
+    REFERENCES terminals(id),
     FOREIGN KEY(plugs_types_id)
     REFERENCES plugs_types(id)
 );
@@ -36,10 +36,10 @@ CREATE TABLE reservations (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE NOT NULL,
     hour TIME NOT NULL,
-    bornes_id INT,
+    terminals_id INT,
     plugs_id INT,
-    FOREIGN KEY (bornes_id)
-    REFERENCES bornes(id),
+    FOREIGN KEY (terminals_id)
+    REFERENCES terminals(id),
     FOREIGN KEY (plugs_id)
     REFERENCES plugs(id)
 );
