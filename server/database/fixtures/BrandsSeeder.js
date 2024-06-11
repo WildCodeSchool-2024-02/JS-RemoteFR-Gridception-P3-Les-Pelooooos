@@ -1,0 +1,20 @@
+const AbstractSeeder = require("./AbstractSeeder");
+
+class BrandsSeeder extends AbstractSeeder {
+  constructor() {
+    super({ table: "brands", truncate: true });
+    this.brands = ["Mercedes", "Toyota"];
+  }
+
+  run() {
+    for (let i = 0; i < 2; i += 1) {
+      const fakeBrands = {
+        brand_name: this.brands[i],
+      };
+
+      this.insert(fakeBrands);
+    }
+  }
+}
+
+module.exports = BrandsSeeder;
