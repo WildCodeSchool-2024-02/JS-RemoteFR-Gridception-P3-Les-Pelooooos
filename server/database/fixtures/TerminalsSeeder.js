@@ -8,7 +8,7 @@ class TerminalsSeeder extends AbstractSeeder {
     this.nameStation = ["Paris", "Marseille"];
     this.adressStation = [
       "1 chemin des parisien 75000 Paris",
-      "10 rue des beau gosse 13000 Marseille",
+      "10 rue des beau gosse 13000 Marseille"
     ];
     this.numberPlugs = [10, 45];
     this.free = [true, false];
@@ -27,6 +27,7 @@ class TerminalsSeeder extends AbstractSeeder {
         free: this.free[i],
         opening_hours: this.openingHours[i],
         pmr_accessibility: this.pmrAccessibility[i],
+        refName: `terminals_${i}`
       };
 
       this.insert(fakeTerminals);
