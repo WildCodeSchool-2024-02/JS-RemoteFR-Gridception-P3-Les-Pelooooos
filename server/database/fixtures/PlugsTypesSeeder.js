@@ -10,6 +10,7 @@ class PlugsTypesSeeder extends AbstractSeeder {
     for (let i = 0; i < 2; i += 1) {
       const fakePlugsTypes = {
         plug_type: this.plugsTypes[i],
+        refName: `plugs_types_${i}`
       };
 
       this.insert(fakePlugsTypes);
