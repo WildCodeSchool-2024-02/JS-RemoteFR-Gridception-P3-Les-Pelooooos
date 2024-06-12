@@ -3,7 +3,7 @@ const AbstractSeeder = require("./AbstractSeeder");
 class BrandsSeeder extends AbstractSeeder {
   constructor() {
     super({ table: "brands", truncate: true });
-    this.brands = ["Mercedes", "Toyota", "Toto", "Tata", "TUTU"];
+    this.brands = ["Mercedes", "Toyota"];
   }
 
   run() {
