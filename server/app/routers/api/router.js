@@ -19,6 +19,9 @@ const brandsRouter = require("./brands/router");
 router.use("/brands", brandsRouter);
 
 
+const plugsRouter = require("./plugs/router");
+
+router.use("/plugs", plugsRouter);
 /* ************************************************************************* */
 
 module.exports = router;
