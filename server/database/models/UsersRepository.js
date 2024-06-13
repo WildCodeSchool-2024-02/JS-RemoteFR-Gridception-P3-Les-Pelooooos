@@ -11,7 +11,7 @@ class TerminalsRepository extends AbstractRepository {
   async create(users) {
     // Execute the SQL INSERT query to add a new item to the "item" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (firstname, lastname, city, cars_owned, password, is_admin, reservations_id) values (?, ?, ?, ?, ?, ?,?, ?)`,
+      `insert into ${this.table} (firstname, lastname, city, cars_owned, password, is_admin, reservations_id) values (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         users.firstname,
         users.lastname,
