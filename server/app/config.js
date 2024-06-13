@@ -1,5 +1,3 @@
-// Load the express module to create a web application
-
 const express = require("express");
 
 const app = express();
@@ -11,12 +9,13 @@ app.use(
   cors({
     origin: [
       process.env.CLIENT_URL, // keep this one, after checking the value in `server/.env`
-    ]
+    ],
   })
 );
 
-
 app.use(express.json());
+
+// Import the API router
 
 const apiRouter = require("./routers/api/router");
 
