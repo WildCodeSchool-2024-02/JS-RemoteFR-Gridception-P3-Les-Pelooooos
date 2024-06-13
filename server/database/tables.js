@@ -1,7 +1,9 @@
 // Import the repository modules responsible for handling data operations on the tables
 const ItemRepository = require("./models/ItemRepository");
+const TerminalsRepository = require("./models/TerminalsRepository");
 const PlugsTypesRepository = require("./models/PlugsTypesRepository");
 const BrandsRepository = require("./models/BrandsRepository");
+
 
 
 // Create an empty object to hold data repositories for different tables
@@ -13,6 +15,7 @@ const tables = {};
 
 // Register each repository as data access point for its table
 tables.item = new ItemRepository();
+tables.terminals = new TerminalsRepository();
 tables.plugsTypes = new PlugsTypesRepository;
 tables.brands = new BrandsRepository();
 
