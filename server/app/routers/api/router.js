@@ -7,8 +7,9 @@ const router = express.Router();
 /* ************************************************************************* */
 
 
+const imagesRouter = require("./images/router");
 
-
+router.use("/images", imagesRouter);
 
 const carsRouter = require("./cars/router");
 
@@ -33,6 +34,7 @@ router.use("/brands", brandsRouter);
 const plugsRouter = require("./plugs/router");
 
 router.use("/plugs", plugsRouter);
+
 
 /* ************************************************************************* */
 
