@@ -14,7 +14,9 @@ app.use(
 
 app.use(express.json());
 
+
 // Import the API router
+
 
 const apiRouter = require("./routers/api/router");
 
