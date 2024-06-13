@@ -6,17 +6,14 @@ const router = express.Router();
 // Import And Use Routers Here
 /* ************************************************************************* */
 
-const itemsRouter = require("./items/router");
+const { browse, read, edit, add, destroy} = require("../../../controllers/plugsTypesActions");
 
-router.use("/items", itemsRouter);
+router.get("/", browse);
+router.get("/:id", read);
+router.put("/:id", edit);
+router.post("/", add);
+router.delete("/:id", destroy);
 
-const plugsTypesRouter = require("./plugsTypes/router");
-
-router.use("/plugsTypes", plugsTypesRouter);
-
-const brandsRouter = require("./brands/router");
-
-router.use("/brands", brandsRouter);
 
 /* ************************************************************************* */
 
