@@ -55,7 +55,7 @@ const add = async (req, res, next) => {
 const destroy = async (req, res, next) => {
   try {
     // Delete the category from the database
-    await tables.plugs.destroy(req.params.id);
+    await tables.plugs.delete(req.params.id);
 
     // Respond with HTTP 204 (No Content)
     res.sendStatus(204);
