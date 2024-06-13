@@ -2,11 +2,6 @@ const express = require("express");
 
 const router = express.Router();
 
-/* ************************************************************************* */
-// Import And Use Routers Here
-/* ************************************************************************* */
-
-
 const imagesRouter = require("./images/router");
 
 router.use("/images", imagesRouter);
@@ -35,11 +30,8 @@ const plugsRouter = require("./plugs/router");
 
 router.use("/plugs", plugsRouter);
 
-
 const usersRouter = require("./users/router");
 
 router.use("/users", usersRouter);
-
-/* ************************************************************************* */
 
 module.exports = router;

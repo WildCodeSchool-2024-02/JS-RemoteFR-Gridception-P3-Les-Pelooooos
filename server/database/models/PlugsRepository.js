@@ -30,24 +30,20 @@ class PlugsRepository extends AbstractRepository {
   }
 
   async update(plugs) {
-    // Execute the SQL UPDATE query to update a specific category
     const [result] = await this.database.query(
       `update ${this.table} set power = ?, terminals_id = ?, plugs_types = ? where id = ?`,
       [plugs.power, plugs.id, plugs.terminals_id, plugs.plugs_types_id]
     );
 
-    // Return how many rows were affected
     return result.affectedRows;
   }
 
   async delete(id) {
-    // Execute the SQL DELETE query to delete a specific category
     const [result] = await this.database.query(
       `delete from ${this.table} where id = ?`,
       [id]
     );
 
-    // Return how many rows were affected
     return result.affectedRows;
   }
 }

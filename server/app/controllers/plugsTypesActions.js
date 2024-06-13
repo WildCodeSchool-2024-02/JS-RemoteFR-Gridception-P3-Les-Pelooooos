@@ -3,7 +3,7 @@ const tables = require("../../database/tables");
 // The B of BREAD - Browse (Read All) operation
 const browse = async (req, res, next) => {
   try {
-    const plugsTypes = await tables.plugsTypes.readAll();
+    const plugsTypes = await tables.plugs_types.readAll();
 
     res.json(plugsTypes);
   } catch (err) {
@@ -14,7 +14,7 @@ const browse = async (req, res, next) => {
 // The R of BREAD - Read operation
 const read = async (req, res, next) => {
   try {
-    const plugsTypes = await tables.plugsTypes.read(req.params.id);
+    const plugsTypes = await tables.plugs_types.read(req.params.id);
 
     if (plugsTypes == null) {
       res.sendStatus(404);
@@ -44,7 +44,7 @@ const add = async (req, res, next) => {
   const plugsTypes = req.body;
 
   try {
-    const insertId = await tables.brands.create(plugsTypes);
+    const insertId = await tables.plugs_types.create(plugsTypes);
 
     res.status(201).json({ insertId });
   } catch (err) {
@@ -56,7 +56,7 @@ const add = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    await tables.plugsTypes.delete(req.params.id);
+    await tables.plugs_types.delete(req.params.id);
 
     res.sendStatus(204);
   } catch (err) {
