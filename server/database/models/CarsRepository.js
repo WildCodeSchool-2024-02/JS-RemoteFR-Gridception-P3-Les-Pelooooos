@@ -43,7 +43,7 @@ class CarsRepository extends AbstractRepository {
     // Execute the SQL UPDATE query to update a specific category
     const [result] = await this.database.query(
       `update ${this.table} set model = ?, brands_id = ?, users_id = ?, plugs_id = ? where id = ?`,
-      [cars.model, cars.brands_id, cars.users_id, cars.plugs_id]
+      [cars.model, cars.brands_id, cars.users_id, cars.plugs_id, cars.id]
     );
 
     // Return how many rows were affected

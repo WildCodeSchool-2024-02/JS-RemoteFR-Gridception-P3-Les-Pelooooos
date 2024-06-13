@@ -72,7 +72,7 @@ const add = async (req, res, next) => {
 const destroy = async (req, res, next) => {
   try {
     // Delete the category from the database
-    await tables.cars.destroy(req.params.id);
+    await tables.cars.delete(req.params.id);
 
     // Respond with HTTP 204 (No Content)
     res.sendStatus(204);
