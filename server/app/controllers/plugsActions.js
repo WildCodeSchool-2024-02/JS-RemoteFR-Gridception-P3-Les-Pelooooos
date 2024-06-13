@@ -25,17 +25,13 @@ const read = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  // Extract the category data from the request body and params
   const plugs = { ...req.body, id: req.params.id };
 
   try {
-    // Update the category in the database
     await tables.plugs.update(plugs);
 
-    // Respond with HTTP 204 (No Content)
     res.sendStatus(204);
   } catch (err) {
-    // Pass any errors to the error-handling middleware
     next(err);
   }
 };
@@ -54,13 +50,10 @@ const add = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    // Delete the category from the database
     await tables.plugs.delete(req.params.id);
 
-    // Respond with HTTP 204 (No Content)
     res.sendStatus(204);
   } catch (err) {
-    // Pass any errors to the error-handling middleware
     next(err);
   }
 };
