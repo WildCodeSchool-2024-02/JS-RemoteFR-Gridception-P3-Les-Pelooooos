@@ -5,10 +5,10 @@ const tables = require("../../database/tables");
 const browse = async (req, res, next) => {
   try {
     // Fetch all items from the database
-    const items = await tables.item.readAll();
+    const terminals = await tables.terminals.readAll();
 
     // Respond with the items in JSON format
-    res.json(items);
+    res.json(terminals);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
@@ -19,14 +19,14 @@ const browse = async (req, res, next) => {
 const read = async (req, res, next) => {
   try {
     // Fetch a specific item from the database based on the provided ID
-    const item = await tables.item.read(req.params.id);
+    const terminals = await tables.terminals.read(req.params.id);
 
     // If the item is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the item in JSON format
-    if (item == null) {
+    if (terminals == null) {
       res.sendStatus(404);
     } else {
-      res.json(item);
+      res.json(terminals);
     }
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -36,15 +36,31 @@ const read = async (req, res, next) => {
 
 // The E of BREAD - Edit (Update) operation
 // This operation is not yet implemented
+const edit = async (req,res,next) => {
+
+    const terminals = {...req.body, id: req.params.id};
+
+    try {
+
+        await tables.terminals.update(terminals);
+
+        res.sendStatus(204);
+    } catch (err) {
+      // Pass any errors to the error-handling middleware
+      next(err);
+    }
+    };
+
+
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
   // Extract the item data from the request body
-  const item = req.body;
+  const terminals = req.body;
 
   try {
     // Insert the item into the database
-    const insertId = await tables.item.create(item);
+    const insertId = await tables.terminals.create(terminals);
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     res.status(201).json({ insertId });
@@ -54,14 +70,24 @@ const add = async (req, res, next) => {
   }
 };
 
-// The D of BREAD - Destroy (Delete) operation
-// This operation is not yet implemented
-
-// Ready to export the controller functions
-module.exports = {
-  browse,
-  read,
-  // edit,
-  add,
-  // destroy,
-};
+const destroy = async (req, res, next) => {
+    try {
+      // Delete the category from the database
+      await tables.terminals.delete(req.params.id);
+  
+      // Respond with HTTP 204 (No Content)
+      res.sendStatus(204);
+    } catch (err) {
+      // Pass any errors to the error-handling middleware
+      next(err);
+    }
+  };
+  
+  // Ready to export the controller functions
+  module.exports = {
+    browse,
+    read,
+    edit,
+    add,
+    destroy,
+  };
