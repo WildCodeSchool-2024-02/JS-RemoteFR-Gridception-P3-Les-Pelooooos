@@ -36,6 +36,10 @@ const plugsRouter = require("./plugs/router");
 router.use("/plugs", plugsRouter);
 
 
+const usersRouter = require("./users/router");
+
+router.use("/users", usersRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;
