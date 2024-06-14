@@ -7,6 +7,7 @@ import Accueil from "./pages/Accueil";
 import Profil from "./pages/Profil";
 import Contact from "./pages/Contact";
 import Connexion from "./pages/Connexion";
+import Carte from "./pages/Carte";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         path: "/connexion",
         element: <Connexion/>
       },
+      {
+        path: "/carte",
+        element: <Carte/>
+      }
     ],
   },
 ]);
