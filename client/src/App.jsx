@@ -4,9 +4,11 @@ import NavBar from "./components/NavBar";
 
 function App() {
   return (
-   <Outlet/>,
-   <NavBar/>
-  )
+    <>
+      <Outlet />
+      <NavBar />
+    </>
+  );
 }
 
 export default App;
