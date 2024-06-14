@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import Accueil from "./pages/Accueil";
+import Profil from "./pages/Profil";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Accueil/>
+      },
+      {
+        path: "/profil",
+        element: <Profil/>
       },
     ],
   },
