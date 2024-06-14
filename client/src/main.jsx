@@ -6,6 +6,7 @@ import App from "./App";
 import Accueil from "./pages/Accueil";
 import Profil from "./pages/Profil";
 import Contact from "./pages/Contact";
+import Connexion from "./pages/Connexion";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact/>
+      },
+      {
+        path: "/connexion",
+        element: <Connexion/>
       },
     ],
   },
