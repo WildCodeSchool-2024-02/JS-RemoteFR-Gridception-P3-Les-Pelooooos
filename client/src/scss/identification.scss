@@ -18,10 +18,15 @@
   text-align: center;
   margin: 0;
 }
-.p.Id a {
+.aId {
   color: #7cd858;
   text-decoration: none;
   font-weight: bold;
+  font-size: 16px;
+  margin: 0;
+}
+.aId:hover {
+  color: #21a89a;
 }
 
 .formId {
