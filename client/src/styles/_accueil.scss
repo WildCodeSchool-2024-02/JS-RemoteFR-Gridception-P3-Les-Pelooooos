@@ -1,0 +1,51 @@
+.page-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.logo {
+  display: flex;
+  width: 130px;
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.color {
+  color: #7cd858;
+}
+
+.title-accueil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  flex-wrap: wrap;
+  color: #525b5a;
+}
+
+.accroche-image {
+  width: 352px;
+  height: 300px;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.phrase-accroche {
+  text-align: center;
+  font-size: 20px;
+}
+
+.bold-color {
+  color: #21a89a;
+  font-weight: bold;
+}
