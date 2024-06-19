@@ -16,24 +16,24 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Accueil/>
+        element: <Accueil />,
       },
       {
         path: "/profil",
-        element: <Profil/>
+        element: <Profil />,
       },
       {
         path: "/contact",
-        element: <Contact/>
+        element: <Contact />,
       },
       {
         path: "/connexion",
-        element: <Connexion/>
+        element: <Connexion />,
       },
       {
         path: "/carte",
-        element: <Carte/>
-      }
+        element: <Carte />,
+      },
     ],
   },
 ]);
