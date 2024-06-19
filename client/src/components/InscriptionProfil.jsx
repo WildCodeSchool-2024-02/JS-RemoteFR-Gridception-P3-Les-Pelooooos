@@ -34,7 +34,7 @@ export default function InscriptionProfil() {
     <section className="profilInformation">
       <h2> INFORMATION DE VOTRE PROFIL</h2>
       <form onSubmit={(event) => event.preventDefault()}>
-        <p>Email</p>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           placeholder="email *"
