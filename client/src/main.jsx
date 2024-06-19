@@ -8,6 +8,7 @@ import Profil from "./pages/Profil";
 import Contact from "./pages/Contact";
 import Connexion from "./pages/Connexion";
 import Carte from "./pages/Carte";
+import "./styles/imports.scss";
 
 const router = createBrowserRouter([
   {
@@ -16,24 +17,24 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Accueil/>
+        element: <Accueil />,
       },
       {
         path: "/profil",
-        element: <Profil/>
+        element: <Profil />,
       },
       {
         path: "/contact",
-        element: <Contact/>
+        element: <Contact />,
       },
       {
         path: "/connexion",
-        element: <Connexion/>
+        element: <Connexion />,
       },
       {
         path: "/carte",
-        element: <Carte/>
-      }
+        element: <Carte />,
+      },
     ],
   },
 ]);
