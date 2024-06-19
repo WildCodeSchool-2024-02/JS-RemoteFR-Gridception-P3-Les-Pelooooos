@@ -1,5 +1,9 @@
-* {
-  background-color: aqua;
+.inscription {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 3rem 2rem 3rem;
+  color: #525b5a;
 }
 
 .logoIns {
@@ -7,4 +11,20 @@
   width: 71px;
   border-radius: 20px;
   margin-bottom: 1rem;
+}
+
+.h1Ins {
+  font-size: 32px;
+}
+
+.buttonIns {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 12px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, #21a89a, #7cd858);
+  border: none;
 }
