@@ -14,7 +14,7 @@ export default function Reservation() {
           className="icons-settings"
         />
 
-        <h2>MA RESERVATION</h2>
+        <h2 className="h2-profil">MA RESERVATION</h2>
       </section>
       <div className="adress-station">
         <img

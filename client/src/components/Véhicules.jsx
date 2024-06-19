@@ -11,7 +11,7 @@ export default function Vehicules() {
           className="icons-settings"
         />
         <div className="title-vehicule">
-          <h2>MON/MES VÉHICULE(S)</h2>
+          <h2 className="h2-profil">MON/MES VÉHICULE(S)</h2>
         </div>
       </section>
       <div className="adress-station">
