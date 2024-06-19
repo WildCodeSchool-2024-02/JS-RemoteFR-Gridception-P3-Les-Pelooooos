@@ -8,7 +8,7 @@ export default function Profil() {
       <section className="header-profil">
         <section className="header-profil-content">
           <h1>PROFIL</h1>
-          <p>Bonjour Hannah</p>
+          <p>Bonjour (Name)</p>
         </section>
         <img
           className="img-profil"
