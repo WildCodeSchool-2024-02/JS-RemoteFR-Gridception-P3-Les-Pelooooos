@@ -1,3 +1,5 @@
+import "../scss/Inscription.scss"
+
 export default function NavBar() {
     return (
         <section>
