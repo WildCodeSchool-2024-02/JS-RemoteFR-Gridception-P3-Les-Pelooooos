@@ -1,14 +1,28 @@
+import { useState } from "react";
 import MapComponent from "../components/MapComponent";
 import "../styles/carte.scss";
 
 export default function Carte() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (event) => {
+    if (event.key === "Enter") {
+      setSearchQuery(event.target.value);
+    }
+  };
+
   return (
     <div className="pageContainerMap">
       <section className="topPage">
-        <p className="searchClient">Rechercher un lieu</p>
+        <input
+          type="text"
+          className="searchClient"
+          placeholder="Rechercher un lieu"
+          onKeyDown={handleSearch}
+        />
       </section>
       <section className="map">
-        <MapComponent />
+        <MapComponent searchQuery={searchQuery} />
       </section>
       <section className="station">
         <h1>Nom de la station</h1>

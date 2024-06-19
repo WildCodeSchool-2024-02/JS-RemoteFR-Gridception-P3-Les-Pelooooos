@@ -21,7 +21,7 @@
 .topPage {
   border-radius: 30px;
   top: 1rem;
-  background-color: #d6dad8;
+
   justify-content: center;
   text-align: center;
 }
@@ -40,6 +40,12 @@
 .searchClient {
   text-align: center;
   font-size: 1.2em;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  margin: 10px 0;
 }
 
 .rounded-map {
