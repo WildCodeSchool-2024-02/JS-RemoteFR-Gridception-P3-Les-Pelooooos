@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  line-height: 1.5;
 }
 
 .pageContainerMap {
@@ -8,4 +7,42 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.station,
+.topPage {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  padding: 0;
+  z-index: 1000;
+}
+
+.topPage {
+  border-radius: 30px;
+  top: 1rem;
+  background-color: #d6dad8;
+  justify-content: center;
+  text-align: center;
+}
+
+.station {
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #525b5a;
+  color: #d6dad8;
+  opacity: 92%;
+  border-radius: 50px;
+}
+
+.searchClient {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.rounded-map {
+  border-radius: 50px;
+  overflow: hidden;
 }

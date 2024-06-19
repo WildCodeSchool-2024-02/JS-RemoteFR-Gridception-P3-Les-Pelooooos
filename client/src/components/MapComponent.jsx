@@ -48,7 +48,8 @@ function MapComponent() {
     <MapContainer
       center={position}
       zoom={13}
-      style={{ height: "100vh", width: "100vw" }}
+      className="rounded-map"
+      style={{ height: "100vh", width: "85vw" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
