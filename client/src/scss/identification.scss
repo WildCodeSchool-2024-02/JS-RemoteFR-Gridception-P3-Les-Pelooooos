@@ -32,26 +32,42 @@
 }
 
 .formId {
-  margin-right: 1rem;
   margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }
 .inputId {
-  margin: 1rem 0 0.2rem 0;
+  margin: 0;
   padding: 10px;
   font-size: 16px;
   width: 100%;
   border-radius: 10px;
   background-color: #d6dad8;
   border: none;
+  width: 90%;
+  align-items: center;
+}
+.pId2 {
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-size: 16px;
+  text-align: center;
 }
 .buttonId {
   margin-top: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   padding: 12px;
   border-radius: 30px;
   font-size: 16px;
-  color: white;
   font-weight: bold;
+  color: white;
   background: linear-gradient(45deg, #21a89a, #7cd858);
   border: none;
+}
+.error {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  color: red;
 }

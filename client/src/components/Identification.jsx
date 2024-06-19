@@ -10,13 +10,26 @@ export default function Identification() {
     password: "",
   });
 
+  const [error, setError] = useState("");
+
   const handleChangeForm = (event) => {
     const { name, value } = event.target;
     setIdentifier({ ...identifier, [name]: value });
   };
 
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+  
+
   const togglePopup = () => {
-    if (identifier.identifiant !== "" && identifier.password !== "") {
+    if (!isValidEmail(identifier.identifiant)) {
+      setError("L'adresse e-mail est invalide.");
+    } else if (identifier.password === "") {
+      setError("Le mot de passe est requis.");
+    } else {
+      setError("");
       setIdentifier({
         identifiant: "",
         password: "",
@@ -39,29 +52,34 @@ export default function Identification() {
         fonctionnalités.
       </p>
       <form className="formId" onSubmit={(event) => event.preventDefault()}>
+        <p className="pId2">Identifiant :</p>
         <input
           className="inputId"
           required
+          type="email"
           placeholder="Identifiant *"
           name="identifiant"
           value={identifier.identifiant}
           onChange={(e) => handleChangeForm(e)}
         />
+        <p className="pId2">Mot de passe :</p>
         <input
           className="inputId"
           required
+          type="password"
           placeholder="Mot de passe *"
           name="password"
           value={identifier.password}
           onChange={(e) => handleChangeForm(e)}
         />
-      </form>
+        {error && <p className="error">{error}</p>}
         <button className="buttonId" type="submit" onClick={togglePopup}>
           SE CONNECTER
         </button>
+      </form>
       <p className="pId"> 
         Vous n'avez pas de compte ? </p>
-        <p><a className="aId" href="/">Inscrivez-vous ici </a>
+        <p className="pId"><a className="aId" href="/">Inscrivez-vous ici </a>
       </p>
     </section>
   );
