@@ -8,6 +8,7 @@ import Profil from "./pages/Profil";
 import Contact from "./pages/Contact";
 import Connexion from "./pages/Connexion";
 import Carte from "./pages/Carte";
+import Inscription from "./pages/Inscription";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/carte",
         element: <Carte />,
+      },
+      {
+        path: "/inscription",
+        element: <Inscription />,
       },
     ],
   },
