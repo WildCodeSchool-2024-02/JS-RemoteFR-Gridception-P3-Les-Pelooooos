@@ -27,6 +27,11 @@ export default function InscriptionProfil() {
     return emailRegex.test(email);
   };
 
+  const isValidCodePostal = (codePostal) => {
+    const codePostalRegex = /^[0-9]{5}$/;
+    return codePostalRegex.test(codePostal);
+  };
+
   const togglePopup = () => {
     if (!isValidEmail(inscription.email)) {
       setError("L'adresse e-mail est invalide.");
@@ -36,20 +41,19 @@ export default function InscriptionProfil() {
       setError("Le prénom est requis.");
     } else if (inscription.genre === "") {
       setError("Le genre est requis.");
-    } else if (inscription.dateNaissance === ""){
-        setError("La date de naissance est requise.")
-    } else if(inscription.ville === ""){
-        setError("La ville est requise.");
-    } else if (inscription.cp === ""){
-        setError("Le code postal est requis.");
-    } else if (inscription.vehicule === ""){
-        setError("Le nombre de véhicules est obligatoire.")
-    } else if (inscription.mp === ""){
-        setError("Le mot de passe est requis.");
-    } else if (inscription.confirmationMp === ""){
-        setError("La confirmation du mot de passe est requise.");
-    }
-    else {
+    } else if (inscription.dateNaissance === "") {
+      setError("La date de naissance est requise.");
+    } else if (inscription.ville === "") {
+      setError("La ville est requise.");
+    } else if (!isValidCodePostal(inscription.cp)) {
+      setError("Le code postal est invalide.");
+    } else if (inscription.vehicule === "") {
+      setError("Le nombre de véhicules est obligatoire.");
+    } else if (inscription.mp === "") {
+      setError("Le mot de passe est requis.");
+    } else if (inscription.confirmationMp !== inscription.mp) {
+      setError("Les mots de passe ne correspondent pas.");
+    } else {
       setError("");
       setInscription({
         email: "",
@@ -126,34 +130,34 @@ export default function InscriptionProfil() {
         />
       </form>
       <label htmlFor="vehicule">Nombre de véhicules</label>
-        <select
-          name="vehicule"
-          value={inscription.vehicule}
-          onChange={(e) => handleChangeForm(e)}
-        >
-          <option value="">Selectionnez le nombre de véhicules</option>
-          <option value="1">1 véhicule</option>
-          <option value="2">2 véhicules</option>
-          <option value="3">3 véhicules</option>
-          <option value="4">4 véhicules</option>
-          <option value="5">5 véhicules</option>
-        </select>
-        <label htmlFor="mp">Mot de passe</label>
-        <input
-          required
-          type="password"
-          name="mp"
-          value={inscription.mp}
-          onChange={(e) => handleChangeForm(e)}
-        />
-        <label htmlFor="confirmationMp">Confirmation du mot de passe</label>
-        <input
-          required
-          type="password"
-          name="confirmationMp"
-          value={inscription.conformationMp}
-          onChange={(e) => handleChangeForm(e)}
-        />
+      <select
+        name="vehicule"
+        value={inscription.vehicule}
+        onChange={(e) => handleChangeForm(e)}
+      >
+        <option value="">Selectionnez le nombre de véhicules</option>
+        <option value="1">1 véhicule</option>
+        <option value="2">2 véhicules</option>
+        <option value="3">3 véhicules</option>
+        <option value="4">4 véhicules</option>
+        <option value="5">5 véhicules</option>
+      </select>
+      <label htmlFor="mp">Mot de passe</label>
+      <input
+        required
+        type="password"
+        name="mp"
+        value={inscription.mp}
+        onChange={(e) => handleChangeForm(e)}
+      />
+      <label htmlFor="confirmationMp">Confirmation du mot de passe</label>
+      <input
+        required
+        type="password"
+        name="confirmationMp"
+        value={inscription.conformationMp}
+        onChange={(e) => handleChangeForm(e)}
+      />
 
       {error && <p className="error">{error}</p>}
       <button className="buttonIns" type="submit" onClick={togglePopup}>
