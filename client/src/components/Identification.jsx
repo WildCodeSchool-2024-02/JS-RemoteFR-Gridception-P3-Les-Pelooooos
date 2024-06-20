@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "../scss/identification.scss";
 import { Link } from "react-router-dom";
 
 import logoGeocode from "../assets/images/logo-geocode.png";
@@ -21,7 +20,6 @@ export default function Identification() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-  
 
   const togglePopup = () => {
     if (!isValidEmail(identifier.identifiant)) {
@@ -40,11 +38,7 @@ export default function Identification() {
   return (
     <section className="identification">
       <Link to="/">
-      <img
-        className="logoId"
-        src={logoGeocode}
-        alt="Logo Geocode"
-      />
+        <img className="logoId" src={logoGeocode} alt="Logo Geocode" />
       </Link>
       <h1 className="h1Id">CONNEXION</h1>
       <p className="pId">
@@ -77,9 +71,11 @@ export default function Identification() {
           SE CONNECTER
         </button>
       </form>
-      <p className="pId"> 
-        Vous n'avez pas de compte ? </p>
-        <p className="pId"><a className="aId" href="/">Inscrivez-vous ici </a>
+      <p className="pId">Vous n'avez pas de compte ? </p>
+      <p className="pId">
+        <a className="aId" href="/">
+          Inscrivez-vous ici{" "}
+        </a>
       </p>
     </section>
   );
