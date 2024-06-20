@@ -1,6 +1,5 @@
 import { useState } from "react";
 import MapComponent from "../components/MapComponent";
-import "../styles/carte.scss";
 
 export default function Carte() {
   const [searchQuery, setSearchQuery] = useState("");

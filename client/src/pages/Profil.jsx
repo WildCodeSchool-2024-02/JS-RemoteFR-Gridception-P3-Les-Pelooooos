@@ -1,6 +1,3 @@
 export default function Profil() {
-    return (
-        <div> Page de Profil </div>
-    );
+  return <div> Page de Profil </div>;
 }
-
