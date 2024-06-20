@@ -7,6 +7,9 @@ export default function InscriptionProfil() {
     nom: "",
     prenom: "",
     genre: "",
+    dateNaissance: "",
+    ville: "",
+    cp: "",
   });
 
   const [error, setError] = useState("");
@@ -30,13 +33,23 @@ export default function InscriptionProfil() {
       setError("Le prénom est requis.");
     } else if (inscription.genre === "") {
       setError("Le genre est requis.");
-    } else {
+    } else if (inscription.dateNaissance === ""){
+        setError("La date de naissance est requise.")
+    } else if(inscription.ville === ""){
+        setError("La ville est requise.");
+    } else if (inscription.cp === ""){
+        setError("Le code postal est requis.");
+    }
+    else {
       setError("");
       setInscription({
         email: "",
         nom: "",
         prenom: "",
         genre: "",
+        dateNaissance: "",
+        ville: "",
+        cp: "",
       });
     }
   };
@@ -77,8 +90,30 @@ export default function InscriptionProfil() {
           <option value="Féminin">Féminin</option>
           <option value="Autre">Autre</option>
         </select>
+
+        <label htmlFor="dateNaissance">Date de naissance</label>
+        <input
+          type="date"
+          name="dateNaissance"
+          value={inscription.dateNaissance}
+          onChange={(e) => handleChangeForm(e)}
+        />
+        <label htmlFor="prenom">Ville</label>
+        <input
+          type="text"
+          name="ville"
+          value={inscription.ville}
+          onChange={(e) => handleChangeForm(e)}
+        />
+        <label htmlFor="cp">Code Postal</label>
+        <input
+          type="text"
+          name="cp"
+          value={inscription.cp}
+          onChange={(e) => handleChangeForm(e)}
+        />
       </form>
-      
+
       {error && <p className="error">{error}</p>}
       <button className="buttonIns" type="submit" onClick={togglePopup}>
         VALIDER
