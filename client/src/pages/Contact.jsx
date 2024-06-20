@@ -5,22 +5,20 @@ import ReseauxSociaux from "../components/ReseauxSociaux";
 
 import Logo from "../assets/images/logo-geocode.png";
 
-import "../styles/form.scss";
-
-
 export default function Contact() {
-    return (
-        <>
-        <Link to="/">
-            <img className="logoContact" src={Logo} alt="Logo Geocode"/>
-       </Link>
+  return (
+    <section className="page-contact">
+      <div className="LogoContact">
+        <Link className="linkContact" to="/">
+          <img src={Logo} alt="Logo Geocode" />
+        </Link>
+      </div>
 
-        <h1>Contactez-nous</h1>
+      <h1 className="title1Contact">Contactez-nous</h1>
 
-       <Form/>
+      <Form />
 
-        <ReseauxSociaux/>
-    </>
-    )
+      <ReseauxSociaux />
+    </section>
+  );
 }
-

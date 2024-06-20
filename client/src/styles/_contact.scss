@@ -1,0 +1,27 @@
+.page-contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.LogoContact img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 67px;
+  width: 71px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.linkContact {
+  display: flex;
+  justify-content: center;
+}
+
+.title1Contact {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5rem;
+  padding-top: 2rem;
+}

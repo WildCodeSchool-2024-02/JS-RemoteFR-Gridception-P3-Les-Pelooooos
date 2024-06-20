@@ -1,32 +1,27 @@
-import "../styles/form.scss";
-
 export default function Form() {
+  return (
+    <form className="formContact" action="">
+      <label htmlFor="Nom">Nom</label>
+      <input type="text" id="nom" name="nom" defaultValue="" required />
 
-    return (
-        <form action="">
-    
-            <label htmlFor="nom">Nom</label>
-            <input type="text" value="nom" required/>
-    
-            <label htmlFor="prénom">Prénom</label>
-            <input type="text" value="prénom" required/>
-    
-            <label htmlFor="email">Email</label>
-            <input type="email" value="email" required/>
-    
-            <label htmlFor="objet">Objet</label>
-            <select name="objet" id="objet" required>
-                <option value="">Choisis ton objet</option>
-                <option value="information">Demande d'informations</option>
-                <option value="partenariat">Demande de partenariat</option>
-                <option value="autres">Autre</option>
-            </select>
-    
-            <label htmlFor="message">Message</label>
-            <input type="text" value="message" required/>
+      <label htmlFor="Prénom">Prénom</label>
+      <input type="text" id="prenom" name="prenom" defaultValue="" required />
 
-            <input type="submit" value="Envoyer le formulaire"/>
+      <label htmlFor="Email">Email</label>
+      <input type="email" id="email" name="email" defaultValue="" required />
 
-        </form>
-    )
-    }
+      <label htmlFor="objet">Objet</label>
+      <select name="objet" id="objet" required>
+        <option value="">Choisis ton objet</option>
+        <option value="information">Demande d'informations</option>
+        <option value="partenariat">Demande de partenariat</option>
+        <option value="autres">Autre</option>
+      </select>
+
+      <label htmlFor="Message">Message</label>
+      <textarea id="message" name="message" defaultValue="" required>blabla</textarea>
+
+      <input className="sendButon" type="submit" value="Envoyer" />
+    </form>
+  );
+}
