@@ -22,7 +22,7 @@ export default function Reservation() {
           alt="Icône de la localisation"
           className="icons-location"
         />
-        Adresse de la station
+        <p> Adresse de la station</p>
       </div>
       <div className="caracteristic-station">
         <div className="caracteristic-content">
@@ -31,11 +31,11 @@ export default function Reservation() {
             alt="Icône de la puissance"
             className="icons"
           />
-          Puissance
+          <p>Puissance</p>
         </div>
         <div className="caracteristic-content">
           <img src={iconsHour} alt="Icône de l'heure" className="icons" />
-          Heure de la réservation
+          <p>Heure de la réservation</p>
         </div>
         <div className="caracteristic-content">
           <img
@@ -43,7 +43,7 @@ export default function Reservation() {
             alt="Icône de l'itinéraire"
             className="icons"
           />
-          Itinéraire (nb de km)
+          <p>Itinéraire (nb de km)</p>
         </div>
       </div>
     </section>

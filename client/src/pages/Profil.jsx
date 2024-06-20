@@ -1,14 +1,16 @@
+import { useLoaderData } from "react-router-dom";
 import pictureUser from "../assets/images/picture-user.jpg";
 import Vehicules from "../components/Véhicules";
 import Reservation from "../components/Reservation";
 
 export default function Profil() {
+  const users = useLoaderData();
   return (
     <>
       <section className="header-profil">
         <section className="header-profil-content">
           <h1>PROFIL</h1>
-          <p>Bonjour (Name)</p>
+          <p>Bonjour {users[0].firstname}</p>
         </section>
         <img
           className="img-profil"

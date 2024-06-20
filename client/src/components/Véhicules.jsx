@@ -16,7 +16,7 @@ export default function Vehicules() {
       </section>
       <div className="adress-station">
         <img src={iconsCars} alt="Icône de la voiture" className="icons-cars" />
-        Marque du véhicule
+        <p>Marque du véhicule</p>
       </div>
       <div className="caracteristic-station">
         <div className="caracteristic-content-cars">Modèle du véhicule</div>
