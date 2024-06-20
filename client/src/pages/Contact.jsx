@@ -14,7 +14,7 @@ export default function Contact() {
         </Link>
       </div>
 
-      <h1 className="title1Contact">Contactez-nous</h1>
+      <h1 className="title1Contact">CONTACTEZ-NOUS</h1>
 
       <Form />
 

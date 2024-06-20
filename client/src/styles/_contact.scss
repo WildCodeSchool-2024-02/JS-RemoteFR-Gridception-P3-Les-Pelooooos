@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: white;
 }
 
 .LogoContact img {
@@ -11,7 +12,7 @@
   height: 67px;
   width: 71px;
   border-radius: 20px;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .linkContact {
@@ -22,6 +23,8 @@
 .title1Contact {
   display: flex;
   justify-content: center;
-  padding-bottom: 5rem;
+  padding-bottom: 2rem;
   padding-top: 2rem;
+  color: #525b5a;
+  text-align: center;
 }
