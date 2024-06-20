@@ -10,6 +10,9 @@ export default function InscriptionProfil() {
     dateNaissance: "",
     ville: "",
     cp: "",
+    vehicule: "",
+    mp: "",
+    confirmationMp: "",
   });
 
   const [error, setError] = useState("");
@@ -39,6 +42,12 @@ export default function InscriptionProfil() {
         setError("La ville est requise.");
     } else if (inscription.cp === ""){
         setError("Le code postal est requis.");
+    } else if (inscription.vehicule === ""){
+        setError("Le nombre de véhicules est obligatoire.")
+    } else if (inscription.mp === ""){
+        setError("Le mot de passe est requis.");
+    } else if (inscription.confirmationMp === ""){
+        setError("La confirmation du mot de passe est requise.");
     }
     else {
       setError("");
@@ -50,6 +59,9 @@ export default function InscriptionProfil() {
         dateNaissance: "",
         ville: "",
         cp: "",
+        vehicule: "",
+        mp: "",
+        confirmationMp: "",
       });
     }
   };
@@ -113,6 +125,35 @@ export default function InscriptionProfil() {
           onChange={(e) => handleChangeForm(e)}
         />
       </form>
+      <label htmlFor="vehicule">Nombre de véhicules</label>
+        <select
+          name="vehicule"
+          value={inscription.vehicule}
+          onChange={(e) => handleChangeForm(e)}
+        >
+          <option value="">Selectionnez le nombre de véhicules</option>
+          <option value="1">1 véhicule</option>
+          <option value="2">2 véhicules</option>
+          <option value="3">3 véhicules</option>
+          <option value="4">4 véhicules</option>
+          <option value="5">5 véhicules</option>
+        </select>
+        <label htmlFor="mp">Mot de passe</label>
+        <input
+          required
+          type="password"
+          name="mp"
+          value={inscription.mp}
+          onChange={(e) => handleChangeForm(e)}
+        />
+        <label htmlFor="confirmationMp">Confirmation du mot de passe</label>
+        <input
+          required
+          type="password"
+          name="confirmationMp"
+          value={inscription.conformationMp}
+          onChange={(e) => handleChangeForm(e)}
+        />
 
       {error && <p className="error">{error}</p>}
       <button className="buttonIns" type="submit" onClick={togglePopup}>
