@@ -72,97 +72,97 @@ export default function InscriptionProfil() {
 
   return (
     <section className="profilInformation">
-      <h2> INFORMATION DE VOTRE PROFIL</h2>
-      <form onSubmit={(event) => event.preventDefault()}>
-        <label htmlFor="email">Email</label>
-        <input
+      <form className="formIns" onSubmit={(event) => event.preventDefault()}>
+      <h2 className="h2Ins"> INFORMATION DE VOTRE PROFIL</h2>
+        <label className="labelIns" htmlFor="email">Email</label>
+        <input className="inputIns"
           type="email"
           name="email"
           value={inscription.email}
           onChange={(e) => handleChangeForm(e)}
         />
-        <label htmlFor="nom">Nom</label>
-        <input
+        <label className="labelIns" htmlFor="nom">Nom</label>
+        <input className="inputIns"
           type="text"
           name="nom"
           value={inscription.nom}
           onChange={(e) => handleChangeForm(e)}
         />
-        <label htmlFor="prenom">Prénom</label>
-        <input
+        <label className="labelIns" htmlFor="prenom">Prénom</label>
+        <input className="inputIns"
           type="text"
           name="prenom"
           value={inscription.prenom}
           onChange={(e) => handleChangeForm(e)}
         />
-        <label htmlFor="genre">Genre</label>
-        <select
+        <label className="labelIns"htmlFor="genre">Genre</label>
+        <select className="inputIns"
           name="genre"
           value={inscription.genre}
           onChange={(e) => handleChangeForm(e)}
         >
-          <option value="">Selectionnez vore genre</option>
+          <option value="">Sélectionnez votre genre</option>
           <option value="Masculin">Masculin</option>
           <option value="Féminin">Féminin</option>
           <option value="Autre">Autre</option>
         </select>
 
-        <label htmlFor="dateNaissance">Date de naissance</label>
-        <input
+        <label className="labelIns" htmlFor="dateNaissance">Date de naissance</label>
+        <input className="inputIns"
           type="date"
           name="dateNaissance"
           value={inscription.dateNaissance}
           onChange={(e) => handleChangeForm(e)}
         />
-        <label htmlFor="prenom">Ville</label>
-        <input
+        <label className="labelIns" htmlFor="prenom">Ville</label>
+        <input className="inputIns"
           type="text"
           name="ville"
           value={inscription.ville}
           onChange={(e) => handleChangeForm(e)}
         />
-        <label htmlFor="cp">Code Postal</label>
-        <input
+        <label className="labelIns" htmlFor="cp">Code Postal</label>
+        <input className="inputIns"
           type="text"
           name="cp"
           value={inscription.cp}
           onChange={(e) => handleChangeForm(e)}
         />
-      </form>
-      <label htmlFor="vehicule">Nombre de véhicules</label>
-      <select
+      <label className="labelIns" htmlFor="vehicule">Nombre de véhicules</label>
+      <select className="inputIns"
         name="vehicule"
         value={inscription.vehicule}
         onChange={(e) => handleChangeForm(e)}
-      >
-        <option value="">Selectionnez le nombre de véhicules</option>
+        >
+        <option value="">Sélectionnez le nombre de véhicules</option>
         <option value="1">1 véhicule</option>
         <option value="2">2 véhicules</option>
         <option value="3">3 véhicules</option>
         <option value="4">4 véhicules</option>
         <option value="5">5 véhicules</option>
       </select>
-      <label htmlFor="mp">Mot de passe</label>
-      <input
+      <label className="labelIns" htmlFor="mp">Mot de passe</label>
+      <input className="inputIns"
         required
         type="password"
         name="mp"
         value={inscription.mp}
         onChange={(e) => handleChangeForm(e)}
-      />
-      <label htmlFor="confirmationMp">Confirmation du mot de passe</label>
-      <input
+        />
+      <label className="labelIns" htmlFor="confirmationMp">Confirmation mot de passe</label>
+      <input className="inputIns"
         required
         type="password"
         name="confirmationMp"
-        value={inscription.conformationMp}
+        value={inscription.confirmationMp}
         onChange={(e) => handleChangeForm(e)}
-      />
+        />
 
       {error && <p className="error">{error}</p>}
       <button className="buttonIns" type="submit" onClick={togglePopup}>
         VALIDER
       </button>
+        </form>
     </section>
   );
 }
