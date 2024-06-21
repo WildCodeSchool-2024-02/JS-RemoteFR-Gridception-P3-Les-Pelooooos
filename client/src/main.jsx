@@ -10,6 +10,8 @@ import Connexion from "./pages/Connexion";
 import Carte from "./pages/Carte";
 import "./styles/template.scss";
 
+
+
 const router = createBrowserRouter([
   {
     path: "/",
