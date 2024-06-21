@@ -8,7 +8,6 @@ import Profil from "./pages/Profil";
 import Contact from "./pages/Contact";
 import Connexion from "./pages/Connexion";
 import Carte from "./pages/Carte";
-import "./styles/imports.scss";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -17,8 +16,6 @@ const usersListLoader = async () => {
   const data = await reponse.json();
   return data;
 };
-
-
 
 const router = createBrowserRouter([
   {

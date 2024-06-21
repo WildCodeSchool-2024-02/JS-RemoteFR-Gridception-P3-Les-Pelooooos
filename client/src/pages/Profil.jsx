@@ -2,6 +2,8 @@ import { useLoaderData } from "react-router-dom";
 import pictureUser from "../assets/images/picture-user.jpg";
 import Vehicules from "../components/Véhicules";
 import Reservation from "../components/Reservation";
+import "../styles/profil.scss";
+import "../styles/template.scss";
 
 export default function Profil() {
   const users = useLoaderData();

@@ -19,8 +19,8 @@ export default function Vehicules() {
         <p>Marque du véhicule</p>
       </div>
       <div className="caracteristic-station">
-        <div className="caracteristic-content-cars">Modèle du véhicule</div>
-        <div className="caracteristic-content-cars">Type de véhicule</div>
+        <p className="caracteristic-content-cars">Modèle du véhicule</p>
+        <p className="caracteristic-content-cars">Type de véhicule</p>
       </div>
     </section>
   );
