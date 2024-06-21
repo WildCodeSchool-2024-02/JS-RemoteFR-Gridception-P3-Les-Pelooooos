@@ -22,7 +22,7 @@ class PlugsSeeder extends AbstractSeeder {
         plugs_types_id: this.getRef(
           `plugs_types_${Math.floor(Math.random() * 1) + 1}`
         ).insertId,
-        refName: `plugs_${i}`
+        refName: `plugs_${i}`,
       };
 
       this.insert(fakePlugs);
