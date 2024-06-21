@@ -4,7 +4,6 @@ import imageAccroche from "../assets/images/illustration-accueil.jpg";
 import "../styles/accueil.scss";
 
 function Accueil() {
-
   return (
     <div className="page-container">
       <Link to="/">
