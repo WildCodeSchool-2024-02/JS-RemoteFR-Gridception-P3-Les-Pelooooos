@@ -1,9 +1,10 @@
 * {
   line-height: 1.5;
   margin: 0;
+  box-sizing: border-box;
 }
 
-.body {
+body {
   display: flex;
   justify-content: space-between;
   align-items: center;
