@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/images/logo-geocode.png";
 import imageAccroche from "../assets/images/illustration-accueil.jpg";
+import "../styles/accueil.scss";
 
 function Accueil() {
   return (
@@ -9,7 +10,7 @@ function Accueil() {
         <img src={Logo} alt="Logo Géocode" className="logo" />
       </Link>
       <h1 className="title-accueil">
-        BIENVENUE SUR <span className="color">GEOCODE</span>
+        BIENVENUE SUR <span className="color"> GEOCODE </span>
       </h1>
       <img
         src={imageAccroche}
