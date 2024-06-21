@@ -1,3 +1,5 @@
+import "../styles/form.scss";
+
 export default function Form() {
   return (
     <section className="container-form">

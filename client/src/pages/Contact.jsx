@@ -4,6 +4,8 @@ import Form from "../components/Form";
 import ReseauxSociaux from "../components/ReseauxSociaux";
 
 import Logo from "../assets/images/logo-geocode.png";
+import "../styles/contact.scss";
+
 
 export default function Contact() {
   return (
