@@ -1,4 +1,3 @@
-import "../scss/Inscription.scss";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
@@ -56,10 +55,9 @@ export default function InscriptionVehicules({ numberOfVehicules }) {
     newSelectedModeles[index] = value;
     setSelectedModeles(newSelectedModeles);
   };
-  
 
   const vehiculeForms = [];
-  for (let i = 0; i < numberOfVehicules;i +=1) {
+  for (let i = 0; i < numberOfVehicules; i += 1) {
     vehiculeForms.push(
       <div key={i}>
         <h3 className="h3Ins">Véhicule {i + 1}</h3>

@@ -73,7 +73,7 @@ export default function Identification() {
       </form>
       <p className="pId">Vous n'avez pas de compte ? </p>
       <p className="pId">
-        <a className="aId" href="/">
+        <a className="aId" href="/inscription">
           Inscrivez-vous ici{" "}
         </a>
       </p>

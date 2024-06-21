@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "../scss/Inscription.scss";
 import InscriptionVehicules from "./InscriptionVehicules";
 
 export default function InscriptionProfil() {
@@ -193,10 +192,10 @@ export default function InscriptionProfil() {
         </button>
       </form>
       <section className="profilVehicule">
-      <h2 className="h2Ins"> INFORMATION DE VOTRE/VOS VEHICULES(S)</h2>
-      <InscriptionVehicules
-        numberOfVehicules={parseInt(inscription.vehicule, 10) || 0}
-      />
+        <h2 className="h2Ins"> INFORMATION DE VOTRE/VOS VEHICULES(S)</h2>
+        <InscriptionVehicules
+          numberOfVehicules={parseInt(inscription.vehicule, 10) || 0}
+        />
       </section>
     </section>
   );

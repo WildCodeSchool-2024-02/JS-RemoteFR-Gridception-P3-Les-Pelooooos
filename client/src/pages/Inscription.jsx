@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import InscriptionProfil from "../components/InscriptionProfil";
-import "../scss/Inscription.scss"
+import "../styles/Inscription.scss";
 
 import logoGeocode from "../assets/images/logo-geocode.png";
 
 export default function Inscription() {
-
   return (
     <section className="inscription">
       <Link to="/">
@@ -13,7 +12,6 @@ export default function Inscription() {
       </Link>
       <h1 className="h1Ins">INSCRIPTION</h1>
       <InscriptionProfil />
-      
     </section>
   );
 }
