@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
 import logoGeocode from "../assets/images/logo-geocode.png";
+import "../styles/identification.scss";
 
 export default function Identification() {
   const [identifier, setIdentifier] = useState({
