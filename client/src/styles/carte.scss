@@ -1,0 +1,11 @@
+* {
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+.pageContainerMap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
