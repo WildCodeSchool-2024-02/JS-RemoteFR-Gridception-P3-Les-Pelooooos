@@ -11,11 +11,13 @@ import mapIconGreen from "../assets/images/icons-map-green.png";
 import "../styles/navBar.scss";
 
 export default function NavBar() {
+
   const [activeIcon, setActiveIcon] = useState(null);
 
   const handleIconClick = (icon) => {
     setActiveIcon(icon);
   };
+  
   return (
     <section className="navbar-container">
       <Link to="/">
