@@ -8,7 +8,6 @@ import Profil from "./pages/Profil";
 import Contact from "./pages/Contact";
 import Connexion from "./pages/Connexion";
 import Carte from "./pages/Carte";
-import "./styles/template.scss";
 
 const router = createBrowserRouter([
   {

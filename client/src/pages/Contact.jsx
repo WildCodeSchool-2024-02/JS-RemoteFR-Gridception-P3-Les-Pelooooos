@@ -5,7 +5,7 @@ import ReseauxSociaux from "../components/ReseauxSociaux";
 
 import Logo from "../assets/images/logo-geocode.png";
 import "../styles/contact.scss";
-
+import "../styles/template.scss";
 
 export default function Contact() {
   return (
