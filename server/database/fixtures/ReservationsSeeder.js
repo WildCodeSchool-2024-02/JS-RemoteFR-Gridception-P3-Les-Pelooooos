@@ -23,7 +23,7 @@ class ReservationsSeeder extends AbstractSeeder {
         ).insertId,
         plugs_id: this.getRef(`plugs_${Math.floor(Math.random() * 1) + 1}`)
           .insertId,
-          refName: `reservations_${i}`
+        refName: `reservations_${i}`,
       };
 
       this.insert(fakeReservations);
