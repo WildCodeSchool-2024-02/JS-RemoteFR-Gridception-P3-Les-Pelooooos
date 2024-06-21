@@ -12,3 +12,15 @@ body {
 
   min-height: 100vh;
 }
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.app-content {
+  flex: 1;
+  overflow-y: auto;
+}

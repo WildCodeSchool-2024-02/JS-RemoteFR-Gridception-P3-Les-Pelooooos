@@ -83,7 +83,7 @@ function MapComponent({ searchQuery }) {
       center={position}
       zoom={13}
       className="rounded-map"
-      style={{ height: "100vh", width: "85vw" }}
+      style={{ height: "100vh", width: "100vw" }}
       ref={mapRef}
     >
       <TileLayer
