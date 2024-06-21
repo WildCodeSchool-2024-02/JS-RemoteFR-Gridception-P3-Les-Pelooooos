@@ -8,15 +8,14 @@ import settingsIcon from "../assets/images/icons-settings.png";
 import settingsIconGreen from "../assets/images/icons-settings-green.png";
 import mapIcon from "../assets/images/icons-map.png";
 import mapIconGreen from "../assets/images/icons-map-green.png";
+import "../styles/navBar.scss";
 
 export default function NavBar() {
-  const [activeIcon, setActiveIcon] = useState(null); // Déclaration de l'état pour suivre l'icône active
+  const [activeIcon, setActiveIcon] = useState(null);
 
-  // Fonction pour gérer les clics sur les icônes
   const handleIconClick = (icon) => {
-    setActiveIcon(icon); // Met à jour l'état activeIcon avec l'icône cliquée
+    setActiveIcon(icon);
   };
-
   return (
     <section className="navbar-container">
       <Link to="/">

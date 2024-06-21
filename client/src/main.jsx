@@ -9,7 +9,7 @@ import Contact from "./pages/Contact";
 import Connexion from "./pages/Connexion";
 import Carte from "./pages/Carte";
 
-import "./styles/imports.scss";
+
 
 const router = createBrowserRouter([
   {

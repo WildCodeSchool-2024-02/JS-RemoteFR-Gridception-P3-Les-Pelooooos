@@ -19,8 +19,10 @@ class ImagesSeeder extends AbstractSeeder {
     for (let i = 0; i < 2; i += 1) {
       const fakeImages = {
         URL: this.images[i],
-        users_id: this.getRef(`users_${Math.floor(Math.random() * 1) + 1}`).insertId,
-        cars_id: this.getRef(`cars_${Math.floor(Math.random() * 1) + 1}`).insertId,
+        users_id: this.getRef(`users_${Math.floor(Math.random() * 1) + 1}`)
+          .insertId,
+        cars_id: this.getRef(`cars_${Math.floor(Math.random() * 1) + 1}`)
+          .insertId,
       };
 
       this.insert(fakeImages);
