@@ -56,16 +56,16 @@ export default function InscriptionProfil() {
     } else {
       setError("");
       setInscription({
-        email: "",
+        genre: "",
         nom: "",
         prenom: "",
-        genre: "",
         dateNaissance: "",
+        email: "",
         ville: "",
         cp: "",
-        vehicule: "",
         mp: "",
         confirmationMp: "",
+        vehicule: "",
       });
     }
   };
@@ -74,16 +74,20 @@ export default function InscriptionProfil() {
     <section className="profilInformation">
       <form className="formIns" onSubmit={(event) => event.preventDefault()}>
         <h2 className="h2Ins"> INFORMATION DE VOTRE PROFIL</h2>
-        <label className="labelIns" htmlFor="email">
-          Email
+        <label className="labelIns" htmlFor="genre">
+          Genre
         </label>
-        <input
+        <select
           className="inputIns"
-          type="email"
-          name="email"
-          value={inscription.email}
+          name="genre"
+          value={inscription.genre}
           onChange={(e) => handleChangeForm(e)}
-        />
+        >
+          <option value="">Sélectionnez votre genre</option>
+          <option value="Masculin">Masculin</option>
+          <option value="Féminin">Féminin</option>
+          <option value="Autre">Autre</option>
+        </select>
         <label className="labelIns" htmlFor="nom">
           Nom
         </label>
@@ -104,21 +108,6 @@ export default function InscriptionProfil() {
           value={inscription.prenom}
           onChange={(e) => handleChangeForm(e)}
         />
-        <label className="labelIns" htmlFor="genre">
-          Genre
-        </label>
-        <select
-          className="inputIns"
-          name="genre"
-          value={inscription.genre}
-          onChange={(e) => handleChangeForm(e)}
-        >
-          <option value="">Sélectionnez votre genre</option>
-          <option value="Masculin">Masculin</option>
-          <option value="Féminin">Féminin</option>
-          <option value="Autre">Autre</option>
-        </select>
-
         <label className="labelIns" htmlFor="dateNaissance">
           Date de naissance
         </label>
@@ -129,7 +118,17 @@ export default function InscriptionProfil() {
           value={inscription.dateNaissance}
           onChange={(e) => handleChangeForm(e)}
         />
-        <label className="labelIns" htmlFor="prenom">
+        <label className="labelIns" htmlFor="email">
+          Email
+        </label>
+        <input
+          className="inputIns"
+          type="email"
+          name="email"
+          value={inscription.email}
+          onChange={(e) => handleChangeForm(e)}
+        />
+        <label className="labelIns" htmlFor="ville">
           Ville
         </label>
         <input
@@ -149,22 +148,6 @@ export default function InscriptionProfil() {
           value={inscription.cp}
           onChange={(e) => handleChangeForm(e)}
         />
-        <label className="labelIns" htmlFor="vehicule">
-          Nombre de véhicules
-        </label>
-        <select
-          className="inputIns"
-          name="vehicule"
-          value={inscription.vehicule}
-          onChange={(e) => handleChangeForm(e)}
-        >
-          <option value="">Sélectionnez le nombre de véhicules</option>
-          <option value="1">1 véhicule</option>
-          <option value="2">2 véhicules</option>
-          <option value="3">3 véhicules</option>
-          <option value="4">4 véhicules</option>
-          <option value="5">5 véhicules</option>
-        </select>
         <label className="labelIns" htmlFor="mp">
           Mot de passe
         </label>
@@ -185,6 +168,22 @@ export default function InscriptionProfil() {
           value={inscription.confirmationMp}
           onChange={(e) => handleChangeForm(e)}
         />
+        <label className="labelIns" htmlFor="vehicule">
+          Nombre de véhicules
+        </label>
+        <select
+          className="inputIns"
+          name="vehicule"
+          value={inscription.vehicule}
+          onChange={(e) => handleChangeForm(e)}
+        >
+          <option value="">Sélectionnez le nombre de véhicules</option>
+          <option value="1">1 véhicule</option>
+          <option value="2">2 véhicules</option>
+          <option value="3">3 véhicules</option>
+          <option value="4">4 véhicules</option>
+          <option value="5">5 véhicules</option>
+        </select>
 
         {error && <p className="error">{error}</p>}
         <button className="buttonIns" type="submit" onClick={togglePopup}>
