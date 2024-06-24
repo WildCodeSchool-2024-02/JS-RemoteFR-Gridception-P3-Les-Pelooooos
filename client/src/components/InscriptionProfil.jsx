@@ -17,7 +17,6 @@ export default function InscriptionProfil() {
 
   const [error, setError] = useState("");
 
-
   const handleChangeForm = (event) => {
     const { name, value } = event.target;
     setInscription({ ...inscription, [name]: value });
@@ -185,22 +184,20 @@ export default function InscriptionProfil() {
           <option value="4">4 véhicules</option>
           <option value="5">5 véhicules</option>
         </select>
-
         {error && <p className="error">{error}</p>}
       </form>
-    
-        <section className="profilVehicule">
-          <h2 className="h2Ins"> INFORMATION DE VOTRE/VOS VEHICULES(S)</h2>
-          <InscriptionVehicules
-            numberOfVehicules={parseInt(inscription.vehicule, 10) || 0}
-          />
-          <div className="divIns"> 
-        <button className="buttonIns" type="submit" onClick={togglePopup}>
-          VALIDER
-        </button>
-          </div>
-        </section>
-    
+
+      <section className="profilVehicule">
+        <h2 className="h2Ins"> INFORMATION DE VOTRE/VOS VEHICULES(S)</h2>
+        <InscriptionVehicules
+          numberOfVehicules={parseInt(inscription.vehicule, 10) || 0}
+        />
+        <div className="">
+          <button className="buttonIns" type="submit" onClick={togglePopup}>
+            VALIDER
+          </button>
+        </div>
+      </section>
     </section>
   );
 }
