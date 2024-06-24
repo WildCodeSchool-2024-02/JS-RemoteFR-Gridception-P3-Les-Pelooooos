@@ -94,6 +94,17 @@ export default function InscriptionVehicules({ numberOfVehicules }) {
             </option>
           ))}
         </select>
+
+        <label className="labelIns" htmlFor="priseType" >Type de prise</label>
+        <select className="inputIns" name="priseType">
+          <option value="">Sélectionnez le type de prise</option>
+          <option value="type-ef">Prise type EF</option>
+          <option value="type-2">Prise type 2</option>
+          <option value="type-ccs">Prise type Combo CCS</option>
+          <option value="type-chademo">Prise type CHAdeMO</option>
+          <option value="autre">Autre type de prise</option>
+        </select>
+
       </div>
     );
   }
