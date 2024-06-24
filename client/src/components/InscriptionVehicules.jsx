@@ -59,7 +59,7 @@ export default function InscriptionVehicules({ numberOfVehicules }) {
   const vehiculeForms = [];
   for (let i = 0; i < numberOfVehicules; i += 1) {
     vehiculeForms.push(
-      <div key={i}>
+      <div key={i} className="formIns">
         <h3 className="h3Ins">Véhicule {i + 1}</h3>
         <label className="labelIns" htmlFor="vehiculeMarque">
           Marque du véhicule
