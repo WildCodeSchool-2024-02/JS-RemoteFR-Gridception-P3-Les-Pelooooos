@@ -86,7 +86,7 @@ export default function InscriptionProfil() {
           <option value="">Sélectionnez votre genre</option>
           <option value="Masculin">Masculin</option>
           <option value="Féminin">Féminin</option>
-          <option value="Autre">Autre</option>
+          <option value="Autre">Non communiqué</option>
         </select>
         <label className="labelIns" htmlFor="nom">
           Nom
