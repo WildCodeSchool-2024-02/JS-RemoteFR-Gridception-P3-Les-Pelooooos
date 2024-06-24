@@ -17,6 +17,7 @@ export default function InscriptionProfil() {
 
   const [error, setError] = useState("");
 
+
   const handleChangeForm = (event) => {
     const { name, value } = event.target;
     setInscription({ ...inscription, [name]: value });
@@ -33,26 +34,26 @@ export default function InscriptionProfil() {
   };
 
   const togglePopup = () => {
-    if (!isValidEmail(inscription.email)) {
-      setError("L'adresse e-mail est invalide.");
+    if (inscription.genre === "") {
+      setError("Le genre est requis.");
     } else if (inscription.nom === "") {
       setError("Le nom est requis.");
     } else if (inscription.prenom === "") {
       setError("Le prénom est requis.");
-    } else if (inscription.genre === "") {
-      setError("Le genre est requis.");
     } else if (inscription.dateNaissance === "") {
       setError("La date de naissance est requise.");
+    } else if (!isValidEmail(inscription.email)) {
+      setError("L'adresse e-mail est invalide.");
     } else if (inscription.ville === "") {
       setError("La ville est requise.");
     } else if (!isValidCodePostal(inscription.cp)) {
       setError("Le code postal est invalide.");
-    } else if (inscription.vehicule === "") {
-      setError("Le nombre de véhicules est obligatoire.");
     } else if (inscription.mp === "") {
       setError("Le mot de passe est requis.");
     } else if (inscription.confirmationMp !== inscription.mp) {
       setError("Les mots de passe ne correspondent pas.");
+    } else if (inscription.vehicule === "") {
+      setError("Le nombre de véhicules est obligatoire.");
     } else {
       setError("");
       setInscription({
@@ -186,16 +187,20 @@ export default function InscriptionProfil() {
         </select>
 
         {error && <p className="error">{error}</p>}
+      </form>
+    
+        <section className="profilVehicule">
+          <h2 className="h2Ins"> INFORMATION DE VOTRE/VOS VEHICULES(S)</h2>
+          <InscriptionVehicules
+            numberOfVehicules={parseInt(inscription.vehicule, 10) || 0}
+          />
+          <div className="divIns"> 
         <button className="buttonIns" type="submit" onClick={togglePopup}>
           VALIDER
         </button>
-      </form>
-      <section className="profilVehicule">
-        <h2 className="h2Ins"> INFORMATION DE VOTRE/VOS VEHICULES(S)</h2>
-        <InscriptionVehicules
-          numberOfVehicules={parseInt(inscription.vehicule, 10) || 0}
-        />
-      </section>
+          </div>
+        </section>
+    
     </section>
   );
 }
