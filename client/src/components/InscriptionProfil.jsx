@@ -303,13 +303,6 @@ export default function InscriptionProfil() {
 
       <section className="profilVehicule">
         <h2 className="h2Ins"> INFORMATION DE VOTRE/VOS VEHICULE(S)</h2>
-
-
-
-
-
-
-        
         {renderVehiculeForms()}
         {error && <p className="error">{error}</p>}
         <div className="button">
