@@ -107,12 +107,6 @@ export default function InscriptionProfil() {
       setError("Les mots de passe ne correspondent pas.");
     } else if (inscription.vehicule === "") {
       setError("Le nombre de véhicules est obligatoire.");
-    } else if (inscription.marque === "") {
-      setError("La marque du véhicule est obligatoire.");
-    } else if (inscription.modele === "") {
-      setError("Le modèle du véhicule est obligatoire.");
-    } else if (inscription.type === "") {
-      setError("Le type de prise est obligatoire.");
     } else {
       setError("");
       setInscription({
