@@ -60,16 +60,16 @@ CREATE TABLE users (
 
 CREATE TABLE cars (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    model VARCHAR(80) NOT NULL,
     brands_id INT,
-    users_id INT,
+    model VARCHAR(80) NOT NULL,
     plugs_id INT,
+    users_id INT,
     FOREIGN KEY (brands_id)
     REFERENCES brands(id),
-    FOREIGN KEY (users_id)
-    REFERENCES users(id),
     FOREIGN KEY (plugs_id)
-    REFERENCES plugs(id)
+    REFERENCES plugs(id),
+    FOREIGN KEY (users_id)
+    REFERENCES users(id)
 );
 
 CREATE TABLE images (
