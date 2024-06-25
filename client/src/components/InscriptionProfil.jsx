@@ -132,7 +132,7 @@ export default function InscriptionProfil() {
 
     for (let i = 0; i < numberOfVehicules; i += 1) {
       vehiculeForms.push(
-        <div key={i} className="formIns">
+        <form key={i} className="formIns">
           <h3 className="h3Ins">Véhicule {i + 1}</h3>
           <label className="labelIns" htmlFor="vehiculeMarque">
             Marque du véhicule
@@ -142,7 +142,7 @@ export default function InscriptionProfil() {
             name="vehiculeMarques"
             value={selectedMarques[i]}
             onChange={(e) => handleMarqueChange(i, e.target.value)}
-          >
+            >
             <option value="">Sélectionnez votre marque</option>
             {Object.keys(models).map((marque) => (
               <option key={marque} value={marque}>
@@ -159,7 +159,7 @@ export default function InscriptionProfil() {
             name="vehiculeModele"
             value={selectedModeles[i]}
             onChange={(e) => handleModeleChange(i, e.target.value)}
-          >
+            >
             <option value="">Sélectionnez votre modèle</option>
             {models[selectedMarques[i]]?.map((modele) => (
               <option key={modele} value={modele}>
@@ -179,7 +179,7 @@ export default function InscriptionProfil() {
             <option value="type-chademo">Prise type CHAdeMO</option>
             <option value="autre">Autre type de prise</option>
           </select>
-        </div>
+        </form>
       );
     }
 
@@ -303,9 +303,16 @@ export default function InscriptionProfil() {
 
       <section className="profilVehicule">
         <h2 className="h2Ins"> INFORMATION DE VOTRE/VOS VEHICULE(S)</h2>
+
+
+
+
+
+
+        
         {renderVehiculeForms()}
         {error && <p className="error">{error}</p>}
-        <div className="">
+        <div className="button">
           <button className="buttonIns" type="submit" onClick={togglePopup}>
             VALIDER
           </button>
