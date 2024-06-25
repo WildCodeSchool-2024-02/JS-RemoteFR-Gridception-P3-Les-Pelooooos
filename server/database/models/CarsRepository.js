@@ -7,8 +7,8 @@ class CarsRepository extends AbstractRepository {
 
   async create(cars) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (model, brands_id, users_id, plugs_id) values (?, ?, ?, ?)`,
-      [cars.model, cars.brands_id, cars.user_id, cars.plugs_id]
+      `insert into ${this.table} (brands_id, model, plugs_id, users_id) values (?, ?, ?, ?)`,
+      [cars.brands_id, cars.model, cars.plugs_id, cars.user_id]
     );
 
     return result.insertId;
@@ -31,8 +31,8 @@ class CarsRepository extends AbstractRepository {
 
   async update(cars) {
     const [result] = await this.database.query(
-      `update ${this.table} set model = ?, brands_id = ?, users_id = ?, plugs_id = ? where id = ?`,
-      [cars.model, cars.brands_id, cars.users_id, cars.plugs_id, cars.id]
+      `update ${this.table} set brands_id = ?, model = ?, plugs_id = ?, users_id = ?  where id = ?`,
+      [cars.brands_id, cars.model, cars.plugs_id, cars.users_id, cars.id]
     );
 
     return result.affectedRows;
