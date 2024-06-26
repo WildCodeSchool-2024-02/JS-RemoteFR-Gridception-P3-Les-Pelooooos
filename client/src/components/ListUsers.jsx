@@ -1,4 +1,6 @@
 import { PropTypes } from "prop-types";
+import Cancel from "../assets/images/icons-cancel.png";
+import Down from "../assets/images/icons-down.png";
 
 export default function ListUsers({ users }) {
   return (
@@ -6,9 +8,11 @@ export default function ListUsers({ users }) {
       <h1>LISTES DES UTILISATEURS</h1>
       {users?.map((user) => (
         <p key={users.id}>
-          on test {user.lastname} || {user.firstname}
+          {user.lastname} || {user.firstname}
+          <img className="cancel" src={Cancel} alt="icons de supression" />
         </p>
       ))}
+      <img src={Down} alt="icon de menu déroulant" />
     </section>
   );
 }

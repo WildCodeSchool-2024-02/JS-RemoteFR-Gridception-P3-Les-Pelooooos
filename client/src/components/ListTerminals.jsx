@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Cancel from "../assets/images/icons-cancel.png";
+import Down from "../assets/images/icons-down.png";
 
 export default function ListTerminals() {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -22,8 +24,10 @@ export default function ListTerminals() {
         <p key={terminal.id}>
           {terminal.name_station} || {terminal.adress_station} ||{" "}
           {terminal.number_plugs}
+          <img className="cancel" src={Cancel} alt="icons de supression" />
         </p>
       ))}
+      <img src={Down} alt="icon de menu déroulant" />
     </section>
   );
 }
