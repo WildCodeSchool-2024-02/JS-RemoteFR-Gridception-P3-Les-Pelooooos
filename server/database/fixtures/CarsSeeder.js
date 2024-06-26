@@ -1,14 +1,14 @@
 const AbstractSeeder = require("./AbstractSeeder");
 const BrandsSeeder = require("./BrandsSeeder");
-const UsersSeeder = require("./UsersSeeder");
 const PlugsSeeder = require("./PlugsSeeder");
+const UsersSeeder = require("./UsersSeeder");
 
 class CarsSeeder extends AbstractSeeder {
   constructor() {
     super({
       table: "cars",
       truncate: true,
-      dependencies: [BrandsSeeder, UsersSeeder, PlugsSeeder],
+      dependencies: [BrandsSeeder, PlugsSeeder, UsersSeeder],
     });
     this.cars = ["AMG 163", "CLIO"];
   }
@@ -16,12 +16,12 @@ class CarsSeeder extends AbstractSeeder {
   run() {
     for (let i = 0; i < 2; i += 1) {
       const fakeCars = {
-        model: this.cars[i],
         brands_id: this.getRef(`brands_${Math.floor(Math.random() * 1) + 1}`)
           .insertId,
-        users_id: this.getRef(`users_${Math.floor(Math.random() * 1) + 1}`)
-          .insertId,
+        model: this.cars[i],
         plugs_id: this.getRef(`plugs_${Math.floor(Math.random() * 1) + 1}`)
+          .insertId,
+        users_id: this.getRef(`users_${Math.floor(Math.random() * 1) + 1}`)
           .insertId,
         refName: `cars_${i}`,
       };
