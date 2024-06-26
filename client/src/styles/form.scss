@@ -1,0 +1,98 @@
+.container-form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.container-message {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.form-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.formContact {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 85%;
+  height: 80%;
+  background-color: #525b5a;
+  border-radius: 50px;
+  padding: 2rem;
+}
+
+.formContact input {
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  height: 2.313rem;
+  stroke: none;
+  background-color: #e5e9e7;
+  border: none;
+}
+
+.label-contact {
+  margin-left: 0.3rem;
+}
+
+.select {
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  padding-left: 0.1rem;
+  height: 2.313rem;
+  background-color: #e5e9e7;
+  border: none;
+  color: #525b5a;
+}
+
+.message {
+  border-radius: 10px;
+  height: 10rem;
+  background-color: #e5e9e7;
+  border: none;
+  padding-left: 0.3rem;
+  color: #525b5a;
+}
+
+.button-contact {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.sendButon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding: 12px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, #21a89a, #7cd858);
+  border: none;
+  width: 134px;
+  height: 40px;
+  margin-left: 23%;
+  margin-right: 20%;
+  text-align: center;
+  transition: 1s;
+}
+
+.validation-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+}

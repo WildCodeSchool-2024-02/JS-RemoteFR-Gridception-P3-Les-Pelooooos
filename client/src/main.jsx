@@ -8,6 +8,15 @@ import Profil from "./pages/Profil";
 import Contact from "./pages/Contact";
 import Connexion from "./pages/Connexion";
 import Carte from "./pages/Carte";
+import Inscription from "./pages/Inscription";
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+const usersListLoader = async () => {
+  const reponse = await fetch(`${API_URL}/api/users`);
+  const data = await reponse.json();
+  return data;
+};
 
 const router = createBrowserRouter([
   {
@@ -16,24 +25,29 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Accueil/>
+        element: <Accueil />,
       },
       {
         path: "/profil",
-        element: <Profil/>
+        element: <Profil />,
+        loader: usersListLoader,
       },
       {
         path: "/contact",
-        element: <Contact/>
+        element: <Contact />,
       },
       {
         path: "/connexion",
-        element: <Connexion/>
+        element: <Connexion />,
       },
       {
         path: "/carte",
-        element: <Carte/>
-      }
+        element: <Carte />,
+      },
+      {
+        path: "/inscription",
+        element: <Inscription />,
+      },
     ],
   },
 ]);

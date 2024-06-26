@@ -1,0 +1,88 @@
+.inscription {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 2rem 2rem 2rem;
+  color: #525b5a;
+}
+
+.logoIns {
+  height: 67px;
+  width: 71px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+.error {
+  color: red;
+  text-align: center;
+  margin: 0;
+}
+
+.h1Ins {
+  font-size: 32px;
+  margin-bottom: 2rem;
+}
+.h2Ins {
+  font-size: 19px;
+  color: #21a89a;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px 15px 10px 15px;
+  flex-wrap: wrap;
+}
+.h3Ins {
+  color: #e5e9e7;
+  text-align: center;
+  width: 82%;
+}
+.formIns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #525b5a;
+  border-radius: 50px;
+  width: 100%;
+  padding-bottom: 3rem;
+}
+
+.profilVehicule {
+  margin-top: 3rem;
+  background-color: #525b5a;
+  border-radius: 50px;
+}
+.labelIns {
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-size: 16px;
+  color: #e5e9e7;
+  text-align: left;
+  width: 85%;
+}
+
+.inputIns {
+  margin: 0;
+  padding: 10px;
+  font-size: 16px;
+  width: 90%;
+  border-radius: 10px;
+  background-color: #e5e9e7;
+  border: none;
+}
+
+.buttonIns {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 12px;
+  width: 50%;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, #21a89a, #7cd858);
+  border: none;
+}
+.button {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0.5rem;
+}

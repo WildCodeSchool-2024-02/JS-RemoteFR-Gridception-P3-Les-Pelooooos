@@ -1,5 +1,5 @@
+import Identification from "../components/Identification";
+
 export default function Connexion() {
-    return (
-        <div> Page de connexion </div>
-    );
+  return <Identification />;
 }
