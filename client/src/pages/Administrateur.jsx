@@ -1,6 +1,9 @@
 import { useLoaderData } from "react-router-dom";
 import "../styles/admin.scss";
 import ListUsers from "../components/ListUsers";
+import ListCars from "../components/ListCars";
+import ListTerminals from "../components/ListTerminals";
+import MajTerminals from "../components/MajTerminals";
 
 export default function Administrateur() {
   const users = useLoaderData();
@@ -11,6 +14,9 @@ export default function Administrateur() {
         <p>Bonjour {users[0].firstname}</p>
       </section>
       <ListUsers users={users} />
+      <ListCars />
+      <ListTerminals />
+      <MajTerminals />
     </section>
   );
 }

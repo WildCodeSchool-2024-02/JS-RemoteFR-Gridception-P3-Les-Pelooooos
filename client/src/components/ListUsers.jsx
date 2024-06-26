@@ -6,7 +6,7 @@ export default function ListUsers({ users }) {
       <h1>LISTES DES UTILISATEURS</h1>
       {users?.map((user) => (
         <p key={users.id}>
-          on test {user.lastname} {user.firstname}
+          on test {user.lastname} || {user.firstname}
         </p>
       ))}
     </section>
