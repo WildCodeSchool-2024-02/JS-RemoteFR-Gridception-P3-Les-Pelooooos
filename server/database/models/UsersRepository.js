@@ -7,14 +7,18 @@ class TerminalsRepository extends AbstractRepository {
 
   async create(users) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (firstname, lastname, city, cars_owned, password, is_admin, reservations_id) values (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (gender, lastname, firstname, date_of_birth, email, city, postal_code, password, confirm_password, cars_owned, is_admin, reservations_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        users.firstname,
+        users.gender,
         users.lastname,
+        users.firstname,
+        users.date_of_birth,
         users.email,
         users.city,
-        users.cars_owned,
+        users.postal_code,
         users.password,
+        users.confirm_password,
+        users.cars_owned,
         users.is_admin,
         users.reservations_id,
       ]
@@ -40,14 +44,18 @@ class TerminalsRepository extends AbstractRepository {
 
   async update(users) {
     const [result] = await this.database.query(
-      `update ${this.table} set firstname = ?, lastname = ?, email = ?, city = ?, cars_owned ?, password = ?, is_admin = ?, reservation_id = ?, where id = ?`,
+      `update ${this.table} set gender = ?, lastname = ?, firstname = ?, date_of_birth = ?,  email = ?, city = ?, postal_code = ?, password = ?, confirm_password = ?, cars_owned ?, is_admin = ?, reservation_id = ?, where id = ?`,
       [
-        users.firstname,
+        users.gender,
         users.lastname,
+        users.firstname,
+        users.date_of_birth,
         users.email,
         users.city,
-        users.cars_owned,
+        users.postal_code,
         users.password,
+        users.confirm_password,
+        users.cars_owned,
         users.is_admin,
         users.reservations_id,
       ]
