@@ -4,16 +4,24 @@ export default function Form() {
   return (
     <section className="container-form">
       <form className="formContact" action="">
-        <label htmlFor="Nom">Nom</label>
+        <label className="label-contact" htmlFor="Nom">
+          Nom
+        </label>
         <input type="text" id="nom" name="nom" defaultValue="" required />
 
-        <label htmlFor="Prénom">Prénom</label>
+        <label className="label-contact" htmlFor="Prénom">
+          Prénom
+        </label>
         <input type="text" id="prenom" name="prenom" defaultValue="" required />
 
-        <label htmlFor="Email">Email</label>
+        <label className="label-contact" htmlFor="Email">
+          Email
+        </label>
         <input type="email" id="email" name="email" defaultValue="" required />
 
-        <label htmlFor="objet">Objet</label>
+        <label className="label-contact" htmlFor="objet">
+          Objet
+        </label>
         <select className="select" name="objet" id="objet" required>
           <option value="">Choisis ton objet</option>
           <option value="information">Demande d'informations</option>
@@ -21,7 +29,9 @@ export default function Form() {
           <option value="autres">Autre</option>
         </select>
 
-        <label htmlFor="Message">Message</label>
+        <label className="label-contact" htmlFor="Message">
+          Message
+        </label>
         <textarea className="message" id="message" name="message" required>
           Message
         </textarea>
