@@ -1,7 +1,6 @@
+// PARTIE HEADER
 .admin-profil {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   flex-direction: column;
   height: 170px;
   background: #525b5a;
@@ -9,17 +8,31 @@
   padding: 0.5rem;
   margin-bottom: 2.2rem;
 }
-
+.admin-profil {
+  gap: 2rem;
+}
 .admin-profil h1 {
   margin-left: 0.5rem;
   font-size: 32px;
   font-weight: bold;
   color: #21a89a;
 }
-
 .admin-profil p {
   margin-left: 0.5rem;
   font-size: 20px;
   color: white;
   padding: 10px 0;
 }
+
+// PARTIE USERS
+.listUsers {
+  background-color: #d9d9d9;
+  border-radius: 30px;
+}
+.listUsers h1 {
+  font-size: 20px;
+}
+
+// PARTIE VEHICULES
+
+// PARTIE BORNES
