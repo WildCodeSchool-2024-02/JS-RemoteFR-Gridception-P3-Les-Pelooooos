@@ -21,7 +21,7 @@
 
 .adress-station {
   background: #525b5a;
-  width: 93%;
+  width: 95%;
   height: 37px;
   border-radius: 10px;
   text-align: left;
@@ -39,11 +39,12 @@
 }
 
 .caracteristic-content {
-  width: 28%;
+  width: 30%;
   height: 74px;
   background: #525b5a;
   padding: 0.5rem;
   border-radius: 10px;
+  font-size: 14px;
 }
 
 .container {
@@ -58,7 +59,7 @@
   width: 50%;
   height: 74px;
   background: #525b5a;
-  padding-left: 1rem;
+  padding-left: 0.5rem;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -91,15 +92,16 @@
 
 .img-profil {
   width: 123px;
-  border-radius: 20px;
-  margin: 1rem;
+  height: 108px;
+  border-radius: 30px;
+  margin-top: 0.4rem;
 }
 
 .icons {
   display: flex;
   flex-direction: column;
   width: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 .icons-location {
