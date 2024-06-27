@@ -8,15 +8,63 @@ class UsersSeeder extends AbstractSeeder {
       truncate: true,
       dependencies: [ReservationsSeeder],
     });
-    this.usersIsAdmin = [true, false];
-    this.usersCars = [1, 2];
-    this.usersDateOfBirth = ["2000-05-17", "2002-09-09"];
-    this.usersPostalCode = ["33920", "17000"];
-    this.usersConfirmPassword = ["****", "****"];
+    this.usersIsAdmin = [
+      true,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ];
+    this.usersCars = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    this.usersDateOfBirth = [
+      "2000-05-17",
+      "2002-09-09",
+      "2002-12-09",
+      "2002-11-09",
+      "2002-05-09",
+      "2002-06-09",
+      "2002-06-09",
+      "2002-06-09",
+      "2002-06-09",
+      "2002-06-09",
+      "2002-06-09",
+    ];
+    this.usersPostalCode = [
+      "33920",
+      "17000",
+      "33000",
+      "34000",
+      "16000",
+      "64000",
+      "64000",
+      "64000",
+      "64000",
+      "64000",
+      "64000",
+    ];
+    this.usersConfirmPassword = [
+      "****",
+      "****",
+      "****",
+      "****",
+      "****",
+      "****",
+      "****",
+      "****",
+      "****",
+      "****",
+      "****",
+    ];
   }
 
   run() {
-    for (let i = 0; i < 2; i += 1) {
+    for (let i = 0; i < 11; i += 1) {
       const fakeUsers = {
         gender: this.faker.person.gender(),
         lastname: this.faker.person.lastName(),
