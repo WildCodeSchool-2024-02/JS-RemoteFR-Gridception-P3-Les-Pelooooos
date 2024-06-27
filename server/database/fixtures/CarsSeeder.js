@@ -10,11 +10,11 @@ class CarsSeeder extends AbstractSeeder {
       truncate: true,
       dependencies: [BrandsSeeder, PlugsSeeder, UsersSeeder],
     });
-    this.cars = ["AMG 163", "CLIO"];
+    this.cars = ["AMG 163", "CLIO", "CLIO", "CLIO", "CLIO", "CLIO"];
   }
 
   run() {
-    for (let i = 0; i < 2; i += 1) {
+    for (let i = 0; i < 6; i += 1) {
       const fakeCars = {
         brands_id: this.getRef(`brands_${Math.floor(Math.random() * 1) + 1}`)
           .insertId,
