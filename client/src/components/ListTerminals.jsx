@@ -34,7 +34,9 @@ export default function ListTerminals() {
         <p key={terminal.id}>
           {terminal.name_station} || {terminal.adress_station} ||{" "}
           {terminal.number_plugs}
-          <img className="cancel" src={Cancel} alt="icons de supression" />
+          <button type="button" className="supression">
+            <img className="cancel" src={Cancel} alt="icons de supression" />
+          </button>
         </p>
       ))}
       {visibleCount < terminals.length ? (

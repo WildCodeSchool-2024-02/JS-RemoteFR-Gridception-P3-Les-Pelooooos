@@ -29,22 +29,27 @@ export default function ListCars() {
   }, [API_URL]);
 
   return (
-
     <section className="listUsers">
       <h1>LISTES DES VÉHICULES</h1>
-       {cars.slice(0, visibleCount).map((car) => (
+      {cars.slice(0, visibleCount).map((car) => (
         <p key={car.id}>
           {car.brands_id} || {car.model} || {car.plugs_id}
-          <img className="cancel" src={Cancel} alt="icons de supression" />
+          <button type="button" className="supression">
+            <img className="cancel" src={Cancel} alt="icons de supression" />
+          </button>
         </p>
       ))}
       {visibleCount < cars.length ? (
         <button type="button" className="showMore" onClick={showMore}>
-          <img src={Down} className="imgListUser" alt="icon de menu déroulant" />
+          <img
+            src={Down}
+            className="imgListUser"
+            alt="icon de menu déroulant"
+          />
         </button>
       ) : (
         <button type="button" className="showMore" onClick={showDown}>
-          <img src={Up}className="imgListUser" alt="icon de menu déroulant" />
+          <img src={Up} className="imgListUser" alt="icon de menu déroulant" />
         </button>
       )}
     </section>
