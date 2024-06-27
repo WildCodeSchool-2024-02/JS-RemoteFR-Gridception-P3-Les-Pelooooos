@@ -1,0 +1,87 @@
+// PARTIE HEADER
+.admin-profil {
+  display: flex;
+  flex-direction: column;
+  height: 170px;
+  background: #525b5a;
+  border-radius: 0 0 45px 45px;
+  padding: 0.5rem;
+  gap: 2rem;
+}
+
+.admin-profil-content {
+  margin-bottom: 2rem;
+}
+
+.admin-profil h1 {
+  margin-left: 0.5rem;
+  font-size: 32px;
+  font-weight: bold;
+  color: #21a89a;
+}
+.admin-profil p {
+  font-size: 20px;
+  color: white;
+  padding: 10px 0;
+}
+.admin-profil-content p {
+  margin-left: 0.5rem;
+}
+
+.listUsers p {
+  background-color: #525b5a;
+  border-radius: 12.5px;
+  margin-bottom: 1rem;
+  padding: 10px;
+  gap: 50px;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.cancel {
+  width: 21px;
+  height: 23px;
+}
+
+// PARTIE USERS
+.listUsers {
+  background-color: #d9d9d9;
+  border-radius: 30px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.listUsers h1 {
+  font-size: 20px;
+  padding: 1rem;
+}
+
+.showMore {
+  background: none;
+  border: none;
+}
+.imgListUser {
+  width: 25px;
+  height: 25px;
+}
+
+// PARTIE BORNES
+
+.upload {
+  display: flex;
+  flex-direction: column !important;
+  align-items: center;
+  gap: 20px !important;
+}
+
+.upload img {
+  width: 36px;
+  display: flex;
+  margin-bottom: 0.5rem;
+}
