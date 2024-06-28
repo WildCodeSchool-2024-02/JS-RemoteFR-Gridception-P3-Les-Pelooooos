@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+// import { useAuth } from "../contexts/AuthContext";
 import homeIcon from "../assets/images/icons-home.png";
 import homeIconGreen from "../assets/images/icons-home-green.png";
 import userIcon from "../assets/images/icons-user.png";
@@ -11,13 +12,22 @@ import mapIconGreen from "../assets/images/icons-map-green.png";
 import "../styles/navBar.scss";
 
 export default function NavBar() {
-
   const [activeIcon, setActiveIcon] = useState(null);
+  // const {auth} = useAuth();
+  // const navigate = useNavigate();
 
   const handleIconClick = (icon) => {
     setActiveIcon(icon);
   };
-  
+
+  // {const handleProfileClick = () => {
+  //   if (auth) {
+  //     navigate("/profil");
+  //   } else {
+  //     navigate("/connexion")
+  //   }
+  // } }
+
   return (
     <section className="navbar-container">
       <Link to="/">

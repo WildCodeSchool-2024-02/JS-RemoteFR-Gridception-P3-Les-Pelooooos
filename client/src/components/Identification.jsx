@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import logoGeocode from "../assets/images/logo-geocode.png";
 import "../styles/identification.scss";
 
 export default function Identification() {
+  const { login } = useAuth();
   const [identifier, setIdentifier] = useState({
     identifiant: "",
     password: "",
@@ -28,6 +30,7 @@ export default function Identification() {
       setError("Le mot de passe est requis.");
     } else {
       setError("");
+      login(identifier);
       setIdentifier({
         identifiant: "",
         password: "",
