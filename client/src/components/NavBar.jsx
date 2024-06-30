@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-// import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 import homeIcon from "../assets/images/icons-home.png";
 import homeIconGreen from "../assets/images/icons-home-green.png";
 import userIcon from "../assets/images/icons-user.png";
@@ -13,20 +13,21 @@ import "../styles/navBar.scss";
 
 export default function NavBar() {
   const [activeIcon, setActiveIcon] = useState(null);
-  // const {auth} = useAuth();
-  // const navigate = useNavigate();
+  const { auth } = useAuth(); // Utilisation du contexte d'authentification
+  const navigate = useNavigate(); // Utilisation du hook useNavigate pour la redirection
 
   const handleIconClick = (icon) => {
     setActiveIcon(icon);
   };
 
-  // {const handleProfileClick = () => {
-  //   if (auth) {
-  //     navigate("/profil");
-  //   } else {
-  //     navigate("/connexion")
-  //   }
-  // } }
+  // Définition de la fonction handleProfileClick directement dans le corps du composant
+  const handleProfileClick = () => {
+    if (auth) {
+      navigate("/profil"); // Redirige vers la page profil si l'utilisateur est connecté
+    } else {
+      navigate("/connexion"); // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
+    }
+  };
 
   return (
     <section className="navbar-container">
@@ -43,18 +44,20 @@ export default function NavBar() {
         </button>
       </Link>
 
-      <Link to="/profil">
-        <button
-          type="button"
-          className={`icon user ${activeIcon === "user" ? "active" : ""}`}
-          onClick={() => handleIconClick("user")}
-        >
-          <img
-            src={activeIcon === "user" ? userIconGreen : userIcon}
-            alt="icône profil"
-          />
-        </button>
-      </Link>
+      {/* Remplacement du Link par un bouton avec une redirection conditionnelle */}
+      <button
+        type="button"
+        className={`icon user ${activeIcon === "user" ? "active" : ""}`}
+        onClick={() => {
+          handleIconClick("user");
+          handleProfileClick(); // Appel de la fonction handleProfileClick
+        }}
+      >
+        <img
+          src={activeIcon === "user" ? userIconGreen : userIcon}
+          alt="icône profil"
+        />
+      </button>
 
       <Link to="/carte">
         <button

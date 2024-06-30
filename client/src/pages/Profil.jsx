@@ -1,4 +1,5 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import pictureUser from "../assets/images/picture-user.jpg";
 import Vehicules from "../components/Véhicules";
 import Reservation from "../components/Reservation";
@@ -7,6 +8,13 @@ import "../styles/template.scss";
 
 export default function Profil() {
   const users = useLoaderData();
+  const { logout } = useAuth();
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout();
+    navigate("/connexion");
+  };
   return (
     <>
       <section className="header-profil">
@@ -24,6 +32,7 @@ export default function Profil() {
       <section className="container">
         <Reservation />
         <Vehicules />
+      <button className="buttonLogout" type="button" onClick={handleLogout}>DÉCONNEXION</button>
       </section>
     </>
   );
