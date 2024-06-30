@@ -9,6 +9,7 @@ export default function ListCars() {
 
   const [cars, setCars] = useState([]);
   const [visibleCount, setVisibleCount] = useState(5);
+  const [confirmDelete, setConfirmDelete] = useState(null);
 
   const showMore = () => {
     setVisibleCount((prevCount) => prevCount + 5);
@@ -43,7 +44,15 @@ export default function ListCars() {
         "Une erreur est survenue, impossible de supprimer le véhicule.",
         error
       );
+    } finally {
+      setConfirmDelete(null);
     }
+  };
+  const handleDeleteConfirm = (userId) => {
+    setConfirmDelete(userId);
+  };
+  const cancelDelete = () => {
+    setConfirmDelete(null);
   };
 
   return (
@@ -55,7 +64,7 @@ export default function ListCars() {
           <button
             type="button"
             className="supression"
-            onClick={() => handleDelete(car.id)}
+            onClick={() => handleDeleteConfirm(car.id)}
           >
             <img className="cancel" src={Cancel} alt="icons de supression" />
           </button>
@@ -73,6 +82,27 @@ export default function ListCars() {
         <button type="button" className="showMore" onClick={showDown}>
           <img src={Up} className="imgListUser" alt="icon de menu déroulant" />
         </button>
+      )}
+      {confirmDelete && (
+        <section className="confirmationDelete">
+          <p>Êtes-vous sûr de vouloir supprimer le véhicule ?</p>
+          <div className="buttonD">
+            <button
+              className="buttonDelete"
+              type="button"
+              onClick={() => handleDelete(confirmDelete)}
+            >
+              Oui
+            </button>
+            <button
+              className="buttonDelete"
+              type="button"
+              onClick={cancelDelete}
+            >
+              Non
+            </button>
+          </div>
+        </section>
       )}
     </section>
   );
