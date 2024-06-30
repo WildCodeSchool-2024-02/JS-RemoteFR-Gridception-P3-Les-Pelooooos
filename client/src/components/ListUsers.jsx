@@ -10,6 +10,7 @@ export default function ListUsers({ users }) {
 
   const [visibleCount, setVisibleCount] = useState(5);
   const [user, setUser] = useState([]);
+  const [confirmDelete, setConfirmDelete] = useState(null);
 
   const showMore = () => {
     setVisibleCount((prevCount) => prevCount + 5);
@@ -35,7 +36,15 @@ export default function ListUsers({ users }) {
         "Une erreur est survenue, impossible de supprimer le client.",
         error
       );
+    } finally {
+      setConfirmDelete(null);
     }
+  };
+  const handleDeleteConfirm = (userId) => {
+    setConfirmDelete(userId);
+  };
+  const cancelDelete = () => {
+    setConfirmDelete(null);
   };
 
   return (
@@ -47,7 +56,7 @@ export default function ListUsers({ users }) {
           <button
             type="button"
             className="supression"
-            onClick={() => handleDelete(usere.id)}
+            onClick={() => handleDeleteConfirm(usere.id)}
           >
             <img className="cancel" src={Cancel} alt="icon de suppression" />
           </button>
@@ -65,6 +74,18 @@ export default function ListUsers({ users }) {
         <button type="button" className="showMore" onClick={showDown}>
           <img src={Up} className="imgListUser" alt="icon de menu déroulant" />
         </button>
+      )}
+
+      {confirmDelete && (
+        <section className="confirmationDelete">
+          <p>Êtes-vous sûr de vouloir supprimer l'utilisateur ?</p>
+          <button type="button" onClick={() => handleDelete(confirmDelete)}>
+            Oui
+          </button>
+          <button type="button" onClick={() => cancelDelete}>
+            Non
+          </button>
+        </section>
       )}
     </section>
   );
