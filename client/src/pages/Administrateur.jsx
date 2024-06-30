@@ -10,7 +10,7 @@ export default function Administrateur() {
   return (
     <section className="admin-profil">
       <section className="admin-profil-content">
-        <h1>PROFIL ADMINISTRATITEUR</h1>
+        <h1>PROFIL ADMINISTRATEUR</h1>
         <p>Bonjour {users[0].firstname}</p>
       </section>
       <ListUsers users={users} />
