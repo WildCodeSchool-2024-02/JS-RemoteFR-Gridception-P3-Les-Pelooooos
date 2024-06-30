@@ -27,9 +27,11 @@ CREATE TABLE plugs (
     terminals_id INT,
     plugs_types_id INT,
     FOREIGN KEY(terminals_id)
-    REFERENCES terminals(id),
+    REFERENCES terminals(id)
+    ON DELETE CASCADE,
     FOREIGN KEY(plugs_types_id)
     REFERENCES plugs_types(id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE reservations (
@@ -39,9 +41,11 @@ CREATE TABLE reservations (
     terminals_id INT,
     plugs_id INT,
     FOREIGN KEY (terminals_id)
-    REFERENCES terminals(id),
+    REFERENCES terminals(id)
+    ON DELETE CASCADE,
     FOREIGN KEY (plugs_id)
     REFERENCES plugs(id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE users (
@@ -59,7 +63,8 @@ CREATE TABLE users (
     is_admin BOOLEAN NOT NULL,
     reservations_id INT,
     FOREIGN KEY (reservations_id)
-    REFERENCES reservations(id)    
+    REFERENCES reservations(id)
+    ON DELETE CASCADE    
 );
 
 CREATE TABLE cars (
@@ -69,11 +74,14 @@ CREATE TABLE cars (
     plugs_id INT,
     users_id INT,
     FOREIGN KEY (brands_id)
-    REFERENCES brands(id),
+    REFERENCES brands(id)
+    ON DELETE CASCADE,
     FOREIGN KEY (plugs_id)
-    REFERENCES plugs(id),
+    REFERENCES plugs(id)
+    ON DELETE CASCADE,
     FOREIGN KEY (users_id)
     REFERENCES users(id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE images (
@@ -82,9 +90,11 @@ CREATE TABLE images (
     users_id INT,
     cars_id INT,
     FOREIGN KEY(users_id)
-    REFERENCES users(id),
+    REFERENCES users(id)
+    ON DELETE CASCADE,
     FOREIGN KEY(cars_id)
     REFERENCES cars(id)
+    ON DELETE CASCADE
 );
 
 -- SQLBook: Code
