@@ -79,12 +79,14 @@ export default function ListUsers({ users }) {
       {confirmDelete && (
         <section className="confirmationDelete">
           <p>Êtes-vous sûr de vouloir supprimer l'utilisateur ?</p>
-          <button type="button" onClick={() => handleDelete(confirmDelete)}>
+         <div className="buttonD">
+          <button className="buttonDelete" type="button" onClick={() => handleDelete(confirmDelete)}>
             Oui
           </button>
-          <button type="button" onClick={() => cancelDelete}>
+          <button className="buttonDelete" type="button" onClick={() => cancelDelete}>
             Non
           </button>
+         </div>
         </section>
       )}
     </section>

@@ -76,6 +76,22 @@
   height: 25px;
 }
 
+.confirmationDelete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.buttonDelete {
+  width: 50px;
+  border-radius: 10px;
+  margin: 0 1rem 0.5rem 1rem;
+}
+.buttonDelete:hover {
+  background-color: #21a89a;
+}
+
 // PARTIE BORNES
 
 .upload {
