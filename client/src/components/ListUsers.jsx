@@ -21,23 +21,19 @@ export default function ListUsers({ users }) {
 
   const handleDelete = async (userId) => {
     try {
-      const image = await axios.delete(`${API_URL}/api/images/${userId}`);
-      const cars = await axios.delete(`${API_URL}/api/cars/${userId}`);
-      // const reservation = await axios.delete(
-      //   `${API_URL}/api/reservations/${reservation_id}`
-      // );
-      const usersDelete = await axios.delete(`${API_URL}/api/users/${userId}`);
+      const response = await axios.delete(`${API_URL}/api/users/${userId}`);
 
-      if (
-        image.status === 204 &&
-        cars.status === 204 &&
-        usersDelete.status === 204
-      ) {
-        setUser(user.filter((userA) => userA.id !== userId));
+      if (response.status === 204) {
+        setUser(user.filter((user1) => user1.id !== userId));
+      } else {
+        console.error(
+          "Une erreur est survenue, impossible de supprimer le client."
+        );
       }
     } catch (error) {
       console.error(
-        "Une erreur est survenue, impossible de supprimer le client."
+        "Une erreur est survenue, impossible de supprimer le client.",
+        error
       );
     }
   };
