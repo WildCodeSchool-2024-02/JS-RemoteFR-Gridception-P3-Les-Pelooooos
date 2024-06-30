@@ -83,7 +83,7 @@ export default function ListUsers({ users }) {
           <button className="buttonDelete" type="button" onClick={() => handleDelete(confirmDelete)}>
             Oui
           </button>
-          <button className="buttonDelete" type="button" onClick={() => cancelDelete}>
+          <button className="buttonDelete" type="button" onClick={cancelDelete}>
             Non
           </button>
          </div>
