@@ -9,7 +9,7 @@ export default function ListUsers({ users }) {
   const API_URL = import.meta.env.VITE_API_URL;
 
   const [visibleCount, setVisibleCount] = useState(5);
-  const [user, setUser] = useState([]);
+  const [localUsers, setLocalUsers] = useState(users);
   const [confirmDelete, setConfirmDelete] = useState(null);
 
   const showMore = () => {
@@ -25,7 +25,8 @@ export default function ListUsers({ users }) {
       const response = await axios.delete(`${API_URL}/api/users/${userId}`);
 
       if (response.status === 204) {
-        setUser(user.filter((user1) => user1.id !== userId));
+        const updatedUsers = localUsers.filter((user) => user.id !== userId);
+        setLocalUsers(updatedUsers);
       } else {
         console.error(
           "Une erreur est survenue, impossible de supprimer le client."
@@ -50,19 +51,19 @@ export default function ListUsers({ users }) {
   return (
     <section className="listUsers">
       <h1>LISTES DES UTILISATEURS</h1>
-      {users.slice(0, visibleCount).map((usere) => (
-        <p key={usere.id}>
-          {usere.lastname} || {usere.firstname}
+      {localUsers.slice(0, visibleCount).map((user) => (
+        <p key={user.id}>
+          {user.lastname} || {user.firstname}
           <button
             type="button"
             className="supression"
-            onClick={() => handleDeleteConfirm(usere.id)}
+            onClick={() => handleDeleteConfirm(user.id)}
           >
             <img className="cancel" src={Cancel} alt="icon de suppression" />
           </button>
         </p>
       ))}
-      {visibleCount < users.length ? (
+      {visibleCount < localUsers.length ? (
         <button type="button" className="showMore" onClick={showMore}>
           <img
             src={Down}
@@ -79,14 +80,22 @@ export default function ListUsers({ users }) {
       {confirmDelete && (
         <section className="confirmationDelete">
           <p>Êtes-vous sûr de vouloir supprimer l'utilisateur ?</p>
-         <div className="buttonD">
-          <button className="buttonDelete" type="button" onClick={() => handleDelete(confirmDelete)}>
-            Oui
-          </button>
-          <button className="buttonDelete" type="button" onClick={cancelDelete}>
-            Non
-          </button>
-         </div>
+          <div className="buttonD">
+            <button
+              className="buttonDelete"
+              type="button"
+              onClick={() => handleDelete(confirmDelete)}
+            >
+              Oui
+            </button>
+            <button
+              className="buttonDelete"
+              type="button"
+              onClick={cancelDelete}
+            >
+              Non
+            </button>
+          </div>
         </section>
       )}
     </section>

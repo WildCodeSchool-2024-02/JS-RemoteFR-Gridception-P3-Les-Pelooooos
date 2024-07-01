@@ -14,7 +14,7 @@ class TerminalsSeeder extends AbstractSeeder {
     this.nameStation = [
       "Paris",
       "Marseille",
-      "Paris",
+      "Bordeaux",
       "Paris",
       "Paris",
       "Paris",
@@ -22,7 +22,7 @@ class TerminalsSeeder extends AbstractSeeder {
     this.adressStation = [
       "1 chemin des parisien 75000 Paris",
       "10 rue des beau gosse 13000 Marseille",
-      "10 rue des beau gosse 13000 Marseille",
+      "140 chemin de la coutrire 33860 Marcillac",
       "10 rue des beau gosse 13000 Marseille",
       "10 rue des beau gosse 13000 Marseille",
       "10 rue des beau gosse 13000 Marseille",
