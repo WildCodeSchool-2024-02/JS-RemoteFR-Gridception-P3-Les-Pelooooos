@@ -99,10 +99,29 @@
   flex-direction: column !important;
   align-items: center;
   gap: 20px !important;
+  background-color: #525b5a;
+  border-radius: 20px;
+  padding: 1.5rem 1rem;
+  color: white;
+  margin: 1rem;
 }
 
-.upload img {
-  width: 36px;
+.upload form {
   display: flex;
-  margin-bottom: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload p {
+  margin: 0;
+}
+
+.effect:hover {
+  background-color: #21a89a;
+}
+
+.effect {
+  border-radius: 10px;
+  border: none;
+  padding: 5px;
 }
