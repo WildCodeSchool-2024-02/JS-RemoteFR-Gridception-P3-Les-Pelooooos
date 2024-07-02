@@ -3,21 +3,52 @@ const AbstractSeeder = require("./AbstractSeeder");
 class TerminalsSeeder extends AbstractSeeder {
   constructor() {
     super({ table: "terminals", truncate: true });
-    this.longitude = [3.407609123225763, 5.407609123225763];
-    this.latitude = [43.41959147913006, 53.41959147913006];
-    this.nameStation = ["Paris", "Marseille"];
+    this.longitude = [
+      3.407609123225763, 5.407609123225763, 5.407609123225763,
+      5.407609123225763, 5.407609123225763, 5.407609123225763,
+    ];
+    this.latitude = [
+      43.41959147913006, 53.41959147913006, 43.41959147913006,
+      43.41959147913006, 43.41959147913006, 43.41959147913006,
+    ];
+    this.nameStation = [
+      "Paris",
+      "Marseille",
+      "Bordeaux",
+      "Paris",
+      "Paris",
+      "Paris",
+    ];
     this.adressStation = [
       "1 chemin des parisien 75000 Paris",
       "10 rue des beau gosse 13000 Marseille",
+      "140 chemin de la coutrire 33860 Marcillac",
+      "10 rue des beau gosse 13000 Marseille",
+      "10 rue des beau gosse 13000 Marseille",
+      "10 rue des beau gosse 13000 Marseille",
     ];
-    this.numberPlugs = [10, 45];
-    this.free = [true, false];
-    this.openingHours = ["7 jours sur 7", "24 heures sur 24"];
-    this.pmrAccessibility = ["Accessible aux PMR", "Non accessible"];
+    this.numberPlugs = [10, 45, 10, 10, 10, 10];
+    this.free = [true, false, true, true, true, true];
+    this.openingHours = [
+      "7 jours sur 7",
+      "24 heures sur 24",
+      "7 jours sur 7",
+      "7 jours sur 7",
+      "7 jours sur 7",
+      "7 jours sur 7",
+    ];
+    this.pmrAccessibility = [
+      "Accessible aux PMR",
+      "Non accessible",
+      "Accessible aux PMR",
+      "Accessible aux PMR",
+      "Accessible aux PMR",
+      "Accessible aux PMR",
+    ];
   }
 
   run() {
-    for (let i = 0; i < 2; i += 1) {
+    for (let i = 0; i < 6; i += 1) {
       const fakeTerminals = {
         longitude: this.longitude[i],
         latitude: this.latitude[i],
