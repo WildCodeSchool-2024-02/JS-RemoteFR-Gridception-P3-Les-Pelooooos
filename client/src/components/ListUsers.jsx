@@ -106,7 +106,7 @@ ListUsers.propTypes = {
   users: PropTypes.arrayOf(
     PropTypes.shape({
       lastname: PropTypes.string.isRequired,
-      fisrtname: PropTypes.string.isRequired,
+      fisrtname: PropTypes.string,
     })
   ).isRequired,
 };
