@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import axios from "axios";
 
-
 export default function MajTerminals() {
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -33,12 +32,11 @@ export default function MajTerminals() {
   return (
     <section className="listUsers">
       <h1>MISE A JOUR DES BORNES</h1>
-      <div>
-        <p className="upload">Télécharger fichier JSON </p>
+      <div className="upload">
         <form>
           <input type="file" onChange={hanfleFileChange} />
-          <button type="submit" onClick={handleUpload}>
-            Submit
+          <button className="effect" type="submit" onClick={handleUpload}>
+            Envoyer
           </button>
         </form>
       </div>
