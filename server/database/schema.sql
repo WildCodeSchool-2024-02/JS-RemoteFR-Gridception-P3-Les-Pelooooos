@@ -59,7 +59,8 @@ CREATE TABLE users (
     is_admin BOOLEAN NOT NULL,
     reservations_id INT,
     FOREIGN KEY (reservations_id)
-    REFERENCES reservations(id)    
+    REFERENCES reservations(id)
+    ON DELETE CASCADE    
 );
 
 CREATE TABLE cars (
@@ -74,6 +75,7 @@ CREATE TABLE cars (
     REFERENCES plugs(id),
     FOREIGN KEY (users_id)
     REFERENCES users(id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE images (
@@ -82,9 +84,11 @@ CREATE TABLE images (
     users_id INT,
     cars_id INT,
     FOREIGN KEY(users_id)
-    REFERENCES users(id),
+    REFERENCES users(id)
+    ON DELETE CASCADE,
     FOREIGN KEY(cars_id)
     REFERENCES cars(id)
+    ON DELETE CASCADE
 );
 
 -- SQLBook: Code

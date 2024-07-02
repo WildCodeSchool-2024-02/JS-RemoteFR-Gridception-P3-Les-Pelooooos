@@ -10,7 +10,8 @@ class CarsSeeder extends AbstractSeeder {
       truncate: true,
       dependencies: [BrandsSeeder, PlugsSeeder, UsersSeeder],
     });
-    this.cars = ["AMG 163", "CLIO", "CLIO", "CLIO", "CLIO", "CLIO"];
+    this.cars = ["AMG 163", "CLIO", "TWINGO", "ABCD", "EF", "MERCEDES"];
+    this.usersId = [1, 2, 3, 4, 5, 6];
   }
 
   run() {
@@ -21,8 +22,7 @@ class CarsSeeder extends AbstractSeeder {
         model: this.cars[i],
         plugs_id: this.getRef(`plugs_${Math.floor(Math.random() * 1) + 1}`)
           .insertId,
-        users_id: this.getRef(`users_${Math.floor(Math.random() * 1) + 1}`)
-          .insertId,
+        users_id: this.usersId[i],
         refName: `cars_${i}`,
       };
 
