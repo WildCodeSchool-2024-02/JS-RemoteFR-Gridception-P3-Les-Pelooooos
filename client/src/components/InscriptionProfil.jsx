@@ -55,6 +55,7 @@ export default function InscriptionProfil() {
 
   const [selectedMarques, setSelectedMarques] = useState([]);
   const [selectedModeles, setSelectedModeles] = useState([]);
+  const [plugTypes, setPlugTypes] = useState([]);
   const [error, setError] = useState("");
 
   const handleChangeForm = (event) => {
@@ -65,6 +66,7 @@ export default function InscriptionProfil() {
       const numberOfVehicules = parseInt(value, 10) || 0;
       setSelectedMarques(Array(numberOfVehicules).fill(""));
       setSelectedModeles(Array(numberOfVehicules).fill(""));
+      setPlugTypes(Array(numberOfVehicules).fill(""));
     }
   };
 
@@ -78,6 +80,12 @@ export default function InscriptionProfil() {
     const newSelectedModeles = [...selectedModeles];
     newSelectedModeles[index] = value;
     setSelectedModeles(newSelectedModeles);
+  };
+
+  const handlePlugTypeChange = (index, value) => {
+    const newPlugTypes = [...plugTypes];
+    newPlugTypes[index] = value;
+    setPlugTypes(newPlugTypes);
   };
 
   const isValidEmail = (email) => {
@@ -112,8 +120,29 @@ export default function InscriptionProfil() {
     } else if (inscription.vehicule === "") {
       setError("Le nombre de véhicules est obligatoire.");
     } else {
+      const vehicles = selectedMarques.map((marque, index) => ({
+        brand_name: marque,
+        model: selectedModeles[index],
+        plug_type: plugTypes[index],
+      }));
+
+      const formData = {
+        // transforme les données de inscription pour correspondre aux attentes du backend, notamment en termes de nommage des champs.
+        gender: inscription.genre,
+        lastname: inscription.nom,
+        firstname: inscription.prenom,
+        date_of_birth: inscription.dateNaissance,
+        email: inscription.email,
+        city: inscription.ville,
+        postal_code: inscription.cp,
+        password: inscription.mp,
+        confirm_password: inscription.confirmationMp,
+        cars_owned: parseInt(inscription.vehicule, 10),
+        vehicles,
+      };
+
       setError("");
-      login(inscription); // Connecter l'utilisateur avec les informations fournies
+      login(formData); // Envoi des donnees converties au backend
       setInscription({
         genre: "",
         nom: "",
@@ -128,6 +157,7 @@ export default function InscriptionProfil() {
       });
       setSelectedMarques([]);
       setSelectedModeles([]);
+      setPlugTypes([]);
       navigate("/profil"); // Rediriger vers la page souhaitée
     }
   };
@@ -177,7 +207,12 @@ export default function InscriptionProfil() {
           <label className="labelIns" htmlFor="priseType">
             Type de prise
           </label>
-          <select className="inputIns" name="priseType">
+          <select
+            className="inputIns"
+            name="priseType"
+            value={plugTypes[i]}
+            onChange={(e) => handlePlugTypeChange(i, e.target.value)}
+          >
             <option value="">Sélectionnez le type de prise</option>
             <option value="type-ef">Prise type EF</option>
             <option value="type-2">Prise type 2</option>

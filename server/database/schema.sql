@@ -44,6 +44,8 @@ CREATE TABLE reservations (
     REFERENCES plugs(id)
 );
 
+DROP TABLE IF EXISTS users;
+
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     gender VARCHAR(50) NOT NULL,
