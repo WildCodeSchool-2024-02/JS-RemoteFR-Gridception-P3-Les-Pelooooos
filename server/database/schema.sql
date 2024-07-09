@@ -16,7 +16,7 @@ CREATE TABLE terminals (
     name_station VARCHAR(50),
     adress_station TEXT NOT NULL,
     number_plugs INT NOT NULL,
-    free BOOLEAN,
+    free VARCHAR(10),
     opening_hours VARCHAR(50),
     pmr_accessibility VARCHAR(50)
 );
