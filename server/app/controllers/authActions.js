@@ -3,6 +3,13 @@ const tables = require("../../database/tables");
 
 const { createUser } = require("../../database/models/UsersRepository");
 
+const hashingOptions = {
+  type: argon2.argon2id,
+  memoryCost: 19 * 2 ** 10,
+  timeCost: 2,
+  parallelism: 1,
+};
+
 const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await tables.users.readOneByEmail(email);
@@ -33,28 +40,14 @@ const register = async (req, res) => {
     city,
     postalCode,
     password,
-    confirmPassword,
     carsOwned,
     brandName,
     model,
+    isAdmin,
   } = req.body;
-  console.info(
-    gender,
-    lastname,
-    firstname,
-    dateOfBirth,
-    email,
-    city,
-    postalCode,
-    password,
-    confirmPassword,
-    carsOwned,
-    brandName,
-    model
-  );
 
   try {
-    const hashPassword = argon2.hash(password);
+    const hashedPassword = await argon2.hash(password, hashingOptions);
     const userId = await createUser({
       gender,
       lastname,
@@ -63,11 +56,11 @@ const register = async (req, res) => {
       email,
       city,
       postalCode,
-      password: hashPassword,
-      confirmPassword,
+      password: hashedPassword,
       carsOwned,
       brandName,
       model,
+      isAdmin,
     });
     res.json({ success: true, userId });
   } catch (error) {

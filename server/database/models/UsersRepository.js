@@ -8,7 +8,7 @@ class UsersRepository extends AbstractRepository {
 
   async create(users) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (gender, lastname, firstname, date_of_birth, email, city, postal_code, password, confirm_password, cars_owned, is_admin, reservations_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (gender, lastname, firstname, date_of_birth, email, city, postal_code, password, cars_owned, is_admin, reservations_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         users.gender,
         users.lastname,
@@ -18,7 +18,6 @@ class UsersRepository extends AbstractRepository {
         users.city,
         users.postalCode,
         users.password,
-        users.confirmPassword,
         users.carsOwned,
         users.isAdmin,
         users.reservationsId,
@@ -38,9 +37,10 @@ class UsersRepository extends AbstractRepository {
   }
 
   async readOneByEmail(email) {
-    const [rows] = await client.query(`SELECT * FROM ${this.table} WHERE email = ?`, [
-      email,
-    ]);
+    const [rows] = await client.query(
+      `SELECT * FROM ${this.table} WHERE email = ?`,
+      [email]
+    );
     return rows;
   }
 
@@ -62,7 +62,6 @@ class UsersRepository extends AbstractRepository {
         users.city,
         users.postal_code,
         users.password,
-        users.confirm_password,
         users.cars_owned,
         users.is_admin,
         users.reservations_id,

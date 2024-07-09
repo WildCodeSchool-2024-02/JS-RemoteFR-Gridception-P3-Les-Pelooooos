@@ -12,7 +12,6 @@ class UsersSeeder extends AbstractSeeder {
     this.usersCars = [1, 2];
     this.usersDateOfBirth = ["2000-05-17", "2002-09-09"];
     this.usersPostalCode = ["33920", "17000"];
-    this.usersConfirmPassword = ["****", "****"];
   }
 
   run() {
@@ -26,7 +25,6 @@ class UsersSeeder extends AbstractSeeder {
         city: this.faker.location.city(),
         postal_code: this.usersPostalCode[i],
         password: this.faker.internet.password(),
-        confirm_password: this.usersConfirmPassword[i],
         cars_owned: this.usersCars[i],
         is_admin: this.usersIsAdmin[i],
         reservations_id: this.getRef(
