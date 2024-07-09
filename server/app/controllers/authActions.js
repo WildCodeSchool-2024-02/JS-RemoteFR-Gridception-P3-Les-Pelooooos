@@ -1,8 +1,6 @@
 const argon2 = require("argon2");
 const tables = require("../../database/tables");
 
-const { createUser } = require("../../database/models/UsersRepository");
-
 const hashingOptions = {
   type: argon2.argon2id,
   memoryCost: 19 * 2 ** 10,
@@ -48,7 +46,8 @@ const register = async (req, res) => {
 
   try {
     const hashedPassword = await argon2.hash(password, hashingOptions);
-    const userId = await createUser({
+
+    const userId = await tables.users.create({
       gender,
       lastname,
       firstname,

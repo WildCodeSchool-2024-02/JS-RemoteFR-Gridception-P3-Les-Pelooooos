@@ -6,14 +6,14 @@ const {
   browse,
   read,
   edit,
-  add,
   destroy,
 } = require("../../../controllers/usersActions");
+const { register } = require("../../../controllers/authActions");
 
 router.get("/", browse);
 router.get("/:id", read);
 router.put("/:id", edit);
-router.post("/", add);
+router.post("/", register);
 router.delete("/:id", destroy);
 
 module.exports = router;

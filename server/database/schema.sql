@@ -55,7 +55,7 @@ CREATE TABLE users (
     email VARCHAR(100) UNIQUE NOT NULL,
     city VARCHAR(50) NOT NULL,
     postal_code VARCHAR(100) NOT NULL,
-    password VARCHAR(15) NOT NULL,
+    password VARCHAR(250) NOT NULL,
     cars_owned INT NOT NULL,
     is_admin BOOLEAN NOT NULL,
     reservations_id INT,
