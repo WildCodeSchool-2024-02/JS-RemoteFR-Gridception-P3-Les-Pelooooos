@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useLocation, Link } from "react-router-dom";
 
-export default function LinkIcon({ to, icon, activeIcon }) {
+export default function NavBarLinks({ to, icon, activeIcon }) {
   const location = useLocation();
   const isActive = location.pathname === to;
   return (
@@ -11,7 +11,7 @@ export default function LinkIcon({ to, icon, activeIcon }) {
   );
 }
 
-LinkIcon.propTypes = {
+NavBarLinks.propTypes = {
   to: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   activeIcon: PropTypes.string.isRequired,
