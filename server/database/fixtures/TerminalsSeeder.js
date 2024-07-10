@@ -11,15 +11,15 @@ class TerminalsSeeder extends AbstractSeeder {
     try {
       for (let i = 0; i < 6; i += 1) {
         const fakeTerminals = {
-          longitude: data.features[0].geometry.coordinates[0],
-          latitude: data.features[0].geometry.coordinates[1],
-          name_station: data.features[0].properties.nom_station,
-          adress_station: data.features[0].properties.adresse_station,
-          number_plugs: data.features[0].properties.nbre_pdc,
-          free: data.features[0].properties.gratuit,
-          opening_hours: data.features[0].properties.horaires,
+          longitude: data.features[i].geometry.coordinates[0],
+          latitude: data.features[i].geometry.coordinates[1],
+          name_station: data.features[i].properties.nom_station,
+          adress_station: data.features[i].properties.adresse_station,
+          number_plugs: data.features[i].properties.nbre_pdc,
+          free: data.features[i].properties.gratuit,
+          opening_hours: data.features[i].properties.horaires,
           pmr_accessibility:
-            data.features[0].properties.accessibilite_pmr,
+            data.features[i].properties.accessibilite_pmr,
           refName: `terminals_${i}`,
         };
 
