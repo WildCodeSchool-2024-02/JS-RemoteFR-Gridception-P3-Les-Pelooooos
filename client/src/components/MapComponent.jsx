@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from "react";
-import axios from "axios";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
 import PropTypes from "prop-types";
+import axios from "axios";
+import L from "leaflet";
+
 import icon2 from "../assets/images/icons2-down.png";
+
+import "leaflet/dist/leaflet.css";
 
 function MapComponent({ searchQuery }) {
   const [terminals, setTerminals] = useState([]);
@@ -13,7 +15,7 @@ function MapComponent({ searchQuery }) {
   const [selectedTerminal, setSelectedTerminal] = useState(null);
   const [informationTerminal, setInformationTerminal] = useState(false);
   const mapRef = useRef();
-  const API_URL = import.meta.env.VITE_API_URL;
+  const { VITE_API_URL } = import.meta.env;
 
   // eslint-disable-next-line no-underscore-dangle
   delete L.Icon.Default.prototype._getIconUrl;
@@ -83,14 +85,14 @@ function MapComponent({ searchQuery }) {
   useEffect(() => {
     const fetchTerminals = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/terminals`);
+        const response = await axios.get(`${VITE_API_URL}/api/terminals`);
         setTerminals(response.data);
       } catch (err) {
         console.info(err);
       }
     };
     fetchTerminals();
-  }, [API_URL]);
+  }, [VITE_API_URL]);
 
   const handleMarkerClick = (terminal) => {
     setSelectedTerminal(terminal);
@@ -128,25 +130,33 @@ function MapComponent({ searchQuery }) {
             eventHandlers={{
               click: () => handleMarkerClick(terminal),
             }}
-          />
+          >
+            <Popup>
+              {terminal.name} <br />
+              {terminal.disabled_accesses
+                ? "Accès pour les handicapés disponible"
+                : "Pas d'accès pour les handicapés"}
+            </Popup>
+          </Marker>
         ))}
       </MapContainer>
 
       {selectedTerminal && (
         <section>
           <section className="station">
-            <h1>{selectedTerminal.name_station}</h1>
-            <p>{selectedTerminal.adress_station}</p>
+            <h1>{selectedTerminal.name}</h1>
+            <p>{selectedTerminal.adress}</p>
             {informationTerminal && (
               <section className="popupTerminal">
-              <section className="argentTerminal">
-                <p>Coût réservation: 2€</p>
-                <p>
-                  Gratuité: {selectedTerminal.free === "TRUE" ? "Oui" : "Non"}
-                </p>
-              </section>
-               
-                <form  className="formIns" onSubmit={(event) => event.preventDefault()}>
+                <section className="argentTerminal">
+                  <p>Coût réservation: 2€</p>
+                  <p>Gratuité: {selectedTerminal.free ? "Oui" : "Non"}</p>
+                </section>
+
+                <form
+                  className="formIns"
+                  onSubmit={(event) => event.preventDefault()}
+                >
                   <label className="labelIns" htmlFor="dateReservation">
                     Date de réservation:
                   </label>
