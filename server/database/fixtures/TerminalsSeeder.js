@@ -1,36 +1,32 @@
+const data = require("../../public/tmp/data.json");
+
 const AbstractSeeder = require("./AbstractSeeder");
 
 class TerminalsSeeder extends AbstractSeeder {
   constructor() {
     super({ table: "terminals", truncate: true });
-    this.longitude = [3.407609123225763, 5.407609123225763];
-    this.latitude = [43.41959147913006, 53.41959147913006];
-    this.nameStation = ["Paris", "Marseille"];
-    this.adressStation = [
-      "1 chemin des parisien 75000 Paris",
-      "10 rue des beau gosse 13000 Marseille",
-    ];
-    this.numberPlugs = [10, 45];
-    this.free = [true, false];
-    this.openingHours = ["7 jours sur 7", "24 heures sur 24"];
-    this.pmrAccessibility = ["Accessible aux PMR", "Non accessible"];
   }
 
   run() {
-    for (let i = 0; i < 2; i += 1) {
-      const fakeTerminals = {
-        longitude: this.longitude[i],
-        latitude: this.latitude[i],
-        name_station: this.nameStation[i],
-        adress_station: this.adressStation[i],
-        number_plugs: this.numberPlugs[i],
-        free: this.free[i],
-        opening_hours: this.openingHours[i],
-        pmr_accessibility: this.pmrAccessibility[i],
-        refName: `terminals_${i}`,
-      };
+    try {
+      for (let i = 0; i < 15; i += 1) {
+        const fakeTerminals = {
+          longitude: data.features[i].geometry.coordinates[0],
+          latitude: data.features[i].geometry.coordinates[1],
+          name_station: data.features[i].properties.nom_station,
+          adress_station: data.features[i].properties.adresse_station,
+          number_plugs: data.features[i].properties.nbre_pdc,
+          free: data.features[i].properties.gratuit,
+          opening_hours: data.features[i].properties.horaires,
+          pmr_accessibility:
+            data.features[i].properties.accessibilite_pmr,
+          refName: `terminals_${i}`,
+        };
 
-      this.insert(fakeTerminals);
+        this.insert(fakeTerminals);
+      }
+    } catch (err) {
+      console.error("Erreur de parsing", err);
     }
   }
 }

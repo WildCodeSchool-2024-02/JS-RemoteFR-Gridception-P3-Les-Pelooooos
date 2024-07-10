@@ -8,14 +8,16 @@ class UsersSeeder extends AbstractSeeder {
       truncate: true,
       dependencies: [ReservationsSeeder],
     });
+
     this.usersIsAdmin = [true, false];
     this.usersCars = [1, 2];
     this.usersDateOfBirth = ["2000-05-17", "2002-09-09"];
     this.usersPostalCode = ["33920", "17000"];
+
   }
 
   run() {
-    for (let i = 0; i < 2; i += 1) {
+    for (let i = 0; i < 6; i += 1) {
       const fakeUsers = {
         gender: this.faker.person.gender(),
         lastname: this.faker.person.lastName(),
@@ -24,6 +26,7 @@ class UsersSeeder extends AbstractSeeder {
         email: this.faker.internet.email(),
         city: this.faker.location.city(),
         postal_code: this.usersPostalCode[i],
+
         password:
           "$argon2id$v=19$m=65536,t=5,p=1$FkjcCc0+F15P0N5TLh3ndQ$FkttWmV6YpXwaqtjrKfALtaYkwyHv2ongXDP/C6bvY4",
         cars_owned: this.usersCars[i],

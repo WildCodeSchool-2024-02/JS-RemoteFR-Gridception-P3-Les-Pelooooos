@@ -22,4 +22,8 @@ router.use("/reservations", reservationsRouter);
 router.use("/terminals", terminalsRouter);
 router.use("/users", usersRouter);
 
+const uploadRouter = require("./upload/router");
+
+router.use("/upload", uploadRouter);
+
 module.exports = router;

@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import Connexion from "./pages/Connexion";
 import Carte from "./pages/Carte";
 import Inscription from "./pages/Inscription";
+import Administrateur from "./pages/Administrateur";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -49,6 +50,11 @@ const router = createBrowserRouter([
       {
         path: "/inscription",
         element: <Inscription />,
+      },
+      {
+        path: "/administrateur",
+        element: <Administrateur />,
+        loader: usersListLoader,
       },
     ],
   },
