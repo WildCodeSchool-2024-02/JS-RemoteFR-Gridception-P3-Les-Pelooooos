@@ -138,14 +138,15 @@ function MapComponent({ searchQuery }) {
             <h1>{selectedTerminal.name_station}</h1>
             <p>{selectedTerminal.adress_station}</p>
             {informationTerminal && (
-              <section>
-                {/* <p>{selectedTerminal.opening_hours}</p>
-                <p>{selectedTerminal.pmr_accessibility}</p> */}
+              <section className="popupTerminal">
+              <section className="argentTerminal">
                 <p>Coût réservation: 2€</p>
                 <p>
                   Gratuité: {selectedTerminal.free === "TRUE" ? "Oui" : "Non"}
                 </p>
-                <form onSubmit={(event) => event.preventDefault()}>
+              </section>
+               
+                <form  className="formIns" onSubmit={(event) => event.preventDefault()}>
                   <label className="labelIns" htmlFor="dateReservation">
                     Date de réservation:
                   </label>
