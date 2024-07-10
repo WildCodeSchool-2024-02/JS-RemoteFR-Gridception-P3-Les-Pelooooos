@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom"; // impot pour Rediriger vers la page souhaitée
 import { useAuth } from "../contexts/AuthContext"; // Importer le contexte d'authentification
 
@@ -38,6 +39,8 @@ const models = {
 };
 
 export default function InscriptionProfil() {
+  const [carsList, setCarsList] = useState([]);
+
   const { login } = useAuth(); // Utiliser la fonction login du contexte d'authentification
   const navigate = useNavigate(); // Rediriger vers la page souhaitée
   const [inscription, setInscription] = useState({
@@ -226,9 +229,26 @@ export default function InscriptionProfil() {
 
     return vehiculeForms;
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3310/api/cars")
+      .then((res) => setCarsList(res.data));
+  }, []);
+
+  console.info(carsList);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios.post("http://localhost:3310/api/auth/register", {
+      inscription,
+    });
+  };
+
   return (
     <section className="profilInformation">
-      <form className="formIns" onSubmit={(event) => event.preventDefault()}>
+      <form className="formIns" onSubmit={handleSubmit}>
         <h2 className="h2Ins"> INFORMATION DE VOTRE PROFIL</h2>
         <label className="labelIns" htmlFor="genre">
           Genre
