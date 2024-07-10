@@ -24,11 +24,7 @@ export default function Carte() {
       <section className="map">
         <MapComponent searchQuery={searchQuery} />
       </section>
-      <section className="station">
-        <h1>Nom de la station</h1>
-        <p>Adresse de la borne</p>
-        <p>Code Postale - Ville</p>
-      </section>
+      
     </div>
   );
 }
