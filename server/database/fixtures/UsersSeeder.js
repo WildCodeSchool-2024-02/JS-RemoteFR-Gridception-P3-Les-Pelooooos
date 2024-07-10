@@ -24,7 +24,8 @@ class UsersSeeder extends AbstractSeeder {
         email: this.faker.internet.email(),
         city: this.faker.location.city(),
         postal_code: this.usersPostalCode[i],
-        password: this.faker.internet.password(),
+        password:
+          "$argon2id$v=19$m=65536,t=5,p=1$FkjcCc0+F15P0N5TLh3ndQ$FkttWmV6YpXwaqtjrKfALtaYkwyHv2ongXDP/C6bvY4",
         cars_owned: this.usersCars[i],
         is_admin: this.usersIsAdmin[i],
         reservations_id: this.getRef(

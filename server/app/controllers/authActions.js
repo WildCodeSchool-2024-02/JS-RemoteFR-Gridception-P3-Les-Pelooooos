@@ -10,13 +10,14 @@ const hashingOptions = {
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-  const user = await tables.users.readOneByEmail(email);
+  const user = await tables.auth.readOneByEmail(email);
 
   if (!user) {
     return res
       .status(401)
       .json({ success: false, message: "Invalid credentials" });
   }
+
   const passwordMatch = await argon2.verify(user.password, password);
 
   if (!passwordMatch) {
@@ -25,7 +26,28 @@ const login = async (req, res) => {
       .json({ success: false, message: "Invalid credentials" });
   }
 
-  return res.json({ success: true, user: { id: user.id, email: user.email } });
+  if (user.is_admin === 1) {
+    user.is_admin = "admin";
+  } else if (user.is_admin === 2) {
+    user.is_admin = "user";
+  }
+
+  return res.json({
+    success: true,
+    user: {
+      id: user.id,
+      gender: user.gender,
+      dateOfBirth: user.date_of_birth,
+      lastName: user.lastname,
+      firstName: user.firstname,
+      email: user.email,
+      city: user.city,
+      postalCode: user.postal_code,
+      carsOwned: user.cars_owned,
+      role: user.is_admin,
+      reservationsId: user.reservations_id,
+    },
+  });
 };
 
 const register = async (req, res) => {
