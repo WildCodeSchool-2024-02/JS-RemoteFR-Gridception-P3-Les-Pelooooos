@@ -12,8 +12,8 @@ const {
 
 router.get("/", browse);
 router.get("/:id", read);
-router.put("/:id", edit);
 router.post("/", add);
+router.put("/:id", edit);
 router.delete("/:id", destroy);
 
 module.exports = router;

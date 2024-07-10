@@ -6,6 +6,7 @@ const PlugsRepository = require("./models/PlugsRepository");
 const TerminalsRepository = require("./models/TerminalsRepository");
 const PlugsTypesRepository = require("./models/PlugsTypesRepository");
 const BrandsRepository = require("./models/BrandsRepository");
+const AuthRepository = require("./models/AuthRepository");
 
 const tables = {};
 
@@ -17,6 +18,7 @@ tables.plugs_types = new PlugsTypesRepository();
 tables.brands = new BrandsRepository();
 tables.plugs = new PlugsRepository();
 tables.cars = new CarsRepository();
+tables.auth = new AuthRepository();
 
 module.exports = new Proxy(tables, {
   get(obj, prop) {

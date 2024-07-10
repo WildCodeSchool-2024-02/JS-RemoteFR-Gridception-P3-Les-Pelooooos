@@ -8,31 +8,12 @@ class UsersSeeder extends AbstractSeeder {
       truncate: true,
       dependencies: [ReservationsSeeder],
     });
-    this.usersIsAdmin = [true, false, false, false, false, false];
-    this.usersDateOfBirth = [
-      "2000-05-17",
-      "2002-09-09",
-      "2002-12-09",
-      "2002-11-09",
-      "2002-05-09",
-      "2002-05-09",
-    ];
-    this.usersPostalCode = [
-      "33920",
-      "17000",
-      "33000",
-      "34000",
-      "16000",
-      "64000",
-    ];
-    this.usersConfirmPassword = [
-      "****",
-      "****",
-      "****",
-      "****",
-      "****",
-      "****",
-    ];
+
+    this.usersIsAdmin = [true, false];
+    this.usersCars = [1, 2];
+    this.usersDateOfBirth = ["2000-05-17", "2002-09-09"];
+    this.usersPostalCode = ["33920", "17000"];
+
   }
 
   run() {
@@ -45,9 +26,10 @@ class UsersSeeder extends AbstractSeeder {
         email: this.faker.internet.email(),
         city: this.faker.location.city(),
         postal_code: this.usersPostalCode[i],
-        password: this.faker.internet.password(),
-        confirm_password: this.usersConfirmPassword[i],
-        cars_owned: 1,
+
+        password:
+          "$argon2id$v=19$m=65536,t=5,p=1$FkjcCc0+F15P0N5TLh3ndQ$FkttWmV6YpXwaqtjrKfALtaYkwyHv2ongXDP/C6bvY4",
+        cars_owned: this.usersCars[i],
         is_admin: this.usersIsAdmin[i],
         reservations_id: this.getRef(
           `reservations_${Math.floor(Math.random() * 1) + 1}`

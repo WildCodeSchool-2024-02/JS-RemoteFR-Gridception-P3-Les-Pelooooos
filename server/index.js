@@ -2,6 +2,7 @@
 require("dotenv").config();
 
 // Check database connection
+
 // Note: This is optional and can be removed if the database connection
 // is not required when starting the application
 require("./database/client").checkConnection();
@@ -14,7 +15,7 @@ const port = process.env.APP_PORT;
 
 // Start the server and listen on the specified port
 app
-  .listen(port, () => {
+  .listen(port, async () => {
     console.info(`Server is listening on port ${port}`);
   })
   .on("error", (err) => {
