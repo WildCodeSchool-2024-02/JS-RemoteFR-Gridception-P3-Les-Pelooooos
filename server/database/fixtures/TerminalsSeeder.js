@@ -9,7 +9,7 @@ class TerminalsSeeder extends AbstractSeeder {
 
   run() {
     try {
-      for (let i = 0; i < 6; i += 1) {
+      for (let i = 0; i < 15; i += 1) {
         const fakeTerminals = {
           longitude: data.features[i].geometry.coordinates[0],
           latitude: data.features[i].geometry.coordinates[1],
