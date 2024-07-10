@@ -1,22 +1,26 @@
 import { useEffect, useState, useRef } from "react";
+import axios from "axios";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import axios from "axios";
 import PropTypes from "prop-types";
 
 function MapComponent({ searchQuery }) {
+  const [terminals, setTerminals] = useState([]);
   const [position, setPosition] = useState(null);
   const [hasLocation, setHasLocation] = useState(false);
+  const [selectedTerminal, setSelectedTerminal] = useState(null);
   const mapRef = useRef();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // eslint-disable-next-line no-underscore-dangle
   delete L.Icon.Default.prototype._getIconUrl;
   L.Icon.Default.mergeOptions({
     iconRetinaUrl:
-      "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png",
-    iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
-    shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
+      "https://img.icons8.com/?size=100&id=7qPSyE5sZFGJ&format=png&color=21A89A",
+    iconUrl:
+      "https://img.icons8.com/?size=100&id=7qPSyE5sZFGJ&format=png&color=21A89A",
+    iconSize: [39, 43],
   });
 
   useEffect(() => {
@@ -74,28 +78,64 @@ function MapComponent({ searchQuery }) {
     }
   }, [position]);
 
+  useEffect(() => {
+    const fetchTerminals = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/api/terminals`);
+        setTerminals(response.data);
+      } catch (err) {
+        console.info(err);
+      }
+    };
+    fetchTerminals();
+  }, [API_URL]);
+
+  const handleMarkerClick = (terminal) => {
+    setSelectedTerminal(terminal);
+  };
+
   if (!position) {
     return <div>Chargement de votre position...</div>;
   }
 
   return (
-    <MapContainer
-      center={position}
-      zoom={13}
-      className="rounded-map"
-      style={{ height: "100vh", width: "100vw" }}
-      ref={mapRef}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {hasLocation && (
-        <Marker position={position}>
-          <Popup>Vous êtes ici.</Popup>
-        </Marker>
+    <>
+      <MapContainer
+        center={position}
+        zoom={13}
+        className="rounded-map"
+        style={{ height: "100vh", width: "100vw" }}
+        ref={mapRef}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {hasLocation && (
+          <Marker position={position}>
+            <Popup>Vous êtes ici.</Popup>
+          </Marker>
+        )}
+        {terminals.map((terminal ) => (
+          
+            <Marker
+            key={terminal.id}
+              position={[terminal.latitude, terminal.longitude]}
+              eventHandlers={{
+                click: () => handleMarkerClick(terminal),
+              }}
+            />
+         
+        ))}
+      </MapContainer>
+
+      {selectedTerminal && (
+        <section className="station">
+          <h1>{selectedTerminal.name_station}</h1>
+          <p>{selectedTerminal.adress_station}</p>
+        </section>
       )}
-    </MapContainer>
+    </>
   );
 }
 
