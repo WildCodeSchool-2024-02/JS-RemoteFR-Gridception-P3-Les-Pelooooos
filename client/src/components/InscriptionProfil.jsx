@@ -147,7 +147,7 @@ export default function InscriptionProfil() {
       setError("");
 
       axios
-        .post("http://localhost:3310/api/register", formData)
+        .post("http://localhost:3310/api/auth/register", formData)
         .then((response) => {
           login(response.data); // Enregistre les données converties et connecte l'utilisateur
           setInscription({
