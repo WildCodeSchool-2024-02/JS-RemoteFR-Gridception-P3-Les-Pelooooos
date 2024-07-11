@@ -1,39 +1,36 @@
 const AbstractSeeder = require("./AbstractSeeder");
-const ReservationsSeeder = require("./ReservationsSeeder");
 
 class UsersSeeder extends AbstractSeeder {
   constructor() {
     super({
       table: "users",
       truncate: true,
-      dependencies: [ReservationsSeeder],
     });
 
-    this.usersIsAdmin = [true, false];
-    this.usersCars = [1, 2];
-    this.usersDateOfBirth = ["2000-05-17", "2002-09-09"];
-    this.usersPostalCode = ["33920", "17000"];
-
+    this.usersCars = [1, 2, 3];
+    this.usersPostalCode = ["33920", "17000", "64000"];
+    this.email = ["toto@toto.com", "tata@toto.com", "titi@toto.com"];
+    this.first_name = ["Toto", "Tata", "Titi"];
+    this.last_name = ["Toto", "Tata", "Titi"];
+    this.birthdate = ["1990-01-01", "1990-09-01", "1990-10-01"];
+    this.role = ["admin", "user", "user"];
+    this.city = ["Bordeaux", "Fougères", "Montpellier"];
   }
 
   run() {
-    for (let i = 0; i < 6; i += 1) {
+    for (let i = 0; i < 3; i += 1) {
       const fakeUsers = {
-        gender: this.faker.person.gender(),
-        lastname: this.faker.person.lastName(),
-        firstname: this.faker.person.firstName(),
-        date_of_birth: this.usersDateOfBirth[i],
-        email: this.faker.internet.email(),
-        city: this.faker.location.city(),
+        lastname: this.last_name[i],
+        firstname: this.first_name[i],
+        birthdate: this.birthdate[i],
+        email: this.email[i],
+        city: this.city[i],
         postal_code: this.usersPostalCode[i],
-
+        role: this.role[i],
         password:
           "$argon2id$v=19$m=65536,t=5,p=1$FkjcCc0+F15P0N5TLh3ndQ$FkttWmV6YpXwaqtjrKfALtaYkwyHv2ongXDP/C6bvY4",
         cars_owned: this.usersCars[i],
-        is_admin: this.usersIsAdmin[i],
-        reservations_id: this.getRef(
-          `reservations_${Math.floor(Math.random() * 1) + 1}`
-        ).insertId,
+        image: "https://images.pexels.com/photos/2033447/pexels-photo-2033447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         refName: `users_${i}`,
       };
       this.insert(fakeUsers);

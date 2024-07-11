@@ -17,9 +17,6 @@ class TerminalsSeeder extends AbstractSeeder {
           adress_station: data.features[i].properties.adresse_station,
           number_plugs: data.features[i].properties.nbre_pdc,
           free: data.features[i].properties.gratuit,
-          opening_hours: data.features[i].properties.horaires,
-          pmr_accessibility:
-            data.features[i].properties.accessibilite_pmr,
           refName: `terminals_${i}`,
         };
 
