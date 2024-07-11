@@ -82,11 +82,4 @@ CREATE TABLE reservations (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (terminal_id) REFERENCES terminals (id),
     FOREIGN KEY (car_id) REFERENCES cars (id)
-);
-
-SELECT cars.id, brands.brand_name, models.name, users.lastname
-FROM cars
-JOIN brands ON cars.brand_id = brands.id
-JOIN models ON cars.model_id = models.id
-JOIN users ON cars.user_id = users.id;
- 
+); 
