@@ -134,7 +134,7 @@ export default function InscriptionProfil() {
         gender: inscription.genre,
         lastname: inscription.nom,
         firstname: inscription.prenom,
-        date_of_birth: inscription.dateNaissance,
+        birthdate: inscription.dateNaissance,
         email: inscription.email,
         city: inscription.ville,
         postal_code: inscription.cp,
@@ -145,23 +145,31 @@ export default function InscriptionProfil() {
       };
 
       setError("");
-      login(formData); // Envoi des donnees converties au backend
-      setInscription({
-        genre: "",
-        nom: "",
-        prenom: "",
-        dateNaissance: "",
-        email: "",
-        ville: "",
-        cp: "",
-        mp: "",
-        confirmationMp: "",
-        vehicule: "",
-      });
-      setSelectedMarques([]);
-      setSelectedModeles([]);
-      setPlugTypes([]);
-      navigate("/profil"); // Rediriger vers la page souhaitée
+
+      axios
+        .post("http://localhost:3310/api/register", formData)
+        .then((response) => {
+          login(response.data); // Enregistre les données converties et connecte l'utilisateur
+          setInscription({
+            genre: "",
+            nom: "",
+            prenom: "",
+            dateNaissance: "",
+            email: "",
+            ville: "",
+            cp: "",
+            mp: "",
+            confirmationMp: "",
+            vehicule: "",
+          });
+          setSelectedMarques([]);
+          setSelectedModeles([]);
+          setPlugTypes([]);
+          navigate("/profil");
+        })
+        .catch((err) => {
+          setError(err.response?.data?.err || "Une erreur est survenue");
+        });
     }
   };
 

@@ -26,11 +26,11 @@ const login = async (req, res) => {
       .json({ success: false, message: "Invalid credentials" });
   }
 
-  if (user.is_admin === 1) {
-    user.is_admin = "admin";
-  } else if (user.is_admin === 2) {
-    user.is_admin = "user";
-  }
+  // if (user.is_admin === 1) {
+  //   user.is_admin = "admin";
+  // } else if (user.is_admin === 2) {
+  //   user.is_admin = "user";
+  // }
 
   return res.json({
     success: true,
@@ -63,7 +63,7 @@ const register = async (req, res) => {
     carsOwned,
     brandName,
     model,
-    isAdmin,
+    role,
   } = req.body;
 
   try {
@@ -81,7 +81,7 @@ const register = async (req, res) => {
       carsOwned,
       brandName,
       model,
-      isAdmin,
+      role,
     });
     res.json({ success: true, userId });
   } catch (error) {
