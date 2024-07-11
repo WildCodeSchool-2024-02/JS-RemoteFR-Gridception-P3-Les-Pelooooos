@@ -1,18 +1,17 @@
 const AbstractRepository = require("./AbstractRepository");
 
-class ReservationsRepository extends AbstractRepository {
+class ModelsRepository extends AbstractRepository {
   constructor() {
-    super({ table: "reservations" });
+    super({ table: "models" });
   }
 
-  async create(reservations) {
+  async create(models) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (terminal_id, car_id, date, hour) values (?, ?, ?, ?)`,
+      `insert into ${this.table} (name, brand_id, plug_type_id ) values (?, ?, ?)`,
       [
-        reservations.terminal_id,
-        reservations.car_id,
-        reservations.date,
-        reservations.hour,
+        models.name,
+        models.brand_id,
+        models.plug_type_id
       ]
     );
 
@@ -34,10 +33,15 @@ class ReservationsRepository extends AbstractRepository {
     return rows;
   }
 
-  async update(reservations) {
+  async update(models) {
     const [result] = await this.database.query(
-      `update ${this.table} set terminal_id = ?, car_id = ?, date = ?, hour = ? where id = ?`,
-      [reservations.terminal_id, reservations.car_id, reservations.date, reservations.hour, reservations.id]
+      `update ${this.table} set name = ?, brand_id = ?, plug_type_id = ? where id = ?`,
+      [
+        models.name,
+        models.brand_id,
+        models.plug_type_id,
+        models.id
+      ]
     );
 
     return result.affectedRows;
@@ -53,4 +57,4 @@ class ReservationsRepository extends AbstractRepository {
   }
 }
 
-module.exports = ReservationsRepository;
+module.exports = ModelsRepository;

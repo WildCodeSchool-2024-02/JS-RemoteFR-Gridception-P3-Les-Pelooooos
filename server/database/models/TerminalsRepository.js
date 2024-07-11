@@ -7,15 +7,14 @@ class TerminalsRepository extends AbstractRepository {
 
   async create(terminals) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (longitude,latitude, name_station, adress_station, number_plugs, opening_hours, pmr_acessibility) values (?, ?, ?, ?, ?, ?,?)`,
+      `insert into ${this.table} (name_station, longitude, latitude, adress_station, number_plugs, free) values (?, ?, ?, ?, ?, ?)`,
       [
+        terminals.name_station,
         terminals.longitude,
         terminals.latitude,
-        terminals.name_station,
         terminals.adress_station,
         terminals.number_plugs,
-        terminals.opening_hours,
-        terminals.pmr_acessibility,
+        terminals.free,
       ]
     );
 
@@ -46,8 +45,8 @@ class TerminalsRepository extends AbstractRepository {
         terminals.name_station,
         terminals.adress_station,
         terminals.number_plugs,
-        terminals.opening_hours,
-        terminals.pmr_acessibility,
+        terminals.free,
+        terminals.id
       ]
     );
 

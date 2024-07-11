@@ -1,5 +1,4 @@
 const AbstractSeeder = require("./AbstractSeeder");
-const TerminalsSeeder = require("./TerminalsSeeder");
 const PlugsTypesSeeder = require("./PlugsTypesSeeder");
 
 class PlugsSeeder extends AbstractSeeder {
@@ -7,25 +6,22 @@ class PlugsSeeder extends AbstractSeeder {
     super({
       table: "plugs",
       truncate: true,
-      dependencies: [TerminalsSeeder, PlugsTypesSeeder],
+      dependencies: [PlugsTypesSeeder],
     });
-    this.plugsPower = ["22", "25"];
+    
+    this.voltPower = ["120", "240", "400", "500", "1000"];
+    this.plugTypeId = [1, 2, 3, 4, 5,];
   }
 
   run() {
-    for (let i = 0; i < 2; i += 1) {
-      const fakePlugs = {
-        power: this.plugsPower[i],
-        terminals_id: this.getRef(
-          `terminals_${Math.floor(Math.random() * 1) + 1}`
-        ).insertId,
-        plugs_types_id: this.getRef(
-          `plugs_types_${Math.floor(Math.random() * 1) + 1}`
-        ).insertId,
+    for (let i = 0; i < 5; i += 1) {
+      const plugs = {
+        plug_type_id: this.plugTypeId[i],
+        volt_power: this.voltPower[i],
         refName: `plugs_${i}`,
       };
 
-      this.insert(fakePlugs);
+      this.insert(plugs);
     }
   }
 }

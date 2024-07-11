@@ -1,18 +1,16 @@
 const AbstractRepository = require("./AbstractRepository");
 
-class ReservationsRepository extends AbstractRepository {
+class TerminalPlugsRepository extends AbstractRepository {
   constructor() {
-    super({ table: "reservations" });
+    super({ table: "terminal_plugs" });
   }
 
-  async create(reservations) {
+  async create(terminalPlugs) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (terminal_id, car_id, date, hour) values (?, ?, ?, ?)`,
+      `insert into ${this.table} (terminal_id, plug_id ) values (?, ?)`,
       [
-        reservations.terminal_id,
-        reservations.car_id,
-        reservations.date,
-        reservations.hour,
+        terminalPlugs.terminal_id,
+        terminalPlugs.plug_id
       ]
     );
 
@@ -34,10 +32,14 @@ class ReservationsRepository extends AbstractRepository {
     return rows;
   }
 
-  async update(reservations) {
+  async update(terminalPlugs) {
     const [result] = await this.database.query(
-      `update ${this.table} set terminal_id = ?, car_id = ?, date = ?, hour = ? where id = ?`,
-      [reservations.terminal_id, reservations.car_id, reservations.date, reservations.hour, reservations.id]
+      `update ${this.table} set terminal_id = ?, plug_id = ? where id = ?`,
+      [
+        terminalPlugs.terminal_id,
+        terminalPlugs.plug_id,
+        terminalPlugs.id
+      ]
     );
 
     return result.affectedRows;
@@ -53,4 +55,4 @@ class ReservationsRepository extends AbstractRepository {
   }
 }
 
-module.exports = ReservationsRepository;
+module.exports = TerminalPlugsRepository;

@@ -8,19 +8,18 @@ class UsersRepository extends AbstractRepository {
 
   async create(users) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (gender, lastname, firstname, date_of_birth, email, city, postal_code, password, cars_owned, is_admin, reservations_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (email, password, gender, firstname, lastname, birthdate, , city, postal_code, cars_owned, role) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        users.gender,
-        users.lastname,
-        users.firstname,
-        users.dateOfBirth,
         users.email,
-        users.city,
-        users.postalCode,
         users.password,
-        users.carsOwned,
-        users.isAdmin,
-        users.reservationsId,
+        users.gender,
+        users.firstname,
+        users.lastname,
+        users.birthdate,
+        users.city,
+        users.postal_code,
+        users.cars_owned,
+        users.role,
       ]
     );
 
@@ -52,19 +51,19 @@ class UsersRepository extends AbstractRepository {
 
   async update(users) {
     const [result] = await this.database.query(
-      `update ${this.table} set gender = ?, lastname = ?, firstname = ?, date_of_birth = ?,  email = ?, city = ?, postal_code = ?, password = ?, confirm_password = ?, cars_owned ?, is_admin = ?, reservation_id = ?, where id = ?`,
+      `update ${this.table} set email = ?, password = ?, gender = ?, firstname = ?, lastname = ?, birthdate = ?, city = ?, postal_code = ?,  cars_owned ?, role = ?, where id = ?`,
       [
-        users.gender,
-        users.lastname,
-        users.firstname,
-        users.date_of_birth,
         users.email,
+        users.gender,
+        users.firstname,
+        users.lastname,
+        users.birthdate,
         users.city,
         users.postal_code,
         users.password,
         users.cars_owned,
-        users.is_admin,
-        users.reservations_id,
+        users.role,
+        users.id
       ]
     );
 
@@ -80,6 +79,5 @@ class UsersRepository extends AbstractRepository {
     return result.affectedRows;
   }
 }
-// a voirrrrrrr
 
 module.exports = UsersRepository;

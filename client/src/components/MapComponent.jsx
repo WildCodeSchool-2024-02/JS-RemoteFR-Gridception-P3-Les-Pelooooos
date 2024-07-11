@@ -129,15 +129,7 @@ function MapComponent({ searchQuery }) {
             position={[terminal.latitude, terminal.longitude]}
             eventHandlers={{
               click: () => handleMarkerClick(terminal),
-            }}
-          >
-            <Popup>
-              {terminal.name} <br />
-              {terminal.disabled_accesses
-                ? "Accès pour les handicapés disponible"
-                : "Pas d'accès pour les handicapés"}
-            </Popup>
-          </Marker>
+            }}/>
         ))}
       </MapContainer>
 
