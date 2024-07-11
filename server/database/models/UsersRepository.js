@@ -8,7 +8,7 @@ class UsersRepository extends AbstractRepository {
 
   async create(users) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (email, password, gender, firstname, lastname, birthdate, , city, postal_code, cars_owned, role) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (email, password, gender, firstname, lastname, birthdate, , city, postal_code, cars_owned, image, role) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         users.email,
         users.password,
@@ -19,6 +19,7 @@ class UsersRepository extends AbstractRepository {
         users.city,
         users.postal_code,
         users.cars_owned,
+        users.image,
         users.role,
       ]
     );
@@ -51,7 +52,7 @@ class UsersRepository extends AbstractRepository {
 
   async update(users) {
     const [result] = await this.database.query(
-      `update ${this.table} set email = ?, password = ?, gender = ?, firstname = ?, lastname = ?, birthdate = ?, city = ?, postal_code = ?,  cars_owned ?, role = ?, where id = ?`,
+      `update ${this.table} set email = ?, password = ?, gender = ?, firstname = ?, lastname = ?, birthdate = ?, city = ?, postal_code = ?, cars_owned = ?, image = ?, role = ? where id = ?`,
       [
         users.email,
         users.gender,
@@ -63,6 +64,7 @@ class UsersRepository extends AbstractRepository {
         users.password,
         users.cars_owned,
         users.role,
+        users.image,
         users.id
       ]
     );

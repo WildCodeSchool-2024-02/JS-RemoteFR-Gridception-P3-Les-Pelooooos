@@ -21,6 +21,7 @@ CREATE TABLE users (
     city VARCHAR(50),
     postal_code VARCHAR(100),
     cars_owned INT,
+    image TEXT,
     role ENUM('admin', 'user') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

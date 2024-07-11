@@ -30,6 +30,7 @@ class UsersSeeder extends AbstractSeeder {
         password:
           "$argon2id$v=19$m=65536,t=5,p=1$FkjcCc0+F15P0N5TLh3ndQ$FkttWmV6YpXwaqtjrKfALtaYkwyHv2ongXDP/C6bvY4",
         cars_owned: this.usersCars[i],
+        image: "https://images.pexels.com/photos/2033447/pexels-photo-2033447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         refName: `users_${i}`,
       };
       this.insert(fakeUsers);
@@ -37,41 +38,3 @@ class UsersSeeder extends AbstractSeeder {
   }
 }
 module.exports = UsersSeeder;
-
-// -- INSERT INTO
-// --     users (
-// --         email,
-// --         password,
-// --         gender,
-// --         first_name,
-// --         last_name,
-// --         birthdate,
-// --         role
-// --     )
-// -- VALUES (
-// --         "toto@toto.com",
-// --         "$argon2id$v=19$m=65536,t=5,p=1$FkjcCc0+F15P0N5TLh3ndQ$FkttWmV6YpXwaqtjrKfALtaYkwyHv2ongXDP/C6bvY4",
-// --         "male",
-// --         "Toto",
-// --         "Toto",
-// --         "1990-01-01",
-// --         "admin"
-// --     ),
-// --     (
-// --         "tata@toto.com",
-// --         "$argon2id$v=19$m=65536,t=5,p=1$FkjcCc0+F15P0N5TLh3ndQ$FkttWmV6YpXwaqtjrKfALtaYkwyHv2ongXDP/C6bvY4",
-// --         "female",
-// --         "Tata",
-// --         "Tata",
-// --         "1990-09-01",
-// --         "user"
-// --     ),
-// --     (
-// --         "titi@toto.com",
-// --         "$argon2id$v=19$m=65536,t=5,p=1$FkjcCc0+F15P0N5TLh3ndQ$FkttWmV6YpXwaqtjrKfALtaYkwyHv2ongXDP/C6bvY4",
-// --         "other",
-// --         "Titi",
-// --         "Titi",
-// --         "1990-10-01",
-// --         "user"
-// --     );
