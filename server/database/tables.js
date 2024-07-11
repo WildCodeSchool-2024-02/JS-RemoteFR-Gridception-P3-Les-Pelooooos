@@ -1,4 +1,3 @@
-const ImagesRepository = require("./models/ImagesRepository");
 const CarsRepository = require("./models/CarsRepository");
 const UsersRepository = require("./models/UsersRepository");
 const ReservationsRepository = require("./models/ReservationsRepository");
@@ -11,7 +10,6 @@ const AuthRepository = require("./models/AuthRepository");
 const tables = {};
 
 tables.users = new UsersRepository();
-tables.images = new ImagesRepository();
 tables.reservations = new ReservationsRepository();
 tables.terminals = new TerminalsRepository();
 tables.plugs_types = new PlugsTypesRepository();
