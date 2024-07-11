@@ -60,7 +60,7 @@ export default function ListCars() {
       <h1>LISTES DES VÉHICULES</h1>
       {cars.slice(0, visibleCount).map((car) => (
         <p key={car.id}>
-          {car.brands_id} || {car.model} || {car.plugs_id}
+          {car.brand_id} || {car.model_id} || {car.user_id}
           <button
             type="button"
             className="supression"
