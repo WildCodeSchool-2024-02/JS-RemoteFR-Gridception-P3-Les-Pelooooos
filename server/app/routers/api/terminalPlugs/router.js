@@ -8,7 +8,7 @@ const {
   edit,
   add,
   destroy,
-} = require("../../../controllers/imagesActions");
+} = require("../../../controllers/terminalPlugsActions");
 
 router.get("/", browse);
 router.get("/:id", read);

@@ -67284,65 +67284,6 @@
         "consolidated_is_lon_lat_correct": true,
         "consolidated_is_code_insee_verified": true
       }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          1.8108595,
-          48.5866658
-        ]
-      },
-      "properties": {
-        "nom_amenageur": "SEY78",
-        "siren_amenageur": "",
-        "contact_amenageur": "",
-        "nom_operateur": "Bouygues E&S",
-        "contact_operateur": "support@alizecharge.fr",
-        "telephone_operateur": "0805021480",
-        "nom_enseigne": "Seymaborne",
-        "id_station_itinerance": "FRA05E78464001",
-        "id_station_local": "",
-        "nom_station": "ORCEMONT - Mairie",
-        "implantation_station": "Voirie",
-        "adresse_station": "2 Rue de la Mairie, 78125 ORCEMONT",
-        "code_insee_commune": "78464",
-        "coordonneesXY": "[1.8108595, 48.5866658]",
-        "nbre_pdc": "2",
-        "id_pdc_itinerance": "FRA05E784640011",
-        "id_pdc_local": "",
-        "puissance_nominale": "22000",
-        "prise_type_ef": "True",
-        "prise_type_2": "True",
-        "prise_type_combo_ccs": "False",
-        "prise_type_chademo": "False",
-        "prise_type_autre": "False",
-        "gratuit": "False",
-        "paiement_acte": "True",
-        "paiement_cb": "False",
-        "paiement_autre": "False",
-        "tarification": "False",
-        "condition_acces": "Acc\u00e8s libre",
-        "reservation": "False",
-        "horaires": "Mo-Su 00:00-23:57",
-        "accessibilite_pmr": "Accessible mais non r\u00e9serv\u00e9 PMR",
-        "restriction_gabarit": "xx",
-        "station_deux_roues": "False",
-        "raccordement": "Direct",
-        "num_pdl": "2",
-        "date_mise_en_service": "2023-03-28",
-        "observations": "",
-        "date_maj": "2024-05-22",
-        "cable_t2_attache": "",
-        "last_modified": "2024-05-22T15:33:49.735000+00:00",
-        "datagouv_dataset_id": "64c28634468d0d94dd98405e",
-        "datagouv_resource_id": "76c86ca6-7569-4979-8548-c3fb8dd097c3",
-        "datagouv_organization_or_owner": "alize-charge",
-        "created_at": "2024-05-22T15:33:47.066000+00:00",
-        "consolidated_longitude": 1.8108595,
-        "consolidated_latitude": 48.5866658,
-        "consolidated_code_postal": "78125",
-        "consolidated_commune": "Orcemont",
-        "consolidated_is_lon_lat_correct": true,
-        "consolidat
+    }
+  ]}
+    

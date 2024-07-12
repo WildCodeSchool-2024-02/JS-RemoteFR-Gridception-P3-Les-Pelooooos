@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom"; // impot pour Rediriger vers la page souhaitée
+import { useAuth } from "../contexts/AuthContext"; // Importer le contexte d'authentification
 
 const models = {
   audi: [
@@ -36,6 +39,10 @@ const models = {
 };
 
 export default function InscriptionProfil() {
+  const [carsList, setCarsList] = useState([]);
+
+  const { login } = useAuth(); // Utiliser la fonction login du contexte d'authentification
+  const navigate = useNavigate(); // Rediriger vers la page souhaitée
   const [inscription, setInscription] = useState({
     email: "",
     nom: "",
@@ -51,6 +58,7 @@ export default function InscriptionProfil() {
 
   const [selectedMarques, setSelectedMarques] = useState([]);
   const [selectedModeles, setSelectedModeles] = useState([]);
+  const [plugTypes, setPlugTypes] = useState([]);
   const [error, setError] = useState("");
 
   const handleChangeForm = (event) => {
@@ -61,6 +69,7 @@ export default function InscriptionProfil() {
       const numberOfVehicules = parseInt(value, 10) || 0;
       setSelectedMarques(Array(numberOfVehicules).fill(""));
       setSelectedModeles(Array(numberOfVehicules).fill(""));
+      setPlugTypes(Array(numberOfVehicules).fill(""));
     }
   };
 
@@ -74,6 +83,12 @@ export default function InscriptionProfil() {
     const newSelectedModeles = [...selectedModeles];
     newSelectedModeles[index] = value;
     setSelectedModeles(newSelectedModeles);
+  };
+
+  const handlePlugTypeChange = (index, value) => {
+    const newPlugTypes = [...plugTypes];
+    newPlugTypes[index] = value;
+    setPlugTypes(newPlugTypes);
   };
 
   const isValidEmail = (email) => {
@@ -108,7 +123,29 @@ export default function InscriptionProfil() {
     } else if (inscription.vehicule === "") {
       setError("Le nombre de véhicules est obligatoire.");
     } else {
+      const vehicles = selectedMarques.map((marque, index) => ({
+        brand_name: marque,
+        model: selectedModeles[index],
+        plug_type: plugTypes[index],
+      }));
+
+      const formData = {
+        // transforme les données de inscription pour correspondre aux attentes du backend, notamment en termes de nommage des champs.
+        gender: inscription.genre,
+        lastname: inscription.nom,
+        firstname: inscription.prenom,
+        date_of_birth: inscription.dateNaissance,
+        email: inscription.email,
+        city: inscription.ville,
+        postal_code: inscription.cp,
+        password: inscription.mp,
+        confirm_password: inscription.confirmationMp,
+        cars_owned: parseInt(inscription.vehicule, 10),
+        vehicles,
+      };
+
       setError("");
+      login(formData); // Envoi des donnees converties au backend
       setInscription({
         genre: "",
         nom: "",
@@ -123,6 +160,8 @@ export default function InscriptionProfil() {
       });
       setSelectedMarques([]);
       setSelectedModeles([]);
+      setPlugTypes([]);
+      navigate("/profil"); // Rediriger vers la page souhaitée
     }
   };
 
@@ -142,7 +181,7 @@ export default function InscriptionProfil() {
             name="vehiculeMarques"
             value={selectedMarques[i]}
             onChange={(e) => handleMarqueChange(i, e.target.value)}
-            >
+          >
             <option value="">Sélectionnez votre marque</option>
             {Object.keys(models).map((marque) => (
               <option key={marque} value={marque}>
@@ -159,7 +198,7 @@ export default function InscriptionProfil() {
             name="vehiculeModele"
             value={selectedModeles[i]}
             onChange={(e) => handleModeleChange(i, e.target.value)}
-            >
+          >
             <option value="">Sélectionnez votre modèle</option>
             {models[selectedMarques[i]]?.map((modele) => (
               <option key={modele} value={modele}>
@@ -171,7 +210,12 @@ export default function InscriptionProfil() {
           <label className="labelIns" htmlFor="priseType">
             Type de prise
           </label>
-          <select className="inputIns" name="priseType">
+          <select
+            className="inputIns"
+            name="priseType"
+            value={plugTypes[i]}
+            onChange={(e) => handlePlugTypeChange(i, e.target.value)}
+          >
             <option value="">Sélectionnez le type de prise</option>
             <option value="type-ef">Prise type EF</option>
             <option value="type-2">Prise type 2</option>
@@ -185,9 +229,26 @@ export default function InscriptionProfil() {
 
     return vehiculeForms;
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3310/api/cars")
+      .then((res) => setCarsList(res.data));
+  }, []);
+
+  console.info(carsList);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios.post("http://localhost:3310/api/auth/register", {
+      inscription,
+    });
+  };
+
   return (
     <section className="profilInformation">
-      <form className="formIns" onSubmit={(event) => event.preventDefault()}>
+      <form className="formIns" onSubmit={handleSubmit}>
         <h2 className="h2Ins"> INFORMATION DE VOTRE PROFIL</h2>
         <label className="labelIns" htmlFor="genre">
           Genre

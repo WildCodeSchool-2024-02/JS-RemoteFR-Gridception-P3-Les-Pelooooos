@@ -53,7 +53,7 @@ export default function ListUsers({ users }) {
       <h1>LISTES DES UTILISATEURS</h1>
       {localUsers.slice(0, visibleCount).map((user) => (
         <p key={user.id}>
-          {user.lastname} || {user.firstname}
+          {user.lastname} {user.firstname}
           <button
             type="button"
             className="supression"

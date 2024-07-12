@@ -7,8 +7,8 @@ class PlugsRepository extends AbstractRepository {
 
   async create(plugs) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (power, terminals_id, plugs_types_id) values (?, ?, ?)`,
-      [plugs.power, plugs.terminals_id, plugs.plugs_types_id]
+      `insert into ${this.table} (volt_power, plug_type_id) values (?, ?)`,
+      [plugs.volt_power, plugs.plugs_types_id]
     );
 
     return result.insertId;
@@ -31,8 +31,8 @@ class PlugsRepository extends AbstractRepository {
 
   async update(plugs) {
     const [result] = await this.database.query(
-      `update ${this.table} set power = ?, terminals_id = ?, plugs_types = ? where id = ?`,
-      [plugs.power, plugs.id, plugs.terminals_id, plugs.plugs_types_id]
+      `update ${this.table} set volt_power = ?, plug_type = ? where id = ?`,
+      [plugs.volt_power, plugs.plug_type_id, plugs.id]
     );
 
     return result.affectedRows;

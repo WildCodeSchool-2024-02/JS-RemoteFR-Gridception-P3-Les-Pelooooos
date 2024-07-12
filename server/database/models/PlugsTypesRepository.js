@@ -46,7 +46,7 @@ class PlugsTypesRepository extends AbstractRepository {
     // Execute the SQL UPDATE query to update a specific category
     const [result] = await this.database.query(
       `update ${this.table} set plug_type = ? where id = ?`,
-      [plugsTypes.plus_type, plugsTypes.id]
+      [plugsTypes.plug_type, plugsTypes.id]
     );
     return result.affectedRows;
   }

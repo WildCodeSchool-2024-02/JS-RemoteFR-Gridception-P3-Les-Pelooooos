@@ -2,9 +2,9 @@ const tables = require("../../database/tables");
 
 const browse = async (req, res, next) => {
   try {
-    const images = await tables.images.readAll();
+    const models = await tables.models.readAll();
 
-    res.json(images);
+    res.json(models);
   } catch (err) {
     next(err);
   }
@@ -12,12 +12,12 @@ const browse = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const images = await tables.images.read(req.params.id);
+    const models = await tables.models.read(req.params.id);
 
-    if (images == null) {
+    if (models == null) {
       res.sendStatus(404);
     } else {
-      res.json(images);
+      res.json(models);
     }
   } catch (err) {
     next(err);
@@ -25,10 +25,10 @@ const read = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const images = { ...req.body, id: req.params.id };
+  const models = { ...req.body, id: req.params.id };
 
   try {
-    await tables.images.update(images);
+    await tables.models.update(models);
 
     res.sendStatus(204);
   } catch (err) {
@@ -37,10 +37,10 @@ const edit = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
-  const images = req.body;
+  const models = req.body;
 
   try {
-    const insertId = await tables.images.create(images);
+    const insertId = await tables.models.create(models);
 
     res.status(201).json({ insertId });
   } catch (err) {
@@ -50,7 +50,7 @@ const add = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    await tables.images.delete(req.params.id);
+    await tables.models.delete(req.params.id);
 
     res.sendStatus(204);
   } catch (err) {

@@ -1,94 +1,85 @@
 -- SQLBook: Code
 CREATE TABLE brands (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    brand_name VARCHAR(80) NOT NULL
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    brand_name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE plugs_types (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    plug_type BOOLEAN NOT NULL
+    plug_type VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
+    gender ENUM("Masculin", "Féminin", "Non communiqué") DEFAULT "Non communiqué",
+    firstname VARCHAR(255),
+    lastname VARCHAR(255),
+    birthdate DATE,
+    city VARCHAR(50),
+    postal_code VARCHAR(100),
+    cars_owned INT,
+    image TEXT,
+    role ENUM('admin', 'user') DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE terminals (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    name_station VARCHAR(50),
     longitude FLOAT NOT NULL,
     latitude FLOAT NOT NULL,
-    name_station VARCHAR(50),
-    adress_station TEXT NOT NULL,
-    number_plugs INT NOT NULL,
-    free BOOLEAN,
-    opening_hours VARCHAR(50),
-    pmr_accessibility VARCHAR(50)
+    adress_station TEXT,
+    number_plugs INT,
+    free VARCHAR(10)
 );
 
 CREATE TABLE plugs (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    power INT NOT NULL,
-    terminals_id INT,
-    plugs_types_id INT,
-    FOREIGN KEY(terminals_id)
-    REFERENCES terminals(id),
-    FOREIGN KEY(plugs_types_id)
-    REFERENCES plugs_types(id)
+    plug_type_id INT NOT NULL,
+    volt_power INT NOT NULL,
+    FOREIGN KEY (plug_type_id) REFERENCES plugs_types (id)
+);
+
+CREATE TABLE models (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    brand_id INT NOT NULL,
+    plug_type_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (brand_id) REFERENCES brands(id),
+    FOREIGN KEY (plug_type_id) REFERENCES plugs_types(id)
+);
+
+
+CREATE TABLE terminal_plugs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    terminal_id INT NOT NULL,
+    plug_id INT NOT NULL,
+    FOREIGN KEY (terminal_id) REFERENCES terminals (id),
+    FOREIGN KEY (plug_id) REFERENCES plugs (id)
+);
+
+CREATE TABLE cars (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    brand_id INT NOT NULL,
+    model_id INT NOT NULL,
+    user_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (brand_id) REFERENCES brands (id),
+    FOREIGN KEY (model_id) REFERENCES models (id),
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 CREATE TABLE reservations (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    date DATE NOT NULL,
+    terminal_id INT NOT NULL,
+    car_id INT NOT NULL,
+    date DATETIME NOT NULL,
     hour TIME NOT NULL,
-    terminals_id INT,
-    plugs_id INT,
-    FOREIGN KEY (terminals_id)
-    REFERENCES terminals(id),
-    FOREIGN KEY (plugs_id)
-    REFERENCES plugs(id)
-);
-
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    gender VARCHAR(50) NOT NULL,
-    lastname VARCHAR(50) NOT NULL,
-    firstname VARCHAR(50) NOT NULL,
-    date_of_birth DATE NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    city VARCHAR(50) NOT NULL,
-    postal_code VARCHAR(100) NOT NULL,
-    password VARCHAR(15) NOT NULL,
-    confirm_password VARCHAR(15) NOT NULL,
-    cars_owned INT NOT NULL,
-    is_admin BOOLEAN NOT NULL,
-    reservations_id INT,
-    FOREIGN KEY (reservations_id)
-    REFERENCES reservations(id)
-    ON DELETE CASCADE    
-);
-
-CREATE TABLE cars (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    brands_id INT,
-    model VARCHAR(80) NOT NULL,
-    plugs_id INT,
-    users_id INT,
-    FOREIGN KEY (brands_id)
-    REFERENCES brands(id),
-    FOREIGN KEY (plugs_id)
-    REFERENCES plugs(id),
-    FOREIGN KEY (users_id)
-    REFERENCES users(id)
-    ON DELETE CASCADE
-);
-
-CREATE TABLE images (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    url TEXT,
-    users_id INT,
-    cars_id INT,
-    FOREIGN KEY(users_id)
-    REFERENCES users(id)
-    ON DELETE CASCADE,
-    FOREIGN KEY(cars_id)
-    REFERENCES cars(id)
-    ON DELETE CASCADE
-);
-
--- SQLBook: Code
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (terminal_id) REFERENCES terminals (id),
+    FOREIGN KEY (car_id) REFERENCES cars (id)
+); 

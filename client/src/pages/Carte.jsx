@@ -1,5 +1,6 @@
 import { useState } from "react";
 import MapComponent from "../components/MapComponent";
+
 import "../styles/carte.scss";
 
 export default function Carte() {
@@ -21,13 +22,9 @@ export default function Carte() {
           onKeyDown={handleSearch}
         />
       </section>
+
       <section className="map">
         <MapComponent searchQuery={searchQuery} />
-      </section>
-      <section className="station">
-        <h1>Nom de la station</h1>
-        <p>Adresse de la borne</p>
-        <p>Code Postale - Ville</p>
       </section>
     </div>
   );

@@ -21,10 +21,12 @@ export default function ListCars() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/cars`)
-      .then((results) => {
-        setCars(results.data);
-      })
+      .all([axios.get(`${API_URL}/api/cars`)])
+      .then(
+        axios.spread((carsRes) => {
+          setCars(carsRes.data);
+        })
+      )
       .catch((err) => console.info(err));
   }, [API_URL]);
 
@@ -48,9 +50,11 @@ export default function ListCars() {
       setConfirmDelete(null);
     }
   };
+
   const handleDeleteConfirm = (userId) => {
     setConfirmDelete(userId);
   };
+
   const cancelDelete = () => {
     setConfirmDelete(null);
   };
@@ -60,7 +64,7 @@ export default function ListCars() {
       <h1>LISTES DES VÉHICULES</h1>
       {cars.slice(0, visibleCount).map((car) => (
         <p key={car.id}>
-          {car.brands_id} || {car.model} || {car.plugs_id}
+          {car.brand_name} || {car.name} || {car.lastname}
           <button
             type="button"
             className="supression"

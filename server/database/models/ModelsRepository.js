@@ -1,14 +1,18 @@
 const AbstractRepository = require("./AbstractRepository");
 
-class ImagesRepository extends AbstractRepository {
+class ModelsRepository extends AbstractRepository {
   constructor() {
-    super({ table: "images" });
+    super({ table: "models" });
   }
 
-  async create(images) {
+  async create(models) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (url, user_id, cars_id) values (?, ?, ?)`,
-      [images.url, images.user_id, images.cars_id]
+      `insert into ${this.table} (name, brand_id, plug_type_id ) values (?, ?, ?)`,
+      [
+        models.name,
+        models.brand_id,
+        models.plug_type_id
+      ]
     );
 
     return result.insertId;
@@ -29,10 +33,15 @@ class ImagesRepository extends AbstractRepository {
     return rows;
   }
 
-  async update(images) {
+  async update(models) {
     const [result] = await this.database.query(
-      `update ${this.table} set url = ? where id = ?`,
-      [images.url, images.id]
+      `update ${this.table} set name = ?, brand_id = ?, plug_type_id = ? where id = ?`,
+      [
+        models.name,
+        models.brand_id,
+        models.plug_type_id,
+        models.id
+      ]
     );
 
     return result.affectedRows;
@@ -48,4 +57,4 @@ class ImagesRepository extends AbstractRepository {
   }
 }
 
-module.exports = ImagesRepository;
+module.exports = ModelsRepository;

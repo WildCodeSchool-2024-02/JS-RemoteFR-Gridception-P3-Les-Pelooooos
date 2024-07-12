@@ -10,6 +10,7 @@ export default function Inscription() {
       <Link to="/">
         <img className="logoIns" src={logoGeocode} alt="Logo Geocode" />
       </Link>
+
       <h1 className="h1Ins">INSCRIPTION</h1>
       <InscriptionProfil />
     </section>

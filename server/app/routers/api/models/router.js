@@ -8,7 +8,7 @@ const {
   edit,
   add,
   destroy,
-} = require("../../../controllers/usersActions");
+} = require("../../../controllers/modelsActions");
 
 router.get("/", browse);
 router.get("/:id", read);

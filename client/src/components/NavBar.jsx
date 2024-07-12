@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import NavBarLinks from "./NavBarLinks";
+
+import { useAuth } from "../contexts/AuthContext";
+
 import homeIcon from "../assets/images/icons-home.png";
 import homeIconGreen from "../assets/images/icons-home-green.png";
 import userIcon from "../assets/images/icons-user.png";
@@ -8,67 +10,30 @@ import settingsIcon from "../assets/images/icons-settings.png";
 import settingsIconGreen from "../assets/images/icons-settings-green.png";
 import mapIcon from "../assets/images/icons-map.png";
 import mapIconGreen from "../assets/images/icons-map-green.png";
+
 import "../styles/navBar.scss";
 
 export default function NavBar() {
+  const { auth } = useAuth();
 
-  const [activeIcon, setActiveIcon] = useState(null);
-
-  const handleIconClick = (icon) => {
-    setActiveIcon(icon);
-  };
-  
   return (
     <section className="navbar-container">
-      <Link to="/">
-        <button
-          type="button"
-          className={`icon home ${activeIcon === "home" ? "active" : ""}`}
-          onClick={() => handleIconClick("home")}
-        >
-          <img
-            src={activeIcon === "home" ? homeIconGreen : homeIcon}
-            alt="icône maison"
-          />
-        </button>
-      </Link>
-
-      <Link to="/profil">
-        <button
-          type="button"
-          className={`icon user ${activeIcon === "user" ? "active" : ""}`}
-          onClick={() => handleIconClick("user")}
-        >
-          <img
-            src={activeIcon === "user" ? userIconGreen : userIcon}
-            alt="icône profil"
-          />
-        </button>
-      </Link>
-
-      <Link to="/carte">
-        <button
-          type="button"
-          className={`icon map ${activeIcon === "map" ? "active" : ""}`}
-          onClick={() => handleIconClick("map")}
-        >
-          <img
-            src={activeIcon === "map" ? mapIconGreen : mapIcon}
-            alt="icône map"
-          />
-        </button>
-      </Link>
-
-      <button
-        type="button"
-        className={`icon settings ${activeIcon === "settings" ? "active" : ""}`}
-        onClick={() => handleIconClick("settings")}
-      >
-        <img
-          src={activeIcon === "settings" ? settingsIconGreen : settingsIcon}
-          alt="icône réglage"
+      <NavBarLinks to="/" icon={homeIcon} activeIcon={homeIconGreen} />
+      <NavBarLinks to="/carte" icon={mapIcon} activeIcon={mapIconGreen} />
+      {auth ? (
+        <NavBarLinks to="/profil" icon={userIcon} activeIcon={userIconGreen} />
+      ) : (
+        <NavBarLinks
+          to="/connexion"
+          icon={userIcon}
+          activeIcon={userIconGreen}
         />
-      </button>
+      )}
+      <NavBarLinks
+        to="/administrateur"
+        icon={settingsIcon}
+        activeIcon={settingsIconGreen}
+      />
     </section>
   );
 }
