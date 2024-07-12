@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
 import Cancel from "../assets/images/icons-cancel.png";
 import Down from "../assets/images/icons-down.png";
 import Up from "../assets/images/icons-up.png";
@@ -10,7 +10,12 @@ export default function ListUsers({ users }) {
 
   const [visibleCount, setVisibleCount] = useState(5);
   const [localUsers, setLocalUsers] = useState(users);
+
   const [confirmDelete, setConfirmDelete] = useState(null);
+
+  useEffect(() => {
+    setLocalUsers(users);
+  }, [users]);
 
   const showMore = () => {
     setVisibleCount((prevCount) => prevCount + 5);
@@ -41,9 +46,11 @@ export default function ListUsers({ users }) {
       setConfirmDelete(null);
     }
   };
+
   const handleDeleteConfirm = (userId) => {
     setConfirmDelete(userId);
   };
+
   const cancelDelete = () => {
     setConfirmDelete(null);
   };
@@ -105,8 +112,9 @@ export default function ListUsers({ users }) {
 ListUsers.propTypes = {
   users: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number.isRequired,
       lastname: PropTypes.string.isRequired,
-      fisrtname: PropTypes.string,
+      firstname: PropTypes.string.isRequired,
     })
   ).isRequired,
 };
