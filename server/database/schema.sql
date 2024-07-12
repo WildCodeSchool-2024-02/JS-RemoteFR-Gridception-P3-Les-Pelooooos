@@ -82,4 +82,4 @@ CREATE TABLE reservations (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (terminal_id) REFERENCES terminals (id),
     FOREIGN KEY (car_id) REFERENCES cars (id)
-);
+); 

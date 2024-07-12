@@ -10,6 +10,8 @@ const plugsTypesRouter = require("./plugsTypes/router");
 const reservationsRouter = require("./reservations/router");
 const terminalsRouter = require("./terminals/router");
 const usersRouter = require("./users/router");
+const modelsRouter = require("./models/router");
+const terminalPlugsRouter = require("./terminalPlugs/router");
 
 router.use("/auth", authRouter);
 router.use("/brands", brandsRouter);
@@ -19,6 +21,8 @@ router.use("/plugsTypes", plugsTypesRouter);
 router.use("/reservations", reservationsRouter);
 router.use("/terminals", terminalsRouter);
 router.use("/users", usersRouter);
+router.use("/models", modelsRouter);
+router.use("/terminalPlugs", terminalPlugsRouter);
 
 const uploadRouter = require("./upload/router");
 

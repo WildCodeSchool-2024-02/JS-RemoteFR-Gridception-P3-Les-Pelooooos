@@ -24,7 +24,11 @@ class CarsRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT cars.id, brands.brand_name, models.name, users.lastname
+    FROM cars
+    JOIN brands ON cars.brand_id = brands.id
+    JOIN models ON cars.model_id = models.id
+    JOIN users ON cars.user_id = users.id;`);
 
     return rows;
   }
