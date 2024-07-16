@@ -26,12 +26,6 @@ const login = async (req, res) => {
       .json({ success: false, message: "Invalid credentials" });
   }
 
-  // if (user.is_admin === 1) {
-  //   user.is_admin = "admin";
-  // } else if (user.is_admin === 2) {
-  //   user.is_admin = "user";
-  // }
-
   return res.json({
     success: true,
     user: {
@@ -61,14 +55,14 @@ const register = async (req, res) => {
     postalCode,
     password,
     carsOwned,
-  //  vehicles,
+    vehicles,
     role,
   } = req.body;
 
   try {
     const hashedPassword = await argon2.hash(password, hashingOptions);
 
-    const userId = await tables.users.create({
+    const usersId = await tables.users.create({
       gender,
       lastname,
       firstname,
@@ -80,12 +74,19 @@ const register = async (req, res) => {
       carsOwned,
       role,
     });
-// aller chercher le brandId / modelID donné dans la ligne 65 - considerer qu'un user envoie 1 voiture - tables.brand.read
-    // const carsId = await tables.cars.create({
 
-    // })
+    const { brandName, model } = vehicles[0];
 
-    res.json({ success: true, userId });
+    const brandId = await tables.brands.readByName(brandName);
+    const modelId = await tables.models.readByName(model);
+
+    const cars = { brand_id: brandId, model_id: modelId, user_id: usersId };
+
+    const carsId = await tables.cars.create(cars);
+
+    console.info(carsId);
+
+    res.sendStatus(200);
   } catch (error) {
     console.error("Ereur d'enregistrement du profil", error);
     res.status(500).json({ success: false, message: "Erreur du serveur" });

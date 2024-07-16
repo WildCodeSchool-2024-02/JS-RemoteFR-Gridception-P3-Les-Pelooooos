@@ -23,6 +23,15 @@ class BrandsRepository extends AbstractRepository {
     return rows[0];
   }
 
+  async readByName(name) {
+    const [rows] = await this.database.query(
+      `select id from ${this.table} where brand_name = ?`,
+      [name]
+    );
+
+    return rows[0].id;
+  }
+
   async readAll() {
     const [rows] = await this.database.query(`select * from ${this.table}`);
 

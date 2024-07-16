@@ -103,7 +103,7 @@ export default function InscriptionProfil() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Empêche le rechargement de la page
-  
+
     const vehicles = selectedMarques.map((marque, index) => ({
       brandName: marque,
       model: selectedModeles[index],
@@ -134,6 +134,7 @@ export default function InscriptionProfil() {
       .then((response) => {
         login(response.data); // Connexion de l'utilisateur après l'enregistrement
         // Réinitialisation du formulaire et des états
+
         setInscription({
           genre: "",
           nom: "",
