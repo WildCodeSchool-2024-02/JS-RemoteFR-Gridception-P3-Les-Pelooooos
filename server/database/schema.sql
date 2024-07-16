@@ -49,7 +49,7 @@ CREATE TABLE models (
     brand_id INT NOT NULL,
     plug_type_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (brand_id) REFERENCES brands(id),
+    FOREIGN KEY (brand_id) REFERENCES brands(id) ON DELETE CASCADE,
     FOREIGN KEY (plug_type_id) REFERENCES plugs_types(id)
 );
 
@@ -58,7 +58,7 @@ CREATE TABLE terminal_plugs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     terminal_id INT NOT NULL,
     plug_id INT NOT NULL,
-    FOREIGN KEY (terminal_id) REFERENCES terminals (id),
+    FOREIGN KEY (terminal_id) REFERENCES terminals (id) ON DELETE CASCADE,
     FOREIGN KEY (plug_id) REFERENCES plugs (id)
 );
 
@@ -68,9 +68,9 @@ CREATE TABLE cars (
     model_id INT NOT NULL,
     user_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (brand_id) REFERENCES brands (id),
-    FOREIGN KEY (model_id) REFERENCES models (id),
-    FOREIGN KEY (user_id) REFERENCES users (id)
+    FOREIGN KEY (brand_id) REFERENCES brands (id) ON DELETE CASCADE,
+    FOREIGN KEY (model_id) REFERENCES models (id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE reservations (
@@ -80,6 +80,6 @@ CREATE TABLE reservations (
     date DATETIME NOT NULL,
     hour TIME NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (terminal_id) REFERENCES terminals (id),
-    FOREIGN KEY (car_id) REFERENCES cars (id)
+    FOREIGN KEY (terminal_id) REFERENCES terminals (id) ON DELETE CASCADE,
+    FOREIGN KEY (car_id) REFERENCES cars (id) ON DELETE CASCADE
 ); 
