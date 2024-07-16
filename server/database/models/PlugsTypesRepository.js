@@ -31,6 +31,17 @@ class PlugsTypesRepository extends AbstractRepository {
     return rows[0];
   }
 
+  async readByPlugType(plugType) {
+    // Execute the SQL SELECT query to retrieve a specific item by its ID
+    const [rows] = await this.database.query(
+      `select id from ${this.table} where plug_type = ?`,
+      [plugType]
+    );
+
+    // Return the first row of the result, which represents the item
+    return rows[0].id;
+  }
+
   async readAll() {
     // Execute the SQL SELECT query to retrieve all items from the "item" table
     const [rows] = await this.database.query(`select * from ${this.table}`);

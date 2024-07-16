@@ -45,7 +45,6 @@ const login = async (req, res) => {
 };
 
 const register = async (req, res) => {
- 
   const {
     gender,
     lastname,
@@ -56,7 +55,7 @@ const register = async (req, res) => {
     postalCode,
     password,
     carsOwned,
-    // vehicles,
+    vehicles,
     role,
   } = req.body;
 
@@ -75,37 +74,19 @@ const register = async (req, res) => {
       carsOwned,
       role,
     });
-   
 
-    // if (vehicles === 1) {
-    //   const { brandName, model, plugType } = vehicles[0];
+    const { brandName, model } = vehicles[0];
 
-    //   const modelId = await tables.models.read({
-    //     where: [{ model_name: model }],
-    //   });
+    const brandId = await tables.brands.readByName(brandName);
+    const modelId = await tables.models.readByName(model);
 
-    //   const brandId = await tables.brands.read({
-    //     where: [{ brand_name: brandName }],
-    //   });
+    const cars = { brand_id: brandId, model_id: modelId, user_id: usersId };
 
-    //   if (modelId && brandId) {
-    //     await tables.cars.create({
-    //       brand_id: brandId.id,
-    //       model_id: modelId.id,
-    //       user_id: usersId,
-    //       plug_type: plugType,
-        
-    //   });
-    //   } else {
-    //     console.info("Erreur de lecture du model ou brand");
-    //   }
-    
-    // }
-    // console.log("MODEL", modelId);
+    const carsId = await tables.cars.create(cars);
 
-    // aller chercher le brandId / modelID donné dans la ligne 65 - considerer qu'un user envoie 1 voiture - tables.brand.read
+    console.info(carsId);
 
-    res.json({ success: true, usersId });
+    res.sendStatus(200);
   } catch (error) {
     console.error("Ereur d'enregistrement du profil", error);
     res.status(500).json({ success: false, message: "Erreur du serveur" });
