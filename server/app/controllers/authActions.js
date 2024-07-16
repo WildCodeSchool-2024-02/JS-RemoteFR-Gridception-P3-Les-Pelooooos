@@ -26,12 +26,6 @@ const login = async (req, res) => {
       .json({ success: false, message: "Invalid credentials" });
   }
 
-  // if (user.is_admin === 1) {
-  //   user.is_admin = "admin";
-  // } else if (user.is_admin === 2) {
-  //   user.is_admin = "user";
-  // }
-
   return res.json({
     success: true,
     user: {
@@ -51,6 +45,7 @@ const login = async (req, res) => {
 };
 
 const register = async (req, res) => {
+ 
   const {
     gender,
     lastname,
@@ -61,14 +56,14 @@ const register = async (req, res) => {
     postalCode,
     password,
     carsOwned,
-  //  vehicles,
+    // vehicles,
     role,
   } = req.body;
 
   try {
     const hashedPassword = await argon2.hash(password, hashingOptions);
 
-    const userId = await tables.users.create({
+    const usersId = await tables.users.create({
       gender,
       lastname,
       firstname,
@@ -80,12 +75,37 @@ const register = async (req, res) => {
       carsOwned,
       role,
     });
-// aller chercher le brandId / modelID donné dans la ligne 65 - considerer qu'un user envoie 1 voiture - tables.brand.read
-    // const carsId = await tables.cars.create({
+   
 
-    // })
+    // if (vehicles === 1) {
+    //   const { brandName, model, plugType } = vehicles[0];
 
-    res.json({ success: true, userId });
+    //   const modelId = await tables.models.read({
+    //     where: [{ model_name: model }],
+    //   });
+
+    //   const brandId = await tables.brands.read({
+    //     where: [{ brand_name: brandName }],
+    //   });
+
+    //   if (modelId && brandId) {
+    //     await tables.cars.create({
+    //       brand_id: brandId.id,
+    //       model_id: modelId.id,
+    //       user_id: usersId,
+    //       plug_type: plugType,
+        
+    //   });
+    //   } else {
+    //     console.info("Erreur de lecture du model ou brand");
+    //   }
+    
+    // }
+    // console.log("MODEL", modelId);
+
+    // aller chercher le brandId / modelID donné dans la ligne 65 - considerer qu'un user envoie 1 voiture - tables.brand.read
+
+    res.json({ success: true, usersId });
   } catch (error) {
     console.error("Ereur d'enregistrement du profil", error);
     res.status(500).json({ success: false, message: "Erreur du serveur" });
