@@ -2,25 +2,28 @@ const Joi = require("joi");
 
 const checkRegisterDatas = (req, res, next) => {
   const schema = Joi.object({
-    gender: Joi.string().presence("required"),
-    lastname: Joi.string().min(2).presence("required"),
-    firstname: Joi.string().min(2).presence("required"),
-    date_of_birth: Joi.date().max("2006-01-01").presence("required"), // date de naissance maximale pour que l'utilisateur ait au moins 18 ans
-    email: Joi.string().email().presence("required"),
-    city: Joi.string().presence("required"),
-    postal_code: Joi.string().presence("required"),
-    password: Joi.string().min(6).max(20).presence("required"),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(6).max(20).required(),
     confirm_password: Joi.any()
-      .equal(Joi.ref("password"))
-      .presence("required")
-      .messages({
-        "any.only": "Confirmation invalide 🤨",
-      }),
-    cars_owned: Joi.number().integer().presence("required"),
-    // is_admin: Joi.boolean().required(),
-    // reservations_id: Joi.number().integer().optional().allow(null)
-    brand_name: Joi.string().min(2).presence("required"),
-    model: Joi.string().min(2).presence("required"),
+      .valid(Joi.ref('password'))
+      .required()
+      .label('Confirm password')
+      .messages({ 'any.only': '{{#label}} does not match' }),
+    gender: Joi.string().required(),
+    firstname: Joi.string().min(2).required(),
+    lastname: Joi.string().min(2).required(),
+    birthdate: Joi.date().max('2006-01-01').required(),
+    city: Joi.string().required(),
+    postal_code: Joi.string().required(),
+    cars_owned: Joi.number().integer().required(),
+    vehicles: Joi.array().items(
+      Joi.object({
+        brand_name: Joi.string().min(2).required(),
+        model: Joi.string().min(2).required(),
+        plug_type: Joi.string().required(),
+      })
+    ),
+    role: Joi.string().valid('user', 'admin').required(),
   });
 
   const { error } = schema.validate(req.body);

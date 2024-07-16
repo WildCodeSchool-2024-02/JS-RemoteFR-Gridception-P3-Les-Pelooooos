@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // impot pour Rediriger vers la page souhaitée
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext"; // Importer le contexte d'authentification
 
 const models = {
@@ -101,6 +101,61 @@ export default function InscriptionProfil() {
     return codePostalRegex.test(codePostal);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Empêche le rechargement de la page
+  
+    const vehicles = selectedMarques.map((marque, index) => ({
+      brand_name: marque,
+      model: selectedModeles[index],
+      plug_type: plugTypes[index],
+    }));
+
+    const formData = {
+      // transforme les données de inscription pour correspondre aux attentes du backend, notamment en termes de nommage des champs.
+      gender: inscription.genre,
+      lastname: inscription.nom,
+      firstname: inscription.prenom,
+      birthdate: new Date(inscription.dateNaissance).toISOString().slice(0, 10), // Format ISO 8601
+      email: inscription.email,
+      city: inscription.ville,
+      postal_code: inscription.cp,
+      password: inscription.mp,
+      confirm_password: inscription.confirmationMp,
+      cars_owned: parseInt(inscription.vehicule, 10),
+      vehicles,
+    };
+
+    console.info("Form Data:", formData); // Log des données envoyées
+
+    setError("");
+
+    axios
+      .post("http://localhost:3310/api/auth/register", formData)
+      .then((response) => {
+        login(response.data); // Connexion de l'utilisateur après l'enregistrement
+        // Réinitialisation du formulaire et des états
+        setInscription({
+          genre: "",
+          nom: "",
+          prenom: "",
+          dateNaissance: "",
+          email: "",
+          ville: "",
+          cp: "",
+          mp: "",
+          confirmationMp: "",
+          vehicule: "",
+        });
+        setSelectedMarques([]);
+        setSelectedModeles([]);
+        setPlugTypes([]);
+        navigate("/profil"); // Redirection vers la page de profil après l'enregistrement
+      })
+      .catch((err) => {
+        setError(err.response?.data?.err || "Une erreur est survenue");
+      });
+  };
+
   const togglePopup = () => {
     if (inscription.genre === "") {
       setError("Le genre est requis.");
@@ -123,45 +178,7 @@ export default function InscriptionProfil() {
     } else if (inscription.vehicule === "") {
       setError("Le nombre de véhicules est obligatoire.");
     } else {
-      const vehicles = selectedMarques.map((marque, index) => ({
-        brand_name: marque,
-        model: selectedModeles[index],
-        plug_type: plugTypes[index],
-      }));
-
-      const formData = {
-        // transforme les données de inscription pour correspondre aux attentes du backend, notamment en termes de nommage des champs.
-        gender: inscription.genre,
-        lastname: inscription.nom,
-        firstname: inscription.prenom,
-        date_of_birth: inscription.dateNaissance,
-        email: inscription.email,
-        city: inscription.ville,
-        postal_code: inscription.cp,
-        password: inscription.mp,
-        confirm_password: inscription.confirmationMp,
-        cars_owned: parseInt(inscription.vehicule, 10),
-        vehicles,
-      };
-
-      setError("");
-      login(formData); // Envoi des donnees converties au backend
-      setInscription({
-        genre: "",
-        nom: "",
-        prenom: "",
-        dateNaissance: "",
-        email: "",
-        ville: "",
-        cp: "",
-        mp: "",
-        confirmationMp: "",
-        vehicule: "",
-      });
-      setSelectedMarques([]);
-      setSelectedModeles([]);
-      setPlugTypes([]);
-      navigate("/profil"); // Rediriger vers la page souhaitée
+      handleSubmit();
     }
   };
 
@@ -238,14 +255,6 @@ export default function InscriptionProfil() {
 
   console.info(carsList);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    axios.post("http://localhost:3310/api/auth/register", {
-      inscription,
-    });
-  };
-
   return (
     <section className="profilInformation">
       <form className="formIns" onSubmit={handleSubmit}>
@@ -262,7 +271,7 @@ export default function InscriptionProfil() {
           <option value="">Sélectionnez votre genre</option>
           <option value="Masculin">Masculin</option>
           <option value="Féminin">Féminin</option>
-          <option value="Autre">Non communiqué</option>
+          <option value="Non communiqué">Non communiqué</option>
         </select>
         <label className="labelIns" htmlFor="nom">
           Nom
