@@ -4,7 +4,7 @@ const checkRegisterDatas = (req, res, next) => {
   const schema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).max(20).required(),
-    confirm_password: Joi.any()
+    confirmPassword: Joi.any()
       .valid(Joi.ref('password'))
       .required()
       .label('Confirm password')
@@ -14,13 +14,13 @@ const checkRegisterDatas = (req, res, next) => {
     lastname: Joi.string().min(2).required(),
     birthdate: Joi.date().max('2006-01-01').required(),
     city: Joi.string().required(),
-    postal_code: Joi.string().required(),
-    cars_owned: Joi.number().integer().required(),
+    postalCode: Joi.string().required(),
+    carsOwned: Joi.number().integer().required(),
     vehicles: Joi.array().items(
       Joi.object({
-        brand_name: Joi.string().min(2).required(),
+        brandName: Joi.string().min(2).required(),
         model: Joi.string().min(2).required(),
-        plug_type: Joi.string().required(),
+        plugType: Joi.string().required(),
       })
     ),
     role: Joi.string().valid('user', 'admin').required(),

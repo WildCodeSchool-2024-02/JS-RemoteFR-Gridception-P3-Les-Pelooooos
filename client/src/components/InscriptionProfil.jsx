@@ -105,9 +105,9 @@ export default function InscriptionProfil() {
     e.preventDefault(); // Empêche le rechargement de la page
   
     const vehicles = selectedMarques.map((marque, index) => ({
-      brand_name: marque,
+      brandName: marque,
       model: selectedModeles[index],
-      plug_type: plugTypes[index],
+      plugType: plugTypes[index],
     }));
 
     const formData = {
@@ -118,10 +118,10 @@ export default function InscriptionProfil() {
       birthdate: new Date(inscription.dateNaissance).toISOString().slice(0, 10), // Format ISO 8601
       email: inscription.email,
       city: inscription.ville,
-      postal_code: inscription.cp,
+      postalCode: inscription.cp,
       password: inscription.mp,
-      confirm_password: inscription.confirmationMp,
-      cars_owned: parseInt(inscription.vehicule, 10),
+      confirmPassword: inscription.confirmationMp,
+      carsOwned: parseInt(inscription.vehicule, 10),
       vehicles,
     };
 

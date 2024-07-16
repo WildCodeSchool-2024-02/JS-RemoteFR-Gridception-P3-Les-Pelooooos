@@ -55,14 +55,13 @@ const register = async (req, res) => {
     gender,
     lastname,
     firstname,
-    dateOfBirth,
+    birthdate,
     email,
     city,
     postalCode,
     password,
     carsOwned,
-    brandName,
-    model,
+  //  vehicles,
     role,
   } = req.body;
 
@@ -73,16 +72,19 @@ const register = async (req, res) => {
       gender,
       lastname,
       firstname,
-      dateOfBirth,
+      birthdate,
       email,
       city,
       postalCode,
       password: hashedPassword,
       carsOwned,
-      brandName,
-      model,
       role,
     });
+// aller chercher le brandId / modelID donné dans la ligne 65 - considerer qu'un user envoie 1 voiture - tables.brand.read
+    // const carsId = await tables.cars.create({
+
+    // })
+
     res.json({ success: true, userId });
   } catch (error) {
     console.error("Ereur d'enregistrement du profil", error);
