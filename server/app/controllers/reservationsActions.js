@@ -24,6 +24,19 @@ const read = async (req, res, next) => {
   }
 };
 
+const browseFromCar = async (req, res, next) => {
+  try {
+    const reservations = await tables.reservations.readAllFromCar(
+      req.params.carId
+    );
+
+    res.json(reservations);
+  } catch (err) {
+    next(err);
+  }
+};
+
+
 const edit = async (req, res, next) => {
   const reservations = { ...req.body, id: req.params.id };
 
@@ -60,6 +73,7 @@ const destroy = async (req, res, next) => {
 
 module.exports = {
   browse,
+  browseFromCar,
   read,
   edit,
   add,

@@ -31,15 +31,27 @@
   align-content: center;
 }
 
+.adress-station1 {
+  background: #525b5a;
+  width: 95%;
+  height: 50px;
+  border-radius: 10px;
+  text-align: left;
+  align-items: center;
+  padding-left: 2%;
+  display: flex;
+  align-content: center;
+}
+
 .caracteristic-station {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 95%;
   gap: 0.3rem;
 }
 
 .caracteristic-content {
-  width: 30%;
+  width: 50%;
   height: 74px;
   background: #525b5a;
   padding: 0.5rem;
@@ -56,8 +68,8 @@
 }
 
 .caracteristic-content-cars {
-  width: 50%;
-  height: 74px;
+  width: 100%;
+  height: 37px;
   background: #525b5a;
   padding-left: 0.5rem;
   border-radius: 10px;
@@ -83,11 +95,13 @@
   font-size: 32px;
   font-weight: bold;
   color: #21a89a;
+  margin-left: 1.8rem;
 }
 
 .header-profil p {
   font-size: 20px;
   color: white;
+  margin-left: 1.8rem;
 }
 
 .img-profil {

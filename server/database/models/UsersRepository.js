@@ -36,6 +36,24 @@ class UsersRepository extends AbstractRepository {
     return rows[0];
   }
 
+  async readAllFromCar(id) {
+    const [rows] = await this.database.query(
+      `
+      SELECT *
+      FROM cars c
+      JOIN brands b
+      ON c.brand_id = b.id
+      JOIN models m
+      ON c.model_id = m.id
+      JOIN users u
+      ON c.user_id = u.id
+      WHERE user_id = ?`,
+      [id]
+    );
+
+    return rows[0];
+  }
+
   async readOneByEmail(email) {
     const [rows] = await client.query(
       `SELECT * FROM ${this.table} WHERE email = ?`,
@@ -65,7 +83,7 @@ class UsersRepository extends AbstractRepository {
         users.cars_owned,
         users.role,
         users.image,
-        users.id
+        users.id,
       ]
     );
 

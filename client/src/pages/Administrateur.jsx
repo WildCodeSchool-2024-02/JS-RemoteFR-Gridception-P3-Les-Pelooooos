@@ -7,7 +7,6 @@ import ListCars from "../components/ListCars";
 import ListTerminals from "../components/ListTerminals";
 import MajTerminals from "../components/MajTerminals";
 
-
 export default function Administrateur() {
   const { auth } = useAuth();
   const [users, setUsers] = useState([]);
@@ -15,10 +14,15 @@ export default function Administrateur() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/users`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/users`
+        );
         setUsers(response.data);
       } catch (error) {
-        console.error("Erreur lors de la récupération des utilisateurs:", error);
+        console.error(
+          "Erreur lors de la récupération des utilisateurs:",
+          error
+        );
       }
     };
 
@@ -35,7 +39,7 @@ export default function Administrateur() {
     <section className="admin-profil">
       <section className="admin-profil-content">
         <h1>PROFIL ADMINISTRATEUR</h1>
-        {users.length > 0 && <p>Bonjour {users[0].firstname}</p>}
+        <p>Bonjour, {auth.user.firstName}</p>
       </section>
       <ListUsers users={users} />
       <ListCars />
@@ -44,4 +48,3 @@ export default function Administrateur() {
     </section>
   );
 }
-

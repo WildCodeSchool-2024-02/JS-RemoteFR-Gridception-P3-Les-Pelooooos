@@ -28,7 +28,7 @@ CREATE TABLE users (
 
 CREATE TABLE terminals (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name_station VARCHAR(50),
+    name_station VARCHAR(250),
     longitude FLOAT NOT NULL,
     latitude FLOAT NOT NULL,
     adress_station TEXT,
