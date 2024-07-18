@@ -101,8 +101,7 @@ export default function InscriptionProfil() {
     return codePostalRegex.test(codePostal);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Empêche le rechargement de la page
+  const handleSubmit = () => {
 
     const vehicles = selectedMarques.map((marque, index) => ({
       brandName: marque,
@@ -123,6 +122,7 @@ export default function InscriptionProfil() {
       confirmPassword: inscription.confirmationMp,
       carsOwned: parseInt(inscription.vehicule, 10),
       vehicles,
+      role: 'user'
     };
 
     console.info("Form Data:", formData); // Log des données envoyées
@@ -150,9 +150,10 @@ export default function InscriptionProfil() {
         setSelectedMarques([]);
         setSelectedModeles([]);
         setPlugTypes([]);
-        navigate("/profil"); // Redirection vers la page de profil après l'enregistrement
+        navigate(`/profil/${response.data.id}`); // Utilisez l'ID de l'utilisateur depuis la réponse
       })
       .catch((err) => {
+        console.error("Erreur de l'enregistrement",err); // Afficher l'erreur dans la console
         setError(err.response?.data?.err || "Une erreur est survenue");
       });
   };
@@ -258,7 +259,7 @@ export default function InscriptionProfil() {
 
   return (
     <section className="profilInformation">
-      <form className="formIns" onSubmit={handleSubmit}>
+      <form className="formIns" onSubmit={togglePopup}>
         <h2 className="h2Ins"> INFORMATION DE VOTRE PROFIL</h2>
         <label className="labelIns" htmlFor="genre">
           Genre
@@ -377,7 +378,7 @@ export default function InscriptionProfil() {
         {renderVehiculeForms()}
         {error && <p className="error">{error}</p>}
         <div className="button">
-          <button className="buttonIns" type="submit" onClick={togglePopup}>
+          <button className="buttonIns" type="submit" onClick={handleSubmit}>
             VALIDER
           </button>
         </div>
