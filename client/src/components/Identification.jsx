@@ -53,13 +53,13 @@ export default function Identification() {
       </p>
 
       <form className="formId" onSubmit={handleSubmit}>
-        <p className="pId2">Identifiant :</p>
+        <p className="pId2">Email :</p>
 
         <input
           className="inputId"
           required
           type="email"
-          placeholder="Identifiant *"
+          placeholder="Email *"
           name="identifiant"
           value={identifier.identifiant}
           onChange={(e) => handleChangeForm(e)}
