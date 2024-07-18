@@ -136,8 +136,8 @@ function MapComponent({ searchQuery }) {
       {selectedTerminal && (
         <section>
           <section className="station">
-            <h1>{selectedTerminal.name}</h1>
-            <p>{selectedTerminal.adress}</p>
+            <h1>{selectedTerminal.name_station}</h1>
+            <p>{selectedTerminal.adress_station}</p>
             {informationTerminal && (
               <section className="popupTerminal">
                 <section className="argentTerminal">
@@ -156,22 +156,21 @@ function MapComponent({ searchQuery }) {
                     className="inputIns"
                     type="date"
                     name="dateReservation"
-                    value=""
                   />
 
                   <label className="labelIns" htmlFor="priseType">
                     Horaire de réservation:
                   </label>
                   <select className="inputIns" name="priseType">
-                    <option value="1">00:00 - 00:30</option>
-                    <option value="2">00:30 - 01:00</option>
-                    <option value="3">01:00 - 01:30</option>
-                    <option value="4">01:30 - 02:00</option>
-                    <option value="5">02:00 - 02:30</option>
-                    <option value="6">02:30 - 03:00</option>
-                    <option value="7">03:00 - 03:30</option>
-                    <option value="8">03:30 - 04:00</option>
-                    <option value="9">04:00 - 04:30</option>
+                    <option value="1"> 00:00 - 00:30</option>
+                    <option value="2"> 00:30 - 01:00</option>
+                    <option value="3"> 01:00 - 01:30</option>
+                    <option value="4"> 01:30 - 02:00</option>
+                    <option value="5"> 02:00 - 02:30</option>
+                    <option value="6"> 02:30 - 03:00</option>
+                    <option value="7"> 03:00 - 03:30</option>
+                    <option value="8"> 03:30 - 04:00</option>
+                    <option value="9"> 04:00 - 04:30</option>
                     <option value="10">04:30 - 05:00</option>
                     <option value="11">05:00 - 05:30</option>
                     <option value="12">05:30 - 06:00</option>
