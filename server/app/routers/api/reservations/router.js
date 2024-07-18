@@ -4,6 +4,7 @@ const router = express.Router();
 
 const {
   browse,
+  browseFromCar,
   read,
   edit,
   add,
@@ -12,6 +13,7 @@ const {
 
 router.get("/", browse);
 router.get("/:id", read);
+router.get("/cars/:carId", browseFromCar);
 router.put("/:id", edit);
 router.post("/", add);
 router.delete("/:id", destroy);

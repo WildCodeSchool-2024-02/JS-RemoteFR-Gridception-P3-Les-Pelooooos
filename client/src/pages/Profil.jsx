@@ -1,26 +1,63 @@
+import { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import { useAuth } from "../contexts/AuthContext";
-import pictureUser from "../assets/images/picture-user.jpg";
 import Vehicules from "../components/Véhicules";
 import Reservation from "../components/Reservation";
+
+import pictureUser from "../assets/images/picture-user.jpg";
+
 import "../styles/profil.scss";
 import "../styles/template.scss";
 
 export default function Profil() {
   const users = useLoaderData();
-  const { logout } = useAuth();
-  const navigate = useNavigate()
+
+  const [car, setCar] = useState([]);
+  const [reservation, setReservation] = useState([]);
+
+  const { auth, logout } = useAuth();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getDatas = async () => {
+      const carFromUser = await axios.get(
+        `http://localhost:3310/api/users/${users.id}/cars`
+      );
+
+      setCar(carFromUser.data);
+
+      const reservationFromUser = await axios.get(
+        `http://localhost:3310/api/reservations/cars/${carFromUser.data.id}`
+      );
+
+      setReservation(reservationFromUser.data);
+    };
+
+    getDatas();
+  }, [users]);
+
+  // console.log(users);
+  // console.log(car);
+  // console.log(reservation);
 
   const handleLogout = () => {
     logout();
     navigate("/connexion");
   };
+
+  if (!auth) {
+    return <p>Veuillez vous connecter pour accéder à cette page.</p>;
+  }
+
   return (
     <>
       <section className="header-profil">
         <section className="header-profil-content">
           <h1>PROFIL</h1>
-          <p>Bonjour {users[0].firstname}</p>
+          <p>Bonjour {users.firstname}</p>
         </section>
         <img
           className="img-profil"
@@ -30,9 +67,13 @@ export default function Profil() {
       </section>
 
       <section className="container">
-        <Reservation />
-        <Vehicules />
-      <button className="buttonLogout" type="button" onClick={handleLogout}>DÉCONNEXION</button>
+        <Reservation reservation={reservation} />
+
+        <Vehicules car={car} />
+
+        <button className="buttonLogout" type="button" onClick={handleLogout}>
+          DÉCONNEXION
+        </button>
       </section>
     </>
   );

@@ -16,12 +16,19 @@ import "../styles/navBar.scss";
 export default function NavBar() {
   const { auth } = useAuth();
 
+  const userId = auth ? auth.user?.id : null;
+
   return (
     <section className="navbar-container">
       <NavBarLinks to="/" icon={homeIcon} activeIcon={homeIconGreen} />
+
       <NavBarLinks to="/carte" icon={mapIcon} activeIcon={mapIconGreen} />
       {auth ? (
-        <NavBarLinks to="/profil" icon={userIcon} activeIcon={userIconGreen} />
+        <NavBarLinks
+          to={`/profil/${userId}`}
+          icon={userIcon}
+          activeIcon={userIconGreen}
+        />
       ) : (
         <NavBarLinks
           to="/connexion"
@@ -29,6 +36,7 @@ export default function NavBar() {
           activeIcon={userIconGreen}
         />
       )}
+
       <NavBarLinks
         to="/administrateur"
         icon={settingsIcon}

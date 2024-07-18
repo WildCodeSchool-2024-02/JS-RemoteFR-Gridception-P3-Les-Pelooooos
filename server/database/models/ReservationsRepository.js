@@ -34,10 +34,34 @@ class ReservationsRepository extends AbstractRepository {
     return rows;
   }
 
+  async readAllFromCar(id) {
+    const [rows] = await this.database.query(
+      `
+      SELECT *
+      FROM ${this.table} r
+      JOIN terminals t 
+      ON r.terminal_id = t.id 
+      JOIN terminal_plugs tp
+      ON t.id = tp.terminal_id
+      JOIN plugs p
+      ON tp.plug_id = p.id
+      WHERE car_id = ?`,
+      [id]
+    );
+
+    return rows[0];
+  }
+
   async update(reservations) {
     const [result] = await this.database.query(
       `update ${this.table} set terminal_id = ?, car_id = ?, date = ?, hour = ? where id = ?`,
-      [reservations.terminal_id, reservations.car_id, reservations.date, reservations.hour, reservations.id]
+      [
+        reservations.terminal_id,
+        reservations.car_id,
+        reservations.date,
+        reservations.hour,
+        reservations.id,
+      ]
     );
 
     return result.affectedRows;

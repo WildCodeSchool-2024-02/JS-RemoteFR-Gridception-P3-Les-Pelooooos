@@ -31,14 +31,14 @@ const login = async (req, res) => {
     user: {
       id: user.id,
       gender: user.gender,
-      dateOfBirth: user.date_of_birth,
+      birthdate: user.birthdate,
       lastName: user.lastname,
       firstName: user.firstname,
       email: user.email,
       city: user.city,
       postalCode: user.postal_code,
       carsOwned: user.cars_owned,
-      role: user.is_admin,
+      role: user.role,
       reservationsId: user.reservations_id,
     },
   });

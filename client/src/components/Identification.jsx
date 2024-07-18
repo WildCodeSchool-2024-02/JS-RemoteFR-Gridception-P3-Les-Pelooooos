@@ -33,7 +33,7 @@ export default function Identification() {
 
       login(res.data);
 
-      navigate("/profil");
+      navigate(`/profil/${res.data.user.id}`);
     } catch (err) {
       console.error(err);
     }
