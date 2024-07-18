@@ -5,7 +5,7 @@ import iconsHour from "../assets/images/icons-hour.png";
 import iconsSetting from "../assets/images/icons-settings.png";
 
 export default function Reservation({ reservation }) {
-  // console.log(reservation);
+
 
   return (
     <section className="reservation-container">
@@ -18,13 +18,13 @@ export default function Reservation({ reservation }) {
 
         <h2 className="h2-profil">MA RÉSERVATION</h2>
       </section>
-      <div className="adress-station">
+      <div className="adress-station1">
         <img
           src={iconsLocation}
           alt="Icône de la localisation"
           className="icons-location"
         />
-        <p>{reservation.adress_station}</p>
+        <p className="pAdress">{reservation.adress_station}</p>
       </div>
       <div className="caracteristic-station">
         <div className="caracteristic-content">
@@ -33,7 +33,7 @@ export default function Reservation({ reservation }) {
             alt="Icône de la puissance"
             className="icons"
           />
-          <p>Puissance: {reservation.volt_power}</p>
+          <p>Puissance: {reservation.volt_power} Volt</p>
         </div>
         <div className="caracteristic-content">
           <img src={iconsHour} alt="Icône de l'heure" className="icons" />

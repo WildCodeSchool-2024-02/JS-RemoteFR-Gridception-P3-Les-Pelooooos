@@ -6,8 +6,6 @@ import { useAuth } from "../contexts/AuthContext";
 import Vehicules from "../components/Véhicules";
 import Reservation from "../components/Reservation";
 
-import pictureUser from "../assets/images/picture-user.jpg";
-
 import "../styles/profil.scss";
 import "../styles/template.scss";
 
@@ -39,10 +37,6 @@ export default function Profil() {
     getDatas();
   }, [users]);
 
-  // console.log(users);
-  // console.log(car);
-  // console.log(reservation);
-
   const handleLogout = () => {
     logout();
     navigate("/connexion");
@@ -59,11 +53,6 @@ export default function Profil() {
           <h1>PROFIL</h1>
           <p>Bonjour {users.firstname}</p>
         </section>
-        <img
-          className="img-profil"
-          src={pictureUser}
-          alt="Avatar de votre Profil"
-        />
       </section>
 
       <section className="container">

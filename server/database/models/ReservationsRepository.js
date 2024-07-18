@@ -38,13 +38,10 @@ class ReservationsRepository extends AbstractRepository {
     const [rows] = await this.database.query(
       `
       SELECT *
-      FROM ${this.table} r
-      JOIN terminals t 
-      ON r.terminal_id = t.id 
-      JOIN terminal_plugs tp
-      ON t.id = tp.terminal_id
-      JOIN plugs p
-      ON tp.plug_id = p.id
+      FROM ${this.table} reservations
+      JOIN terminals ON reservations.terminal_id = terminals.id 
+      JOIN terminal_plugs ON terminal_plugs.terminal_id = terminals.id 
+      JOIN plugs ON terminal_plugs.plug_id = plugs.id
       WHERE car_id = ?`,
       [id]
     );

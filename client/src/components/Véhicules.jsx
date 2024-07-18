@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import iconsSetting from "../assets/images/icons-settings.png";
 import iconsCars from "../assets/images/icons-car.png";
+import iconVolant from "../assets/images/volant.png";
 
 export default function Vehicules({ car }) {
-
   return (
     <section className="reservation-container">
       <section className="container-icons">
@@ -20,9 +20,9 @@ export default function Vehicules({ car }) {
         <img src={iconsCars} alt="Icône de la voiture" className="icons-cars" />
         <p>Marque: {car.brand_name}</p>
       </div>
-      <div className="caracteristic-station">
-        <p className="caracteristic-content-cars">Model: {car.name}</p>
-        <p className="caracteristic-content-cars">Type de prise</p>
+      <div className="adress-station">
+        <img className="icons-cars" src={iconVolant} alt="Icon d'un volant" />
+        <p className="caracteristic-content-cars">Modèle: {car.name}</p>
       </div>
     </section>
   );
@@ -36,4 +36,3 @@ Vehicules.propTypes = {
     })
   ).isRequired,
 };
-

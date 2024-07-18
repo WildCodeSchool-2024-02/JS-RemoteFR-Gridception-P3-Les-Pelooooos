@@ -3,6 +3,7 @@ const BrandsSeeder = require("./BrandsSeeder");
 const UsersSeeder = require("./UsersSeeder");
 const ModelsSeeder = require("./ModelsSeeder");
 
+
 class CarsSeeder extends AbstractSeeder {
   constructor() {
     super({
@@ -11,8 +12,8 @@ class CarsSeeder extends AbstractSeeder {
       dependencies: [BrandsSeeder, UsersSeeder, ModelsSeeder],
     });
 
-    this.brandId = [1, 2, 3, 4];
-    this.modelId = [1, 5, 10, 13];
+    this.brandId = [3, 4, 5, 11];
+    this.modelId = [1, 5, 10, 23];
     this.userId = [1, 2, 3, 3];
   }
 
