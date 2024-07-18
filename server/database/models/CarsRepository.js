@@ -29,8 +29,7 @@ class CarsRepository extends AbstractRepository {
     FROM ${this.table} cars
     JOIN brands ON cars.brand_id = brands.id
     JOIN models ON cars.model_id = models.id
-    JOIN users ON cars.user_id = users.id
-    WHERE cars.users_id = ?`,
+    JOIN users ON cars.user_id = users.id`,
       [id]
     );
 
